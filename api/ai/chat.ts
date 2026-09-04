@@ -3,7 +3,7 @@ import {
   generateContentWithCascade,
   generateClinicalChatFallback,
   SYSTEM_PROMPT_CAROLINA,
-} from "../../src/server/geminiService";
+} from "../../src/geminiService";
 
 export default async function handler(req: any, res: any) {
   // CORS configuration
