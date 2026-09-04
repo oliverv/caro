@@ -1,0 +1,6 @@
+{
+  "name": "Carolina Barcellona - Health & Longevity 40+",
+  "description": "Nutrición Epigenética, optimización metabólica y medicina del estilo de vida para mujeres después de los 40.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

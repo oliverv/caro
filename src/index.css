@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Vollkorn", Georgia, serif;
+  --font-display: "Vollkorn", Georgia, serif;
+
+  --color-brand-cream: #F6F1EA;
+  --color-brand-coral: #FF6161;
+  --color-brand-berry: #EE295C;
+  --color-brand-pink: #F8CFD5;
+  --color-brand-gold: #F69C05;
+  --color-brand-sand: #C7A46B;
+  --color-brand-espresso: #201415;
+  --color-brand-charcoal: #2B1D1E;
+  --color-brand-text-muted: #685354;
+  --color-brand-border: #EADFD3;
+
+  --spacing-space-2xs: 0.25rem;
+  --spacing-space-xs: 0.5rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-2xl: 3rem;
+  --spacing-space-3xl: 4.5rem;
+  --spacing-space-4xl: 6rem;
+  --spacing-space-5xl: 8rem;
+  --spacing-margin-mobile: 1.25rem;
+  --spacing-margin-desktop: 3rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #F6F1EA;
+    color: #201415;
+    font-family: var(--font-body);
+  }
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
+.fine-border {
+  border: 0.5px solid rgba(199, 164, 107, 0.28);
+}
+
+.fine-border-dark {
+  border: 0.5px solid rgba(255, 255, 255, 0.14);
+}
+
+.crisp-shadow {
+  box-shadow: 0 1px 3px rgba(32, 20, 21, 0.04), 0 8px 24px -4px rgba(32, 20, 21, 0.06);
+}
+
+.crisp-shadow-elevated {
+  box-shadow: 0 4px 6px -1px rgba(32, 20, 21, 0.04), 0 20px 32px -6px rgba(32, 20, 21, 0.08);
+}
