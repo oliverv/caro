@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { ASSETS } from '../data';
 import { useLanguage } from '../context/LanguageContext';
+import { PageId } from '../types';
 
 interface FooterProps {
+  onNavigate?: (page: PageId) => void;
   onOpenProgramModal: () => void;
   onOpenDiagnosticModal: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagnosticModal }) => {
+export const Footer: React.FC<FooterProps> = ({
+  onNavigate,
+  onOpenProgramModal,
+  onOpenDiagnosticModal
+}) => {
   const { t } = useLanguage();
   const ft = t.footer;
 
@@ -22,20 +28,20 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
     }
   };
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handlePageClick = (page: PageId) => {
+    if (onNavigate) {
+      onNavigate(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   return (
-    <footer id="main-footer" className="w-full bg-[#201415] text-[#F6F1EA] pt-space-4xl pb-space-2xl border-t border-[#C7A46B]/25">
-      <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-space-2xl pb-space-3xl border-b border-white/10">
+    <footer id="main-footer" className="w-full bg-[#201415] text-[#F6F1EA] pt-14 pb-8 border-t border-[#C7A46B]/25">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           {/* Brand Col */}
           <div className="md:col-span-4">
-            <div className="flex items-center gap-2 mb-space-md">
+            <div className="flex items-center gap-3 mb-4">
               <img
                 alt="Carolina Barcellona"
                 className="h-9 w-auto mix-blend-luminosity invert"
@@ -50,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
                 </span>
               </div>
             </div>
-            <p className="text-[13px] text-[#F6F1EA]/75 max-w-sm mb-space-md leading-relaxed">
+            <p className="text-[13px] text-[#F6F1EA]/75 max-w-sm mb-4 leading-relaxed">
               {ft.brandDesc}
             </p>
             <p className="text-[12px] text-[#C7A46B]">
@@ -60,14 +66,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
 
           {/* Quick Links */}
           <div className="md:col-span-3">
-            <p className="font-serif text-[15px] font-bold tracking-wider uppercase mb-space-md text-[#F8CFD5]">
+            <p className="font-serif text-[15px] font-bold tracking-wider uppercase mb-4 text-[#F8CFD5]">
               {ft.exploreTitle}
             </p>
-            <ul className="space-y-space-xs text-[13px] text-[#F6F1EA]/75">
+            <ul className="space-y-2 text-[13px] text-[#F6F1EA]/75">
               <li>
                 <button
                   id="footer-link-inicio"
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  onClick={() => handlePageClick('inicio')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
                   {ft.inicio}
@@ -76,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
               <li>
                 <button
                   id="footer-link-sobre-mi"
-                  onClick={() => scrollToSection('sobre-mi')}
+                  onClick={() => handlePageClick('sobre-mi')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
                   {ft.sobreMi}
@@ -84,11 +90,29 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
               </li>
               <li>
                 <button
-                  id="footer-link-metodo-diosa"
-                  onClick={onOpenProgramModal}
+                  id="footer-link-planes"
+                  onClick={() => handlePageClick('planes')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  {ft.metodoDiosa}
+                  Planes de Nutrición
+                </button>
+              </li>
+              <li>
+                <button
+                  id="footer-link-blog"
+                  onClick={() => handlePageClick('blog')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Blog de Biohacking
+                </button>
+              </li>
+              <li>
+                <button
+                  id="footer-link-contacto"
+                  onClick={() => handlePageClick('contacto')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Contacto Nutricionista
                 </button>
               </li>
               <li>
@@ -100,42 +124,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
                   {ft.testEvaluacion}
                 </button>
               </li>
-              <li>
-                <button
-                  id="footer-link-calculadora"
-                  onClick={() => scrollToSection('calculadora-40')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  {ft.calculadora}
-                </button>
-              </li>
-              <li>
-                <button
-                  id="footer-link-testimonios"
-                  onClick={() => scrollToSection('testimonios')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  {ft.casosExito}
-                </button>
-              </li>
-              <li>
-                <button
-                  id="footer-link-faq"
-                  onClick={() => scrollToSection('faq')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  {ft.preguntasFrecuentes}
-                </button>
-              </li>
             </ul>
           </div>
 
           {/* Newsletter Form */}
           <div className="md:col-span-5">
-            <p className="font-serif text-[15px] font-bold tracking-wider uppercase mb-space-xs text-[#F8CFD5]">
+            <p className="font-serif text-[15px] font-bold tracking-wider uppercase mb-1 text-[#F8CFD5]">
               {ft.newsletterTitle}
             </p>
-            <p className="text-[13px] text-[#F6F1EA]/75 mb-space-md leading-relaxed">
+            <p className="text-[13px] text-[#F6F1EA]/75 mb-4 leading-relaxed">
               {ft.newsletterDesc}
             </p>
 
@@ -156,7 +153,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
                   placeholder={ft.newsletterPlaceholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-2.5 bg-white/10 fine-border-dark rounded-full text-white placeholder-[#F6F1EA]/40 text-[13px] focus:outline-none focus:ring-1 focus:ring-[#EE295C]"
+                  className="flex-1 px-4 py-2.5 bg-white/10 fine-border rounded-full text-white placeholder-[#F6F1EA]/40 text-[13px] focus:outline-none focus:ring-1 focus:ring-[#EE295C]"
                 />
                 <button
                   id="newsletter-submit-btn"
@@ -169,7 +166,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
             )}
 
             {/* Payment & Security Badges */}
-            <div className="mt-space-lg flex items-center gap-2 text-[10px] text-[#F6F1EA]/50 font-semibold tracking-wider">
+            <div className="mt-4 flex items-center gap-2 text-[10px] text-[#F6F1EA]/50 font-semibold tracking-wider">
               <span>{ft.paymentMethods}</span>
               <span className="px-2 py-0.5 rounded bg-white/10 text-white">BIZUM</span>
               <span className="px-2 py-0.5 rounded bg-white/10 text-white">PAYPAL</span>
@@ -179,14 +176,29 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProgramModal, onOpenDiagno
         </div>
 
         {/* Bottom copyright */}
-        <div className="pt-space-xl flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#F6F1EA]/50 gap-4">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#F6F1EA]/50 gap-4">
           <p>© {new Date().getFullYear()} Carolina Barcellona. {ft.allRights}</p>
           <div className="flex items-center gap-4">
-            <span className="hover:text-white cursor-pointer transition-colors">{ft.legalNotice}</span>
+            <button
+              onClick={() => handlePageClick('privacy')}
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              {ft.legalNotice}
+            </button>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">{ft.privacyPolicy}</span>
+            <button
+              onClick={() => handlePageClick('privacy')}
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              {ft.privacyPolicy}
+            </button>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">{ft.cookiePolicy}</span>
+            <button
+              onClick={() => handlePageClick('privacy')}
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              {ft.cookiePolicy}
+            </button>
           </div>
         </div>
       </div>

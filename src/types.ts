@@ -44,3 +44,20 @@ export interface DiagnosticCard {
   iconColor: string;
   borderColor: string;
 }
+
+export type PageId = 'inicio' | 'sobre-mi' | 'planes' | 'blog' | 'contacto' | 'privacy';
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  imageUrl: string;
+  excerpt: string;
+  content: string[];
+  keyTakeaways: string[];
+  scientificReference?: string;
+}
+

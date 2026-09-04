@@ -24,6 +24,9 @@ export interface TranslationSchema {
     solicitarEvaluacion: string;
     studioLocation: string;
     idioma: string;
+    blog: string;
+    contacto: string;
+    herramientas: string;
   };
   hero: {
     badge: string;
@@ -365,7 +368,10 @@ export const translations: Record<Language, TranslationSchema> = {
       atencionDirecto: 'Atención & Contacto Directo',
       solicitarEvaluacion: 'Solicitar Evaluación Inicial',
       studioLocation: 'Biolifestyle Studio • Pozuelo de Alarcón / Madrid',
-      idioma: 'Idioma'
+      idioma: 'Idioma',
+      blog: 'Blog',
+      contacto: 'Contacto',
+      herramientas: 'Herramientas'
     },
     hero: {
       badge: "Women's Health & Longevity para mujeres 40+",
@@ -976,7 +982,10 @@ export const translations: Record<Language, TranslationSchema> = {
       atencionDirecto: 'Direct Care & Contact',
       solicitarEvaluacion: 'Request Initial Evaluation',
       studioLocation: 'Biolifestyle Studio • Pozuelo de Alarcón / Madrid',
-      idioma: 'Language'
+      idioma: 'Language',
+      blog: 'Blog',
+      contacto: 'Contact',
+      herramientas: 'Tools'
     },
     hero: {
       badge: "Women's Health & Longevity for Women 40+",
@@ -1587,7 +1596,10 @@ export const translations: Record<Language, TranslationSchema> = {
       atencionDirecto: 'Contact & Accompagnement',
       solicitarEvaluacion: 'Demander un Bilan Initial',
       studioLocation: 'Biolifestyle Studio • Pozuelo de Alarcón / Madrid',
-      idioma: 'Langue'
+      idioma: 'Langue',
+      blog: 'Blog',
+      contacto: 'Contact',
+      herramientas: 'Outils'
     },
     hero: {
       badge: "Santé Féminine & Longévité pour Femmes 40+",

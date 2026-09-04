@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
+import { PageId } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AudioWelcome } from './components/AudioWelcome';
@@ -15,13 +16,29 @@ import { FaqSection } from './components/FaqSection';
 import { CtaSection } from './components/CtaSection';
 import { Collaborations } from './components/Collaborations';
 import { Footer } from './components/Footer';
+import { SobreMiPage } from './components/SobreMiPage';
+import { PlanesPage } from './components/PlanesPage';
+import { BlogPage } from './components/BlogPage';
+import { ContactoPage } from './components/ContactoPage';
+import { PrivacyPage } from './components/PrivacyPage';
 import { ProgramModal } from './components/ProgramModal';
 import { WaitlistModal } from './components/WaitlistModal';
 import { DiagnosticModal } from './components/DiagnosticModal';
 import { TrajectoryModal } from './components/TrajectoryModal';
 import { BookingModal } from './components/BookingModal';
 
+function getPageFromHash(): PageId {
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  if (hash === 'sobre-mi') return 'sobre-mi';
+  if (hash === 'planes') return 'planes';
+  if (hash === 'blog') return 'blog';
+  if (hash === 'contacto') return 'contacto';
+  if (hash === 'privacy') return 'privacy';
+  return 'inicio';
+}
+
 function MainAppContent() {
+  const [currentPage, setCurrentPage] = useState<PageId>(getPageFromHash);
   const [isProgramModalOpen, setIsProgramModalOpen] = useState(false);
   const [waitlistModalState, setWaitlistModalState] = useState<{
     isOpen: boolean;
@@ -33,6 +50,21 @@ function MainAppContent() {
   const [isDiagnosticModalOpen, setIsDiagnosticModalOpen] = useState(false);
   const [isTrajectoryModalOpen, setIsTrajectoryModalOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
+  // Sync hash on browser back/forward
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentPage(getPageFromHash());
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateToPage = (page: PageId) => {
+    setCurrentPage(page);
+    window.location.hash = page === 'inicio' ? '' : page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleOpenWaitlist = (areaTitle: string) => {
     setWaitlistModalState({
@@ -49,9 +81,19 @@ function MainAppContent() {
   };
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (currentPage !== 'inicio') {
+      navigateToPage('inicio');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -64,70 +106,111 @@ function MainAppContent() {
 
   return (
     <div id="app-root" className="min-h-screen flex flex-col bg-[#F6F1EA] text-[#201415]">
-      {/* Fixed Navigation Header with blur backdrop & Language Switcher */}
+      {/* Fixed Navigation Header with Page Routing */}
       <Navbar
+        currentPage={currentPage}
+        onNavigate={navigateToPage}
         onOpenProgramModal={() => setIsProgramModalOpen(true)}
         onOpenWaitlistModal={handleOpenWaitlist}
         onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
         onOpenBookingModal={() => setIsBookingModalOpen(true)}
       />
 
-      {/* Main Content Sections */}
+      {/* Main Content: Switches between Inicio and Dedicated Pages */}
       <main id="main-content" className="pt-20 flex-1">
-        {/* Hero Section */}
-        <Hero
-          onOpenProgramModal={() => setIsProgramModalOpen(true)}
-          onExploreMethod={() => scrollToSection('metodo-diosa')}
-          onOpenCalculator={() => scrollToSection('calculadora-40')}
-        />
+        {currentPage === 'inicio' && (
+          <>
+            {/* Hero Section */}
+            <Hero
+              onOpenProgramModal={() => setIsProgramModalOpen(true)}
+              onExploreMethod={() => scrollToSection('metodo-diosa')}
+              onOpenCalculator={() => scrollToSection('calculadora-40')}
+            />
 
-        {/* Audio Note & Welcome from Carolina */}
-        <AudioWelcome onBookConsultation={() => setIsBookingModalOpen(true)} />
+            {/* Audio Note & Welcome from Carolina */}
+            <AudioWelcome onBookConsultation={() => setIsBookingModalOpen(true)} />
 
-        {/* 4 Pillars: El Método Código Diosa */}
-        <MethodPillars />
+            {/* 4 Pillars: El Método Código Diosa */}
+            <MethodPillars />
 
-        {/* Interactive Longevity & Protein Calculator */}
-        <LongevityCalculator onOpenConsultation={() => setIsBookingModalOpen(true)} />
+            {/* Interactive Longevity & Protein Calculator */}
+            <LongevityCalculator onOpenConsultation={() => setIsBookingModalOpen(true)} />
 
-        {/* Practical Application in 3 Areas */}
-        <PracticalAreas
-          onOpenProgramModal={() => setIsProgramModalOpen(true)}
-          onOpenWaitlistModal={handleOpenWaitlist}
-        />
+            {/* Practical Application in 3 Areas */}
+            <PracticalAreas
+              onOpenProgramModal={() => setIsProgramModalOpen(true)}
+              onOpenWaitlistModal={handleOpenWaitlist}
+            />
 
-        {/* Real Clinical Evidence & Biomarkers */}
-        <ClinicalEvidence onBookConsultation={() => setIsBookingModalOpen(true)} />
+            {/* Real Clinical Evidence & Biomarkers */}
+            <ClinicalEvidence onBookConsultation={() => setIsBookingModalOpen(true)} />
 
-        {/* Philosophy & Target: ¿Para quién es? */}
-        <WhoIsItFor />
+            {/* Philosophy & Target: ¿Para quién es? */}
+            <WhoIsItFor />
 
-        {/* Autodiagnóstico 40+ with interactive assessment */}
-        <DiagnosticSection
-          onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
-        />
+            {/* Autodiagnóstico 40+ with interactive assessment */}
+            <DiagnosticSection
+              onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
+            />
 
-        {/* Carolina's Story, Credentials & Metrics */}
-        <BioStory
-          onContactCarolina={openWhatsAppChat}
-          onOpenTrajectoryModal={() => setIsTrajectoryModalOpen(true)}
-        />
+            {/* Carolina's Story, Credentials & Metrics */}
+            <BioStory
+              onContactCarolina={openWhatsAppChat}
+              onOpenTrajectoryModal={() => setIsTrajectoryModalOpen(true)}
+            />
 
-        {/* Real Testimonials & Google Reviews */}
-        <Testimonials />
+            {/* Real Testimonials & Google Reviews */}
+            <Testimonials />
 
-        {/* FAQs Accordion */}
-        <FaqSection />
+            {/* FAQs Accordion */}
+            <FaqSection />
 
-        {/* Direct Call to Action */}
-        <CtaSection onContact={openWhatsAppChat} />
+            {/* Direct Call to Action */}
+            <CtaSection onContact={openWhatsAppChat} />
 
-        {/* Clinical Collaborations and Lab Partners in Madrid */}
-        <Collaborations />
+            {/* Clinical Collaborations and Lab Partners in Madrid */}
+            <Collaborations />
+          </>
+        )}
+
+        {currentPage === 'sobre-mi' && (
+          <SobreMiPage
+            onOpenBookingModal={() => setIsBookingModalOpen(true)}
+            onNavigateHome={() => navigateToPage('inicio')}
+            onNavigatePlanes={() => navigateToPage('planes')}
+          />
+        )}
+
+        {currentPage === 'planes' && (
+          <PlanesPage
+            onOpenBookingModal={() => setIsBookingModalOpen(true)}
+            onNavigateHome={() => navigateToPage('inicio')}
+            onOpenProgramModal={() => setIsProgramModalOpen(true)}
+          />
+        )}
+
+        {currentPage === 'blog' && (
+          <BlogPage
+            onNavigateHome={() => navigateToPage('inicio')}
+            onOpenBookingModal={() => setIsBookingModalOpen(true)}
+          />
+        )}
+
+        {currentPage === 'contacto' && (
+          <ContactoPage
+            onNavigateHome={() => navigateToPage('inicio')}
+            onNavigatePrivacy={() => navigateToPage('privacy')}
+          />
+        )}
+
+        {currentPage === 'privacy' && (
+          <PrivacyPage onNavigateHome={() => navigateToPage('inicio')} />
+        )}
       </main>
 
-      {/* Global Footer */}
+      {/* Global Footer with Page Routing */}
       <Footer
+        onNavigate={navigateToPage}
         onOpenProgramModal={() => setIsProgramModalOpen(true)}
         onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
       />
