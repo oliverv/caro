@@ -5,7 +5,7 @@ import {
   toGeminiContents,
   getLastUserText,
   SYSTEM_PROMPT_CAROLINA,
-} from "../../src/geminiService";
+} from "../geminiService";
 
 export default async function handler(req: any, res: any) {
   // CORS configuration
