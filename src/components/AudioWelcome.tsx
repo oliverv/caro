@@ -487,7 +487,7 @@ export const AudioWelcome: React.FC = () => {
             </div>
 
             {/* Mobile transcript button */}
-            <div className="sm:hidden mt-2 flex items-center justify-between">
+            <div className="sm:hidden mt-2.5 flex items-center justify-between">
               {hasRealAudio && (
                 <span className="text-[10px] text-[#8A6A32] font-semibold">
                   Audio grabado por Carolina
