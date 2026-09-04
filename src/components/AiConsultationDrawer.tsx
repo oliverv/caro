@@ -247,9 +247,19 @@ export const AiConsultationDrawer: React.FC<AiConsultationDrawerProps> = ({
           )}
 
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 flex items-center gap-2">
-              <span className="material-symbols-outlined text-[16px]">error</span>
-              <span>{error}</span>
+            <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[16px] shrink-0">error</span>
+                <span>{error}</span>
+              </div>
+              {messages.length > 0 && messages[messages.length - 1].role === 'user' && (
+                <button
+                  onClick={() => handleSendMessage(messages[messages.length - 1].text)}
+                  className="px-2.5 py-1 bg-white border border-red-300 rounded-md text-[11px] font-semibold text-red-700 hover:bg-red-100 transition-colors shrink-0 cursor-pointer shadow-2xs"
+                >
+                  Reintentar
+                </button>
+              )}
             </div>
           )}
 

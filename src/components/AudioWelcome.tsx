@@ -2,6 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ASSETS } from '../data';
 
+// Candidate audio paths for Carolina's real voice recording
+const CANDIDATE_AUDIO_URLS = [
+  '/audio/carolina-welcome.opus',
+  '/audio/carolina-welcome.ogg',
+  '/audio/carolina-welcome.mp3',
+  '/audio/carolina-welcome.m4a',
+  '/audio/carolina-welcome.wav'
+];
+
 export const AudioWelcome: React.FC = () => {
   const { t, language } = useLanguage();
   const a = t.audioWelcome;
@@ -9,16 +18,105 @@ export const AudioWelcome: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(45);
   const [showTranscript, setShowTranscript] = useState(false);
-  const [audioStatus, setAudioStatus] = useState<string>('');
+  const [hasRealAudio, setHasRealAudio] = useState<boolean>(false);
+  const [activeAudioSrc, setActiveAudioSrc] = useState<string | null>(null);
 
+  // Real Audio element ref
+  const audioElementRef = useRef<HTMLAudioElement | null>(null);
+
+  // Fallback Audio synthesis & ambient refs
   const audioCtxRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const oscillatorsRef = useRef<OscillatorNode[]>([]);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const progressTimerRef = useRef<number | null>(null);
 
-  // Clean up audio on unmount or language change
+  // Check if a real audio file exists in /public/audio/
+  useEffect(() => {
+    let isCancelled = false;
+
+    const testAudioSources = async () => {
+      for (const url of CANDIDATE_AUDIO_URLS) {
+        try {
+          const res = await fetch(url, { method: 'HEAD' });
+          if (res.ok) {
+            if (!isCancelled) {
+              setActiveAudioSrc(url);
+              setHasRealAudio(true);
+            }
+            return;
+          }
+        } catch {
+          // Continue checking next format
+        }
+      }
+      if (!isCancelled) {
+        setHasRealAudio(false);
+        setActiveAudioSrc(null);
+      }
+    };
+
+    testAudioSources();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
+  // Initialize and bind HTMLAudioElement when activeAudioSrc is found
+  useEffect(() => {
+    if (!activeAudioSrc) return;
+
+    const audio = new Audio(activeAudioSrc);
+    audio.preload = 'metadata';
+    audioElementRef.current = audio;
+
+    const onLoadedMetadata = () => {
+      if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
+
+    const onTimeUpdate = () => {
+      if (audio.duration) {
+        const cur = audio.currentTime;
+        const dur = audio.duration;
+        setCurrentTime(cur);
+        setProgress(Math.min(100, (cur / dur) * 100));
+      }
+    };
+
+    const onEnded = () => {
+      setIsPlaying(false);
+      setProgress(0);
+      setCurrentTime(0);
+    };
+
+    const onError = () => {
+      console.warn('Real audio failed to load/play, falling back to speech engine.');
+      setHasRealAudio(false);
+      setActiveAudioSrc(null);
+    };
+
+    audio.addEventListener('loadedmetadata', onLoadedMetadata);
+    audio.addEventListener('timeupdate', onTimeUpdate);
+    audio.addEventListener('ended', onEnded);
+    audio.addEventListener('error', onError);
+
+    return () => {
+      audio.pause();
+      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+      audio.removeEventListener('timeupdate', onTimeUpdate);
+      audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener('error', onError);
+      audioElementRef.current = null;
+    };
+  }, [activeAudioSrc]);
+
+  // Clean up on unmount or language change
   useEffect(() => {
     return () => {
       stopAudioPlayback();
@@ -39,12 +137,10 @@ export const AudioWelcome: React.FC = () => {
         ctx.resume();
       }
 
-      // Master gain node
       const masterGain = ctx.createGain();
       masterGain.gain.setValueAtTime(isMuted ? 0 : 0.045, ctx.currentTime);
       gainNodeRef.current = masterGain;
 
-      // Filter for warm soothing spa texture
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
       filter.frequency.setValueAtTime(360, ctx.currentTime);
@@ -52,7 +148,7 @@ export const AudioWelcome: React.FC = () => {
       masterGain.connect(filter);
       filter.connect(ctx.destination);
 
-      // 432Hz Harmonic drone (Frequencies: 108Hz, 216Hz, 432Hz)
+      // 432Hz Harmonic drone
       const frequencies = [108, 216, 432];
       oscillatorsRef.current = frequencies.map((freq, idx) => {
         const osc = ctx.createOscillator();
@@ -73,19 +169,22 @@ export const AudioWelcome: React.FC = () => {
   };
 
   const stopAudioPlayback = () => {
-    // Stop speech synthesis
+    // 1. If playing real audio file
+    if (audioElementRef.current) {
+      audioElementRef.current.pause();
+    }
+
+    // 2. Stop speech synthesis
     if (typeof window !== 'undefined' && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
 
-    // Stop ambient oscillators
+    // 3. Stop ambient oscillators
     oscillatorsRef.current.forEach((osc) => {
       try {
         osc.stop();
         osc.disconnect();
-      } catch {
-        // already stopped
-      }
+      } catch {}
     });
     oscillatorsRef.current = [];
 
@@ -103,7 +202,7 @@ export const AudioWelcome: React.FC = () => {
     setIsPlaying(false);
   };
 
-  const startSpeech = () => {
+  const startFallbackSpeech = () => {
     if (typeof window === 'undefined' || !window.speechSynthesis) {
       startSimulatedProgress(45);
       return;
@@ -115,21 +214,41 @@ export const AudioWelcome: React.FC = () => {
     const utterance = new SpeechSynthesisUtterance(cleanText);
     utteranceRef.current = utterance;
 
-    // Detect voice according to current language
     const voices = window.speechSynthesis.getVoices();
-    const langCode = language === 'en' ? 'en' : language === 'fr' ? 'fr' : 'es';
-    const targetVoice =
-      voices.find((v) => v.lang.toLowerCase().startsWith(langCode) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('monica') || v.name.toLowerCase().includes('paulina') || v.name.toLowerCase().includes('elvira') || v.name.toLowerCase().includes('marta'))) ||
-      voices.find((v) => v.lang.toLowerCase().startsWith(langCode)) ||
-      voices[0];
+    const isSpanish = language === 'es';
+    
+    // Priority voice matching for Carolina Barcellona (Argentine Spanish, warm female timbre)
+    let targetVoice: SpeechSynthesisVoice | undefined;
+    
+    if (isSpanish) {
+      targetVoice =
+        // 1. Argentine female voice (closest match to Carolina's native Rioplatense accent)
+        voices.find((v) => v.lang.toLowerCase().includes('es-ar') || v.name.toLowerCase().includes('argentina') || v.name.toLowerCase().includes('isabella')) ||
+        // 2. High-quality Latin American / Natural Spanish female voices
+        voices.find((v) => (v.lang.toLowerCase().includes('es-419') || v.lang.toLowerCase().includes('es-us') || v.lang.toLowerCase().includes('es-mx')) && (v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('paulina') || v.name.toLowerCase().includes('dalia'))) ||
+        // 3. Other natural Spanish female voices (Monica, Elvira, Marta, etc.)
+        voices.find((v) => v.lang.toLowerCase().startsWith('es') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('monica') || v.name.toLowerCase().includes('elvira') || v.name.toLowerCase().includes('marta'))) ||
+        // 4. Any Spanish voice
+        voices.find((v) => v.lang.toLowerCase().startsWith('es'));
+    } else {
+      const langCode = language === 'en' ? 'en' : 'fr';
+      targetVoice =
+        voices.find((v) => v.lang.toLowerCase().startsWith(langCode) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('natural'))) ||
+        voices.find((v) => v.lang.toLowerCase().startsWith(langCode));
+    }
+
+    if (!targetVoice && voices.length > 0) {
+      targetVoice = voices[0];
+    }
 
     if (targetVoice) {
       utterance.voice = targetVoice;
     }
 
-    utterance.lang = langCode === 'es' ? 'es-ES' : langCode === 'fr' ? 'fr-FR' : 'en-US';
-    utterance.rate = 0.94; // slightly slower, warm, relaxed clinic tone
-    utterance.pitch = 1.05; // warm feminine resonance
+    utterance.lang = isSpanish ? (targetVoice?.lang || 'es-AR') : language === 'fr' ? 'fr-FR' : 'en-US';
+    // Calibrated to Carolina's natural conversational tempo and warm mezzo-soprano pitch
+    utterance.rate = 0.93;
+    utterance.pitch = 0.98;
 
     let charCount = cleanText.length;
     let spokenChars = 0;
@@ -139,11 +258,8 @@ export const AudioWelcome: React.FC = () => {
         spokenChars = event.charIndex;
         const currentProg = Math.min(99, Math.round((spokenChars / charCount) * 100));
         setProgress(currentProg);
+        setCurrentTime(Math.round((currentProg / 100) * 45));
       }
-    };
-
-    utterance.onstart = () => {
-      setAudioStatus('Voz de Carolina en directo');
     };
 
     utterance.onend = () => {
@@ -151,13 +267,13 @@ export const AudioWelcome: React.FC = () => {
       setTimeout(() => {
         stopAudioPlayback();
         setProgress(0);
-        setAudioStatus('');
+        setCurrentTime(0);
       }, 1000);
     };
 
     utterance.onerror = (e) => {
-      console.warn('SpeechSynthesis error, falling back to ambient progress:', e);
-      startSimulatedProgress(30);
+      console.warn('SpeechSynthesis fallback error, running timer:', e);
+      startSimulatedProgress(45);
     };
 
     window.speechSynthesis.speak(utterance);
@@ -171,7 +287,9 @@ export const AudioWelcome: React.FC = () => {
           stopAudioPlayback();
           return 0;
         }
-        return prev + 1;
+        const next = prev + 1;
+        setCurrentTime(Math.round((next / 100) * totalSeconds));
+        return next;
       });
     }, stepMs);
   };
@@ -181,27 +299,57 @@ export const AudioWelcome: React.FC = () => {
       stopAudioPlayback();
     } else {
       setIsPlaying(true);
-      setProgress(0);
-      initAmbientTone();
-      startSpeech();
+
+      // Prefer real audio file if available
+      if (hasRealAudio && audioElementRef.current) {
+        audioElementRef.current.currentTime = (progress / 100) * duration;
+        audioElementRef.current.muted = isMuted;
+        audioElementRef.current.play().catch((err) => {
+          console.warn('Error playing real audio, using fallback:', err);
+          initAmbientTone();
+          startFallbackSpeech();
+        });
+      } else {
+        // High fidelity fallback speech + 432Hz ambient
+        initAmbientTone();
+        startFallbackSpeech();
+      }
     }
   };
 
   const toggleMute = () => {
-    setIsMuted(!isMuted);
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+
+    if (audioElementRef.current) {
+      audioElementRef.current.muted = nextMuted;
+    }
+
     if (gainNodeRef.current && audioCtxRef.current) {
       gainNodeRef.current.gain.setValueAtTime(
-        !isMuted ? 0 : 0.045,
+        nextMuted ? 0 : 0.045,
         audioCtxRef.current.currentTime
       );
     }
   };
 
-  const formatTime = (percentage: number) => {
-    const totalSeconds = 45; // average spoken time
-    const current = Math.floor((percentage / 100) * totalSeconds);
-    const mins = Math.floor(current / 60);
-    const secs = current % 60;
+  const handleSeek = (barIndex: number, totalBars: number) => {
+    const targetProgress = (barIndex / totalBars) * 100;
+    setProgress(targetProgress);
+
+    if (hasRealAudio && audioElementRef.current) {
+      const targetSec = (barIndex / totalBars) * duration;
+      audioElementRef.current.currentTime = targetSec;
+      setCurrentTime(targetSec);
+    } else {
+      setCurrentTime((targetProgress / 100) * 45);
+    }
+  };
+
+  const formatSecs = (seconds: number) => {
+    const total = Math.max(0, Math.floor(seconds));
+    const mins = Math.floor(total / 60);
+    const secs = total % 60;
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
@@ -240,6 +388,12 @@ export const AudioWelcome: React.FC = () => {
                   <span className="text-[10px] font-bold text-[#EE295C] uppercase tracking-[0.2em]">
                     {a.badge} • Carolina Barcellona
                   </span>
+                  {hasRealAudio && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#C7A46B]/15 text-[#8A6A32] text-[10px] font-bold">
+                      <span className="material-symbols-outlined text-[11px]">verified</span>
+                      Voz Original
+                    </span>
+                  )}
                   {isPlaying && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold animate-pulse">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
@@ -251,8 +405,12 @@ export const AudioWelcome: React.FC = () => {
                   {a.title}
                 </h4>
               </div>
-              <span className="text-[11px] font-semibold text-[#685354] shrink-0">
-                {isPlaying ? `${formatTime(progress)} / 0:45` : a.duration}
+              <span className="text-[11px] font-semibold text-[#685354] shrink-0 font-mono">
+                {isPlaying
+                  ? `${formatSecs(currentTime)} / ${formatSecs(duration || 45)}`
+                  : hasRealAudio && duration
+                  ? formatSecs(duration)
+                  : a.duration}
               </span>
             </div>
 
@@ -274,8 +432,12 @@ export const AudioWelcome: React.FC = () => {
                 </span>
               </button>
 
-              {/* Animated Waveform Bars */}
-              <div className="flex-1 flex items-center gap-1 sm:gap-1.5 h-11 px-3 rounded-xl bg-[#F6F1EA]/80 fine-border">
+              {/* Interactive Waveform Bars with Seek click */}
+              <div
+                id="audio-waveform-container"
+                className="flex-1 flex items-center gap-1 sm:gap-1.5 h-11 px-3 rounded-xl bg-[#F6F1EA]/80 fine-border cursor-pointer"
+                title="Haz clic en cualquier punto para avanzar o retroceder"
+              >
                 {Array.from({ length: 28 }).map((_, i) => {
                   const barProgress = (i / 28) * 100;
                   const isPassed = barProgress <= progress;
@@ -285,10 +447,13 @@ export const AudioWelcome: React.FC = () => {
                     : baseHeight;
 
                   return (
-                    <div
+                    <button
                       key={i}
+                      type="button"
+                      onClick={() => handleSeek(i, 28)}
+                      aria-label={`Saltar al segundo ${Math.round((i / 28) * duration)}`}
                       style={{ height: `${activeHeight}%` }}
-                      className={`flex-1 rounded-full transition-all duration-150 ${
+                      className={`flex-1 rounded-full transition-all duration-150 cursor-pointer hover:opacity-80 ${
                         isPassed
                           ? 'bg-gradient-to-t from-[#EE295C] to-[#FF6161]'
                           : 'bg-[#C7A46B]/30'
@@ -298,12 +463,12 @@ export const AudioWelcome: React.FC = () => {
                 })}
               </div>
 
-              {/* Sound Controls (Mute ambient drone) */}
+              {/* Sound Controls (Mute ambient / audio) */}
               {isPlaying && (
                 <button
                   onClick={toggleMute}
                   className="w-9 h-9 rounded-full bg-[#F6F1EA] fine-border flex items-center justify-center text-[#685354] hover:text-[#201415] transition-colors cursor-pointer shrink-0"
-                  title={isMuted ? 'Activar sonido ambiental' : 'Silenciar sonido ambiental'}
+                  title={isMuted ? 'Activar sonido' : 'Silenciar sonido'}
                 >
                   <span className="material-symbols-outlined text-[18px]">
                     {isMuted ? 'volume_off' : 'volume_up'}
@@ -323,9 +488,9 @@ export const AudioWelcome: React.FC = () => {
 
             {/* Mobile transcript button */}
             <div className="sm:hidden mt-2 flex items-center justify-between">
-              {audioStatus && (
-                <span className="text-[11px] text-emerald-700 font-medium">
-                  {audioStatus}
+              {hasRealAudio && (
+                <span className="text-[10px] text-[#8A6A32] font-semibold">
+                  Audio grabado por Carolina
                 </span>
               )}
               <button

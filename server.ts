@@ -52,6 +52,62 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
+// Resilient model execution with retry & multi-model fallback cascade
+const FALLBACK_MODELS = [
+  "gemini-3.8-flash",
+  "gemini-3.1-flash-lite",
+  "gemini-flash-latest",
+];
+
+async function generateContentWithCascade(
+  ai: GoogleGenAI,
+  baseParams: {
+    contents: any;
+    config?: any;
+  }
+) {
+  let lastError: any = null;
+
+  for (const modelName of FALLBACK_MODELS) {
+    // Try up to 2 attempts per model before falling back to next tier
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const response = await ai.models.generateContent({
+          model: modelName,
+          contents: baseParams.contents,
+          config: baseParams.config,
+        });
+        return response;
+      } catch (err: any) {
+        lastError = err;
+        const errMsg = String(err?.message || "");
+        const isUnavailableOrRateLimited =
+          err?.status === 503 ||
+          err?.status === 429 ||
+          errMsg.includes("503") ||
+          errMsg.includes("UNAVAILABLE") ||
+          errMsg.includes("high demand") ||
+          errMsg.includes("RESOURCE_EXHAUSTED");
+
+        console.warn(
+          `[Gemini AI] Model ${modelName} attempt ${attempt + 1} failed:`,
+          errMsg.slice(0, 140)
+        );
+
+        if (isUnavailableOrRateLimited && attempt === 0) {
+          // Brief pause before retry
+          await new Promise((r) => setTimeout(r, 600));
+        } else {
+          // Move to next fallback model immediately
+          break;
+        }
+      }
+    }
+  }
+
+  throw lastError;
+}
+
 // Endpoint: AI Clinical Consultation Chat
 app.post("/api/ai/chat", async (req, res) => {
   try {
@@ -73,8 +129,7 @@ app.post("/api/ai/chat", async (req, res) => {
       contextInstruction += `\nInformación de la usuaria: ${JSON.stringify(userContext)}`;
     }
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
+    const response = await generateContentWithCascade(ai, {
       contents,
       config: {
         systemInstruction: contextInstruction,
@@ -86,8 +141,16 @@ app.post("/api/ai/chat", async (req, res) => {
     res.json({ reply });
   } catch (error: any) {
     console.error("Gemini API Error (/api/ai/chat):", error);
-    res.status(500).json({
-      error: error.message || "Error al procesar la respuesta de la inteligencia artificial."
+    const isOverloaded =
+      error?.status === 503 ||
+      error?.status === 429 ||
+      String(error?.message || "").includes("high demand") ||
+      String(error?.message || "").includes("503");
+
+    res.status(isOverloaded ? 503 : 500).json({
+      error: isOverloaded
+        ? "El asistente de IA está experimentando una alta demanda temporal en los servidores de Google. Por favor, intenta de nuevo en unos segundos."
+        : "Error al procesar la respuesta de la asistente de inteligencia artificial."
     });
   }
 });
@@ -116,8 +179,7 @@ Proporciona una respuesta en formato JSON estructurado con los siguientes campos
 5. recommendedProgram: nombre del programa sugerido (ej. "Método Código Diosa 90 Días" o "Reset Metabólico 30 Días") y por qué es ideal para ella.
 `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
+    const response = await generateContentWithCascade(ai, {
       contents: prompt,
       config: {
         systemInstruction: SYSTEM_PROMPT_CAROLINA,
@@ -160,8 +222,16 @@ Proporciona una respuesta en formato JSON estructurado con los siguientes campos
     res.json({ result: parsedData });
   } catch (error: any) {
     console.error("Gemini API Error (/api/ai/analyze-assessment):", error);
-    res.status(500).json({
-      error: error.message || "Error al generar la evaluación epigenética con IA."
+    const isOverloaded =
+      error?.status === 503 ||
+      error?.status === 429 ||
+      String(error?.message || "").includes("high demand") ||
+      String(error?.message || "").includes("503");
+
+    res.status(isOverloaded ? 503 : 500).json({
+      error: isOverloaded
+        ? "El evaluador epigenético está con alta demanda temporal. Por favor, reintenta en unos instantes."
+        : "Error al generar la evaluación epigenética con IA."
     });
   }
 });
@@ -187,8 +257,7 @@ Devuelve un JSON estructurado con:
 - sirtuinBonusTip: Un consejo específico sobre fitoquímicos activadores de sirtuinas o autofagia.
 `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
+    const response = await generateContentWithCascade(ai, {
       contents: prompt,
       config: {
         systemInstruction: SYSTEM_PROMPT_CAROLINA,
@@ -213,8 +282,16 @@ Devuelve un JSON estructurado con:
     res.json({ result });
   } catch (error: any) {
     console.error("Gemini API Error (/api/ai/meal-biohack):", error);
-    res.status(500).json({
-      error: error.message || "Error al optimizar el plato con IA."
+    const isOverloaded =
+      error?.status === 503 ||
+      error?.status === 429 ||
+      String(error?.message || "").includes("high demand") ||
+      String(error?.message || "").includes("503");
+
+    res.status(isOverloaded ? 503 : 500).json({
+      error: isOverloaded
+        ? "El analizador de nutrición está experimentando alta demanda. Por favor, reintenta en unos instantes."
+        : "Error al optimizar el plato con IA."
     });
   }
 });
