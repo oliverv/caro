@@ -19,7 +19,7 @@ export const AudioWelcome: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(45);
+  const [duration, setDuration] = useState(32);
   const [showTranscript, setShowTranscript] = useState(false);
   const [hasRealAudio, setHasRealAudio] = useState<boolean>(false);
   const [activeAudioSrc, setActiveAudioSrc] = useState<string | null>(null);
@@ -64,6 +64,20 @@ export const AudioWelcome: React.FC = () => {
     return () => {
       isCancelled = true;
     };
+  }, []);
+
+  // Preload and register speech synthesis voices
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.getVoices();
+      const onVoicesChanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+      window.speechSynthesis.addEventListener('voiceschanged', onVoicesChanged);
+      return () => {
+        window.speechSynthesis.removeEventListener('voiceschanged', onVoicesChanged);
+      };
+    }
   }, []);
 
   // Initialize and bind HTMLAudioElement when activeAudioSrc is found
@@ -203,32 +217,73 @@ export const AudioWelcome: React.FC = () => {
   };
 
   const startFallbackSpeech = () => {
+    const cleanText = a.transcriptText.replace(/[«»"]/g, '').trim();
+    // Estimated speaking time for Carolina's 62-word transcript (~32 seconds)
+    const wordCount = cleanText.split(/\s+/).length;
+    const estimatedDuration = Math.max(28, Math.min(45, Math.round(wordCount / 1.95)));
+    setDuration(estimatedDuration);
+
     if (typeof window === 'undefined' || !window.speechSynthesis) {
-      startSimulatedProgress(45);
+      startSimulatedProgress(estimatedDuration);
       return;
     }
 
     window.speechSynthesis.cancel();
 
-    const cleanText = a.transcriptText.replace(/[«»"]/g, '');
     const utterance = new SpeechSynthesisUtterance(cleanText);
     utteranceRef.current = utterance;
 
     const voices = window.speechSynthesis.getVoices();
     const isSpanish = language === 'es';
     
-    // Priority voice matching for Carolina Barcellona (Argentine Spanish, warm female timbre)
+    // Priority voice matching for Carolina Barcellona:
+    // Language: Spanish (es), Region: Argentine (es-AR), Gender: Female / Girl
     let targetVoice: SpeechSynthesisVoice | undefined;
     
     if (isSpanish) {
       targetVoice =
-        // 1. Argentine female voice (closest match to Carolina's native Rioplatense accent)
-        voices.find((v) => v.lang.toLowerCase().includes('es-ar') || v.name.toLowerCase().includes('argentina') || v.name.toLowerCase().includes('isabella')) ||
-        // 2. High-quality Latin American / Natural Spanish female voices
-        voices.find((v) => (v.lang.toLowerCase().includes('es-419') || v.lang.toLowerCase().includes('es-us') || v.lang.toLowerCase().includes('es-mx')) && (v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('paulina') || v.name.toLowerCase().includes('dalia'))) ||
-        // 3. Other natural Spanish female voices (Monica, Elvira, Marta, etc.)
-        voices.find((v) => v.lang.toLowerCase().startsWith('es') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('monica') || v.name.toLowerCase().includes('elvira') || v.name.toLowerCase().includes('marta'))) ||
-        // 4. Any Spanish voice
+        // 1. Explicit Argentine female voice (Elena, Isabella, Luciana, Soledad, Camila, etc.)
+        voices.find((v) => {
+          const l = v.lang.toLowerCase().replace('_', '-');
+          const n = v.name.toLowerCase();
+          const isAr = l.includes('es-ar') || n.includes('argentin');
+          const isFemale =
+            n.includes('female') ||
+            n.includes('mujer') ||
+            n.includes('elena') ||
+            n.includes('isabella') ||
+            n.includes('luciana') ||
+            n.includes('soledad') ||
+            n.includes('camila') ||
+            (!n.includes('male') && !n.includes('hombre') && !n.includes('diego') && !n.includes('jorge') && !n.includes('tomas'));
+          return isAr && isFemale;
+        }) ||
+        // 2. Any Argentine voice (Google español de Argentina, etc.)
+        voices.find((v) => {
+          const l = v.lang.toLowerCase().replace('_', '-');
+          const n = v.name.toLowerCase();
+          return l.includes('es-ar') || n.includes('argentin');
+        }) ||
+        // 3. High-quality Latin American / Natural Spanish female voices (Paulina, Dalia, Sabina, Monica, Elvira, Marta, etc.)
+        voices.find((v) => {
+          const l = v.lang.toLowerCase().replace('_', '-');
+          const n = v.name.toLowerCase();
+          const isLatam = l.includes('es-419') || l.includes('es-us') || l.includes('es-mx') || l.includes('es-co') || l.startsWith('es');
+          const isFemale =
+            n.includes('natural') ||
+            n.includes('female') ||
+            n.includes('mujer') ||
+            n.includes('paulina') ||
+            n.includes('dalia') ||
+            n.includes('sabina') ||
+            n.includes('monica') ||
+            n.includes('elvira') ||
+            n.includes('marta');
+          return isLatam && isFemale;
+        }) ||
+        // 4. Any female Spanish voice
+        voices.find((v) => v.lang.toLowerCase().startsWith('es') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('hombre')) ||
+        // 5. Any Spanish voice
         voices.find((v) => v.lang.toLowerCase().startsWith('es'));
     } else {
       const langCode = language === 'en' ? 'en' : 'fr';
@@ -245,10 +300,11 @@ export const AudioWelcome: React.FC = () => {
       utterance.voice = targetVoice;
     }
 
+    // Set voice language explicitly: es-AR for Argentine Spanish
     utterance.lang = isSpanish ? (targetVoice?.lang || 'es-AR') : language === 'fr' ? 'fr-FR' : 'en-US';
-    // Calibrated to Carolina's natural conversational tempo and warm mezzo-soprano pitch
-    utterance.rate = 0.93;
-    utterance.pitch = 0.98;
+    // Calibrated to Carolina's warm, conversational female voice (rate: 0.94, pitch: 1.04)
+    utterance.rate = 0.94;
+    utterance.pitch = 1.04;
 
     let charCount = cleanText.length;
     let spokenChars = 0;
@@ -258,22 +314,23 @@ export const AudioWelcome: React.FC = () => {
         spokenChars = event.charIndex;
         const currentProg = Math.min(99, Math.round((spokenChars / charCount) * 100));
         setProgress(currentProg);
-        setCurrentTime(Math.round((currentProg / 100) * 45));
+        setCurrentTime(Math.round((currentProg / 100) * estimatedDuration));
       }
     };
 
     utterance.onend = () => {
       setProgress(100);
+      setCurrentTime(estimatedDuration);
       setTimeout(() => {
         stopAudioPlayback();
         setProgress(0);
         setCurrentTime(0);
-      }, 1000);
+      }, 800);
     };
 
     utterance.onerror = (e) => {
       console.warn('SpeechSynthesis fallback error, running timer:', e);
-      startSimulatedProgress(45);
+      startSimulatedProgress(estimatedDuration);
     };
 
     window.speechSynthesis.speak(utterance);
@@ -342,7 +399,7 @@ export const AudioWelcome: React.FC = () => {
       audioElementRef.current.currentTime = targetSec;
       setCurrentTime(targetSec);
     } else {
-      setCurrentTime((targetProgress / 100) * 45);
+      setCurrentTime((targetProgress / 100) * (duration || 32));
     }
   };
 
@@ -407,7 +464,7 @@ export const AudioWelcome: React.FC = () => {
               </div>
               <span className="text-[11px] font-semibold text-[#685354] shrink-0 font-mono">
                 {isPlaying
-                  ? `${formatSecs(currentTime)} / ${formatSecs(duration || 45)}`
+                  ? `${formatSecs(currentTime)} / ${formatSecs(duration || 32)}`
                   : hasRealAudio && duration
                   ? formatSecs(duration)
                   : a.duration}

@@ -395,7 +395,7 @@ export const translations: Record<Language, TranslationSchema> = {
       transcriptBtn: 'Ver transcripción',
       hideTranscript: 'Ocultar transcripción',
       transcriptText: '«Hola, soy Carolina Barcellona. Si estás aquí es probable que sientas que las cosas que antes te funcionaban para mantenerte enérgica o en tu peso ya no dan resultado. No es tu culpa: tu biología, tus mitocondrias y tus receptores hormonales han cambiado. En mi consulta no imponemos sacrificios ni dietas fotocopiadas; analizamos tu epigenética y tu estilo de vida para diseñar un sistema sostenible que te devuelva la fuerza y la serenidad. Bienvenida a tu nueva etapa.»',
-      duration: '1:42 min'
+      duration: '0:32 min'
     },
     pillars: {
       badge: 'Marco Arquitectónico de Salud',
@@ -1009,7 +1009,7 @@ export const translations: Record<Language, TranslationSchema> = {
       transcriptBtn: 'Read transcript',
       hideTranscript: 'Hide transcript',
       transcriptText: '"Hello, I am Carolina Barcellona. If you are here, you likely feel that the routines that used to keep you energetic and lean are no longer working. It is not your fault: your biology, mitochondria, and hormonal receptors have shifted. In my practice, we do not impose copy-pasted diets or severe deprivation; we audit your epigenetics and lifestyle to engineer a sustainable system that restores your strength and inner calm. Welcome to your golden decade."',
-      duration: '1:42 min'
+      duration: '0:32 min'
     },
     pillars: {
       badge: 'Health Architecture Framework',
@@ -1623,7 +1623,7 @@ export const translations: Record<Language, TranslationSchema> = {
       transcriptBtn: 'Lire la transcription',
       hideTranscript: 'Masquer la transcription',
       transcriptText: '« Bonjour, je suis Carolina Barcellona. Si vous êtes ici, c\'est sans doute que les routines qui fonctionnaient auparavant pour garder votre poids ou votre énergie ne suffisent plus. Ce n\'est pas de votre faute : votre métabolisme et vos récepteurs hormonaux ont évolué. Dans ma consultation, nous ne prescrivons aucun régime restrictif générique ; nous auditons votre épigénétique et votre mode de vie pour concevoir un système durable qui restaure votre force et votre sérénité. Bienvenue dans votre nouvelle décennie dorée. »',
-      duration: '1:42 min'
+      duration: '0:32 min'
     },
     pillars: {
       badge: 'Architecture de Santé Globale',
