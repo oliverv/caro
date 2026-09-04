@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { FAQS } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 export const FaqSection: React.FC = () => {
-  // First item open by default as in HTML
+  const { t } = useLanguage();
+  const f = t.faqs;
+
+  // First item open by default
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({
     'faq-1': true
   });
@@ -19,22 +22,22 @@ export const FaqSection: React.FC = () => {
       <div className="max-w-[780px] mx-auto px-margin-mobile">
         <div className="text-center mb-space-3xl">
           <span className="text-[12px] font-bold text-[#EE295C] tracking-[0.2em] uppercase block mb-space-2xs">
-            Claridad Absoluta
+            {f.badge}
           </span>
           <h2
             id="faq-title"
             className="font-serif text-[32px] md:text-[44px] text-[#201415] italic font-semibold tracking-tight"
           >
-            Preguntas Frecuentes
+            {f.title}
           </h2>
           <p className="text-[15px] text-[#685354] mt-space-xs">
-            Respuestas transparentes sobre cómo construimos tu estrategia de longevidad.
+            {f.subtitle}
           </p>
         </div>
 
         {/* Accordion list */}
         <div className="space-y-space-md" id="faq-container">
-          {FAQS.map((faq) => {
+          {f.items.map((faq) => {
             const isOpen = !!openItems[faq.id];
             return (
               <div

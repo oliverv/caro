@@ -1,5 +1,5 @@
 import React from 'react';
-import { PRACTICAL_AREAS } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 interface PracticalAreasProps {
   onOpenProgramModal: () => void;
@@ -10,6 +10,9 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
   onOpenProgramModal,
   onOpenWaitlistModal
 }) => {
+  const { t } = useLanguage();
+  const pa = t.practicalAreas;
+
   return (
     <section id="planes-areas" className="w-full bg-[#F6F1EA] py-space-4xl">
       <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
@@ -18,15 +21,15 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
             id="practical-areas-title"
             className="font-serif text-[32px] md:text-[44px] text-[#201415] italic font-semibold tracking-tight"
           >
-            Aplicado en 3 Áreas Prácticas
+            {pa.title}
           </h2>
           <p className="text-[15px] text-[#685354] mt-space-xs">
-            Un protocolo tripartito diseñado para armonizar tu biología, tu energía vital y tu longevidad mental.
+            {pa.subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-space-lg items-stretch">
-          {PRACTICAL_AREAS.map((area) => {
+          {pa.areas.map((area) => {
             const isActive = area.status === 'active';
             return (
               <div

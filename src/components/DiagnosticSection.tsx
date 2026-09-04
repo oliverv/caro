@@ -1,32 +1,35 @@
 import React from 'react';
-import { DIAGNOSTIC_CARDS } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 interface DiagnosticSectionProps {
   onOpenDiagnosticModal: () => void;
 }
 
 export const DiagnosticSection: React.FC<DiagnosticSectionProps> = ({ onOpenDiagnosticModal }) => {
+  const { t } = useLanguage();
+  const d = t.diagnosticSection;
+
   return (
     <section id="autodiagnostico" className="w-full bg-[#F6F1EA] py-space-4xl">
       <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="max-w-2xl mx-auto text-center mb-space-3xl">
           <span className="text-[12px] font-bold text-[#FF6161] tracking-[0.2em] uppercase block mb-space-2xs">
-            Autodiagnóstico
+            {d.badge}
           </span>
           <h2
             id="diagnostic-title"
             className="font-serif text-[32px] md:text-[44px] text-[#201415] italic font-semibold tracking-tight"
           >
-            ¿Por qué estás aquí?
+            {d.title}
           </h2>
           <p className="text-[15px] text-[#685354] mt-space-xs">
-            Reconocer las señales de tu cuerpo es el primer paso hacia la transformación epigenética.
+            {d.subtitle}
           </p>
         </div>
 
         {/* 6 Diagnostic Points */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
-          {DIAGNOSTIC_CARDS.map((card) => (
+          {d.cards.map((card) => (
             <div
               key={card.id}
               id={card.id}
@@ -53,7 +56,7 @@ export const DiagnosticSection: React.FC<DiagnosticSectionProps> = ({ onOpenDiag
         <div className="mt-space-2xl text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-4 sm:px-6 rounded-2xl bg-white fine-border crisp-shadow">
             <span className="text-[14px] font-medium text-[#201415]">
-              ¿Te reconoces en dos o más de estos patrones biológicos?
+              {d.bannerPrompt}
             </span>
             <button
               id="btn-open-diagnostic-quiz"
@@ -61,7 +64,7 @@ export const DiagnosticSection: React.FC<DiagnosticSectionProps> = ({ onOpenDiag
               className="px-5 py-2.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
             >
               <span className="material-symbols-outlined text-[18px]">biotech</span>
-              <span>Completar Test de Longevidad (2 min)</span>
+              <span>{d.bannerBtn}</span>
             </button>
           </div>
         </div>

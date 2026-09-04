@@ -1,23 +1,26 @@
 import React from 'react';
-import { TESTIMONIALS } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Testimonials: React.FC = () => {
+  const { t } = useLanguage();
+  const tm = t.testimonials;
+
   return (
     <section id="testimonios" className="w-full bg-[#F6F1EA] py-space-4xl">
       <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-3xl gap-space-md">
           <div>
             <span className="text-[12px] font-bold text-[#FF6161] tracking-[0.2em] uppercase block mb-space-2xs">
-              Casos Reales
+              {tm.badge}
             </span>
             <h2
               id="testimonials-title"
               className="font-serif text-[32px] md:text-[44px] text-[#201415] italic font-semibold"
             >
-              Inspírate con estas historias
+              {tm.title}
             </h2>
             <p className="text-[15px] text-[#685354]">
-              Mujeres que ya trabajaron conmigo y recuperaron su bienestar y peso ideal.
+              {tm.subtitle}
             </p>
           </div>
 
@@ -28,14 +31,14 @@ export const Testimonials: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#EE295C] hover:underline"
           >
-            <span>Leer reseñas en mi perfil de Google</span>
+            <span>{tm.googleLink}</span>
             <span className="text-[#F69C05] tracking-widest text-base">★★★★★</span>
           </a>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-          {TESTIMONIALS.map((item) => (
+          {tm.items.map((item) => (
             <div
               key={item.id}
               id={item.id}

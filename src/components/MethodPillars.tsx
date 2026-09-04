@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { PILLARS } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 export const MethodPillars: React.FC = () => {
+  const { t } = useLanguage();
+  const p = t.pillars;
   const [selectedPillar, setSelectedPillar] = useState<string | null>(null);
 
   return (
@@ -12,19 +14,19 @@ export const MethodPillars: React.FC = () => {
       <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="text-center max-w-2xl mx-auto mb-space-3xl">
           <span className="text-[12px] font-bold text-[#EE295C] tracking-[0.2em] uppercase block mb-space-2xs">
-            Marco Arquitectónico de Salud
+            {p.badge}
           </span>
           <h2 className="font-serif text-[32px] md:text-[46px] text-[#201415] italic font-semibold tracking-tight mb-space-sm">
-            El Método Código Diosa
+            {p.title}
           </h2>
           <p className="text-[15px] text-[#685354] leading-relaxed">
-            Un marco estructurado para el crecimiento y optimización biológica. Te ayuda a construir claridad, disciplina metabólica y vitalidad sostenida en tu cuerpo y descanso. No motivación pasajera: sistemas que funcionan y se multiplican con el tiempo.
+            {p.description}
           </p>
         </div>
 
         {/* 4 Pillars Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
-          {PILLARS.map((pillar) => {
+          {p.items.map((pillar) => {
             const isSelected = selectedPillar === pillar.id;
             return (
               <div

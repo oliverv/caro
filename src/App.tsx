@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { AudioWelcome } from './components/AudioWelcome';
 import { MethodPillars } from './components/MethodPillars';
+import { LongevityCalculator } from './components/LongevityCalculator';
 import { PracticalAreas } from './components/PracticalAreas';
+import { ClinicalEvidence } from './components/ClinicalEvidence';
 import { WhoIsItFor } from './components/WhoIsItFor';
 import { DiagnosticSection } from './components/DiagnosticSection';
 import { BioStory } from './components/BioStory';
@@ -15,8 +19,9 @@ import { ProgramModal } from './components/ProgramModal';
 import { WaitlistModal } from './components/WaitlistModal';
 import { DiagnosticModal } from './components/DiagnosticModal';
 import { TrajectoryModal } from './components/TrajectoryModal';
+import { BookingModal } from './components/BookingModal';
 
-export function App() {
+function MainAppContent() {
   const [isProgramModalOpen, setIsProgramModalOpen] = useState(false);
   const [waitlistModalState, setWaitlistModalState] = useState<{
     isOpen: boolean;
@@ -27,6 +32,7 @@ export function App() {
   });
   const [isDiagnosticModalOpen, setIsDiagnosticModalOpen] = useState(false);
   const [isTrajectoryModalOpen, setIsTrajectoryModalOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   const handleOpenWaitlist = (areaTitle: string) => {
     setWaitlistModalState({
@@ -58,11 +64,12 @@ export function App() {
 
   return (
     <div id="app-root" className="min-h-screen flex flex-col bg-[#F6F1EA] text-[#201415]">
-      {/* Fixed Navigation Header with blur backdrop */}
+      {/* Fixed Navigation Header with blur backdrop & Language Switcher */}
       <Navbar
         onOpenProgramModal={() => setIsProgramModalOpen(true)}
         onOpenWaitlistModal={handleOpenWaitlist}
         onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
+        onOpenBookingModal={() => setIsBookingModalOpen(true)}
       />
 
       {/* Main Content Sections */}
@@ -71,16 +78,26 @@ export function App() {
         <Hero
           onOpenProgramModal={() => setIsProgramModalOpen(true)}
           onExploreMethod={() => scrollToSection('metodo-diosa')}
+          onOpenCalculator={() => scrollToSection('calculadora-40')}
         />
+
+        {/* Audio Note & Welcome from Carolina */}
+        <AudioWelcome onBookConsultation={() => setIsBookingModalOpen(true)} />
 
         {/* 4 Pillars: El Método Código Diosa */}
         <MethodPillars />
+
+        {/* Interactive Longevity & Protein Calculator */}
+        <LongevityCalculator onOpenConsultation={() => setIsBookingModalOpen(true)} />
 
         {/* Practical Application in 3 Areas */}
         <PracticalAreas
           onOpenProgramModal={() => setIsProgramModalOpen(true)}
           onOpenWaitlistModal={handleOpenWaitlist}
         />
+
+        {/* Real Clinical Evidence & Biomarkers */}
+        <ClinicalEvidence onBookConsultation={() => setIsBookingModalOpen(true)} />
 
         {/* Philosophy & Target: ¿Para quién es? */}
         <WhoIsItFor />
@@ -115,23 +132,42 @@ export function App() {
         onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
       />
 
-      {/* Floating Quick WhatsApp Button */}
+      {/* Floating Quick Action Widget */}
       <aside
         id="floating-whatsapp-container"
-        className="fixed bottom-6 right-6 z-40 flex items-center group"
+        className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5"
       >
-        <div className="hidden sm:block mr-2 px-3 py-1.5 rounded-full bg-white text-[#201415] text-[12px] font-semibold fine-border crisp-shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
-          Hablar con Carolina
-        </div>
+        {/* Quick Booking Button */}
         <button
-          id="floating-whatsapp-btn"
-          onClick={openWhatsAppChat}
-          aria-label="Abrir chat de WhatsApp con Carolina"
-          className="w-13 h-13 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_22px_rgba(37,211,102,0.6)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          id="floating-booking-btn"
+          onClick={() => setIsBookingModalOpen(true)}
+          className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#201415] text-[12px] font-bold fine-border shadow-lg hover:bg-[#F8CFD5]/40 hover:text-[#EE295C] transition-all cursor-pointer"
         >
-          <span className="material-symbols-outlined text-[26px]">chat</span>
+          <span className="material-symbols-outlined text-[17px] text-[#EE295C]">calendar_month</span>
+          <span>Reservar Cita</span>
         </button>
+
+        {/* WhatsApp Button with tooltip */}
+        <div className="flex items-center group">
+          <div className="hidden sm:block mr-2 px-3 py-1.5 rounded-full bg-white text-[#201415] text-[12px] font-semibold fine-border crisp-shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
+            Hablar con Carolina
+          </div>
+          <button
+            id="floating-whatsapp-btn"
+            onClick={openWhatsAppChat}
+            aria-label="Abrir chat de WhatsApp con Carolina"
+            className="w-13 h-13 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_22px_rgba(37,211,102,0.6)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[26px]">chat</span>
+          </button>
+        </div>
       </aside>
+
+      {/* Booking Consultation Modal */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
 
       {/* Program Details Modal (Código Diosa 90 Días) */}
       <ProgramModal
@@ -158,6 +194,14 @@ export function App() {
         onClose={() => setIsTrajectoryModalOpen(false)}
       />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <LanguageProvider>
+      <MainAppContent />
+    </LanguageProvider>
   );
 }
 

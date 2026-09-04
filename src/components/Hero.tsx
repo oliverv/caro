@@ -1,12 +1,21 @@
 import React from 'react';
 import { ASSETS } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HeroProps {
   onOpenProgramModal: () => void;
   onExploreMethod: () => void;
+  onOpenCalculator: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenProgramModal, onExploreMethod }) => {
+export const Hero: React.FC<HeroProps> = ({
+  onOpenProgramModal,
+  onExploreMethod,
+  onOpenCalculator
+}) => {
+  const { t } = useLanguage();
+  const h = t.hero;
+
   return (
     <section id="hero-section" className="relative w-full overflow-hidden bg-[#201415] text-white">
       {/* Atmospheric Visual Layer */}
@@ -28,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProgramModal, onExploreMethod 
         >
           <span className="w-2 h-2 rounded-full bg-[#FF6161] animate-pulse" />
           <span className="text-[11px] font-bold tracking-[0.2em] text-[#F8CFD5] uppercase">
-            Women's Health & Longevity para mujeres 40+
+            {h.badge}
           </span>
         </div>
 
@@ -37,10 +46,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProgramModal, onExploreMethod 
           id="hero-title"
           className="font-serif text-[38px] md:text-[58px] text-white max-w-4xl tracking-tight leading-[1.12] mb-space-md"
         >
-          Tu cuerpo cambia después de los 40.
+          {h.titleLine1}
           <br />
           <span className="italic font-normal bg-gradient-to-r from-[#FF6161] via-[#F8CFD5] to-[#F69C05] bg-clip-text text-transparent">
-            Tu estrategia también.
+            {h.titleHighlight}
           </span>
         </h1>
 
@@ -49,33 +58,43 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProgramModal, onExploreMethod 
           id="hero-subtitle"
           className="font-serif italic text-[19px] md:text-[22px] text-[#F6F1EA]/90 max-w-2xl font-normal mb-space-sm leading-relaxed"
         >
-          Nutrición Epigenética: bio-hackea tus genes, recupera tu peso ideal y libera tu brillo interior.
+          {h.subtitle}
         </p>
         <p
           id="hero-description"
           className="text-[15px] md:text-[16px] text-[#F6F1EA]/75 max-w-xl font-normal mb-space-2xl leading-relaxed"
         >
-          Para mujeres que quieren entender su biología, optimizar su salud y vivir esta etapa con más energía, fuerza y bienestar duradero.
+          {h.description}
         </p>
 
         {/* Primary & Secondary CTA actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-space-md w-full max-w-md">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-space-md w-full max-w-lg">
           <button
             id="hero-cta-descubre"
             onClick={onOpenProgramModal}
             className="w-full sm:w-auto px-space-xl py-3.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[14px] font-bold rounded-full shadow-[0_12px_28px_rgba(238,41,92,0.4)] hover:shadow-[0_16px_36px_rgba(255,97,97,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
           >
-            <span>Descubre mi método</span>
+            <span>{h.ctaPrimary}</span>
             <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">
               arrow_forward
             </span>
           </button>
+
+          <button
+            id="hero-cta-calculator"
+            onClick={onOpenCalculator}
+            className="w-full sm:w-auto px-space-lg py-3.5 bg-white/10 hover:bg-white/15 text-white fine-border-dark backdrop-blur-sm text-[13.5px] font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[17px] text-[#F69C05]">calculate</span>
+            <span>{h.ctaCalculator}</span>
+          </button>
+
           <button
             id="hero-cta-revolucion"
             onClick={onExploreMethod}
-            className="w-full sm:w-auto px-space-xl py-3.5 bg-white/10 hover:bg-white/15 text-white fine-border-dark backdrop-blur-sm text-[14px] font-semibold rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer"
+            className="w-full sm:w-auto px-space-lg py-3.5 text-[#F6F1EA]/80 hover:text-white text-[13.5px] font-medium transition-colors flex items-center justify-center cursor-pointer"
           >
-            <span>Únete a la revolución</span>
+            <span>{h.ctaSecondary}</span>
           </button>
         </div>
 
@@ -86,15 +105,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProgramModal, onExploreMethod 
         >
           <span className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[#F69C05] text-[17px]">verified</span>
-            +6 Años Especializada
+            {h.trustYears}
           </span>
           <span className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[#FF6161] text-[17px]">science</span>
-            Nutrición Epigenética
+            {h.trustEpigenetics}
           </span>
           <span className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[#EE295C] text-[17px]">favorite</span>
-            Enfoque Clínico 100% Personalizado
+            {h.trustPersonalized}
           </span>
         </div>
       </div>
