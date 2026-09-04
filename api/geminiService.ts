@@ -1,7 +1,4 @@
-import { GoogleGenAI, Type } from "@google/genai";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { GoogleGenAI } from "@google/genai";
 
 // Lazy-initialized Gemini client with required User-Agent header
 let aiClient: GoogleGenAI | null = null;
