@@ -23,9 +23,6 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       if (saved && (saved === 'es' || saved === 'en' || saved === 'fr')) {
         return saved;
       }
-      const browserLang = navigator.language?.slice(0, 2);
-      if (browserLang === 'fr') return 'fr';
-      if (browserLang === 'en') return 'en';
     }
     return 'es';
   });

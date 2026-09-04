@@ -10,6 +10,9 @@ interface NavbarProps {
   onOpenWaitlistModal: (areaTitle: string) => void;
   onOpenDiagnosticModal: () => void;
   onOpenBookingModal: () => void;
+  onOpenAiDrawer: () => void;
+  onOpenAiAssessment: () => void;
+  onOpenAiMealBiohack: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -18,7 +21,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenProgramModal,
   onOpenWaitlistModal,
   onOpenDiagnosticModal,
-  onOpenBookingModal
+  onOpenBookingModal,
+  onOpenAiDrawer,
+  onOpenAiAssessment,
+  onOpenAiMealBiohack
 }) => {
   const { language, setLanguage, t } = useLanguage();
   const n = t.nav;
@@ -206,11 +212,86 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onMouseLeave={() => setToolsDropdownOpen(false)}
                   className="absolute top-full left-0 mt-1 w-80 bg-white rounded-2xl p-3 shadow-2xl fine-border z-50 animate-fadeIn"
                 >
-                  <div className="p-2 border-b border-[#C7A46B]/15 mb-1">
-                    <span className="text-[10px] uppercase tracking-widest text-[#C7A46B] font-bold">
-                      Herramientas Interactivas & Ciencia
+                  <div className="p-2 border-b border-[#C7A46B]/15 mb-1 flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-widest text-[#EE295C] font-bold flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[13px]">auto_awesome</span>
+                      Herramientas IA & Ciencia
+                    </span>
+                    <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[#EE295C]/10 text-[#EE295C] font-bold">
+                      GEMINI
                     </span>
                   </div>
+
+                  {/* AI Assistant Chat */}
+                  <button
+                    id="dropdown-item-ai-chat"
+                    onClick={() => {
+                      setToolsDropdownOpen(false);
+                      onOpenAiDrawer();
+                    }}
+                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl bg-gradient-to-r from-[#F8CFD5]/20 to-transparent hover:from-[#F8CFD5]/40 transition-colors group cursor-pointer border border-[#EE295C]/15 mb-1"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#EE295C] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                      <span className="material-symbols-outlined text-[18px]">smart_toy</span>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
+                          Asistente Clínico IA
+                        </p>
+                        <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-[#EE295C] text-white">NUEVO</span>
+                      </div>
+                      <p className="text-[11px] text-[#685354] leading-snug">
+                        Consulta interactiva sobre hormonas, suplementos y dieta 40+.
+                      </p>
+                    </div>
+                  </button>
+
+                  {/* AI Epigenetic Assessment */}
+                  <button
+                    id="dropdown-item-ai-assessment"
+                    onClick={() => {
+                      setToolsDropdownOpen(false);
+                      onOpenAiAssessment();
+                    }}
+                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#C7A46B]/20 text-[#201415] flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="material-symbols-outlined text-[18px] text-[#C7A46B]">biotech</span>
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
+                        Evaluador Epigenético con IA
+                      </p>
+                      <p className="text-[11px] text-[#685354] leading-snug">
+                        Analiza síntomas y predice biomarcadores a evaluar.
+                      </p>
+                    </div>
+                  </button>
+
+                  {/* AI Meal Biohacker */}
+                  <button
+                    id="dropdown-item-ai-meal"
+                    onClick={() => {
+                      setToolsDropdownOpen(false);
+                      onOpenAiMealBiohack();
+                    }}
+                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#FF6161]/15 text-[#FF6161] flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="material-symbols-outlined text-[18px]">restaurant</span>
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
+                        Optimizador de Platos con IA
+                      </p>
+                      <p className="text-[11px] text-[#685354] leading-snug">
+                        Bio-hackea tus comidas para activar sirtuinas y glucosa estable.
+                      </p>
+                    </div>
+                  </button>
+
+                  <div className="my-1 border-t border-[#C7A46B]/15" />
 
                   <button
                     id="dropdown-item-calc"
@@ -350,6 +431,20 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span className="material-symbols-outlined text-[18px]">chat</span>
             </a>
+
+            {/* AI Assistant Button */}
+            <button
+              id="nav-btn-ai-assistant"
+              onClick={onOpenAiDrawer}
+              className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-[#201415] to-[#362224] text-white text-[12px] sm:text-[12.5px] font-bold shadow-md hover:scale-103 transition-all cursor-pointer border border-[#C7A46B]/40"
+              title="Consultar al Asistente de Longevidad IA"
+            >
+              <span className="material-symbols-outlined text-[15px] sm:text-[16px] text-[#C7A46B] animate-pulse">
+                auto_awesome
+              </span>
+              <span className="hidden sm:inline">Asistente IA</span>
+              <span className="sm:hidden">IA</span>
+            </button>
 
             {/* Booking CTA Button */}
             <button
@@ -538,10 +633,58 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Tools & Resources */}
           <div>
-            <p className="text-[10px] font-bold text-[#C7A46B] uppercase tracking-[0.2em] mb-2">
-              Herramientas & Salud 40+
-            </p>
-            <ul className="space-y-1 text-sm">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-[10px] font-bold text-[#EE295C] uppercase tracking-[0.2em] flex items-center gap-1">
+                <span className="material-symbols-outlined text-[13px]">auto_awesome</span>
+                Herramientas IA & Salud 40+
+              </p>
+              <span className="text-[9px] px-1.5 py-0.2 bg-[#EE295C]/10 text-[#EE295C] rounded-full font-bold">
+                GEMINI
+              </span>
+            </div>
+            <ul className="space-y-1.5 text-sm">
+              <li>
+                <button
+                  onClick={() => {
+                    setDrawerOpen(false);
+                    onOpenAiDrawer();
+                  }}
+                  className="w-full flex items-center justify-between p-2 rounded-xl bg-gradient-to-r from-[#F8CFD5]/40 to-white fine-border text-left cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[18px] text-[#EE295C]">smart_toy</span>
+                    <div>
+                      <p className="text-[13px] font-bold text-[#201415]">Asistente Clínico IA</p>
+                      <p className="text-[10px] text-[#685354]">Chat interactivo de longevidad</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold text-[#EE295C] uppercase">Abrir</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    setDrawerOpen(false);
+                    onOpenAiAssessment();
+                  }}
+                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
+                >
+                  <span>Evaluador Epigenético con IA</span>
+                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">biotech</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    setDrawerOpen(false);
+                    onOpenAiMealBiohack();
+                  }}
+                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
+                >
+                  <span>Optimizador de Platos con IA</span>
+                  <span className="material-symbols-outlined text-[16px] text-[#FF6161]">restaurant</span>
+                </button>
+              </li>
               <li>
                 <button
                   onClick={() => handleScrollToSection('calculadora-40')}

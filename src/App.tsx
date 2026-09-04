@@ -26,6 +26,9 @@ import { WaitlistModal } from './components/WaitlistModal';
 import { DiagnosticModal } from './components/DiagnosticModal';
 import { TrajectoryModal } from './components/TrajectoryModal';
 import { BookingModal } from './components/BookingModal';
+import { AiConsultationDrawer } from './components/AiConsultationDrawer';
+import { AiBiomarkerModal } from './components/AiBiomarkerModal';
+import { AiMealBiohackModal } from './components/AiMealBiohackModal';
 
 function getPageFromHash(): PageId {
   const hash = window.location.hash.replace('#', '').toLowerCase();
@@ -50,6 +53,9 @@ function MainAppContent() {
   const [isDiagnosticModalOpen, setIsDiagnosticModalOpen] = useState(false);
   const [isTrajectoryModalOpen, setIsTrajectoryModalOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isAiDrawerOpen, setIsAiDrawerOpen] = useState(false);
+  const [isAiAssessmentModalOpen, setIsAiAssessmentModalOpen] = useState(false);
+  const [isAiMealModalOpen, setIsAiMealModalOpen] = useState(false);
 
   // Sync hash on browser back/forward
   useEffect(() => {
@@ -114,6 +120,9 @@ function MainAppContent() {
         onOpenWaitlistModal={handleOpenWaitlist}
         onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
         onOpenBookingModal={() => setIsBookingModalOpen(true)}
+        onOpenAiDrawer={() => setIsAiDrawerOpen(true)}
+        onOpenAiAssessment={() => setIsAiAssessmentModalOpen(true)}
+        onOpenAiMealBiohack={() => setIsAiMealModalOpen(true)}
       />
 
       {/* Main Content: Switches between Inicio and Dedicated Pages */}
@@ -128,13 +137,13 @@ function MainAppContent() {
             />
 
             {/* Audio Note & Welcome from Carolina */}
-            <AudioWelcome onBookConsultation={() => setIsBookingModalOpen(true)} />
+            <AudioWelcome />
 
             {/* 4 Pillars: El Método Código Diosa */}
             <MethodPillars />
 
             {/* Interactive Longevity & Protein Calculator */}
-            <LongevityCalculator onOpenConsultation={() => setIsBookingModalOpen(true)} />
+            <LongevityCalculator />
 
             {/* Practical Application in 3 Areas */}
             <PracticalAreas
@@ -143,7 +152,7 @@ function MainAppContent() {
             />
 
             {/* Real Clinical Evidence & Biomarkers */}
-            <ClinicalEvidence onBookConsultation={() => setIsBookingModalOpen(true)} />
+            <ClinicalEvidence />
 
             {/* Philosophy & Target: ¿Para quién es? */}
             <WhoIsItFor />
@@ -151,6 +160,7 @@ function MainAppContent() {
             {/* Autodiagnóstico 40+ with interactive assessment */}
             <DiagnosticSection
               onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
+              onOpenAiAssessment={() => setIsAiAssessmentModalOpen(true)}
             />
 
             {/* Carolina's Story, Credentials & Metrics */}
@@ -220,6 +230,18 @@ function MainAppContent() {
         id="floating-whatsapp-container"
         className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5"
       >
+        {/* Floating AI Assistant Trigger */}
+        <button
+          id="floating-ai-assistant-btn"
+          onClick={() => setIsAiDrawerOpen(true)}
+          className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gradient-to-r from-[#201415] to-[#362224] text-white text-[12px] font-bold fine-border shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer border border-[#C7A46B]/40 group"
+          title="Abrir Asistente Clínico IA"
+        >
+          <span className="material-symbols-outlined text-[16px] text-[#C7A46B] animate-pulse">auto_awesome</span>
+          <span>Asistente IA</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+        </button>
+
         {/* Quick Booking Button */}
         <button
           id="floating-booking-btn"
@@ -245,6 +267,28 @@ function MainAppContent() {
           </button>
         </div>
       </aside>
+
+      {/* AI Assistant Consultation Drawer */}
+      <AiConsultationDrawer
+        isOpen={isAiDrawerOpen}
+        onClose={() => setIsAiDrawerOpen(false)}
+        onOpenBookingModal={() => setIsBookingModalOpen(true)}
+        onOpenAiAssessment={() => setIsAiAssessmentModalOpen(true)}
+      />
+
+      {/* AI Epigenetic Biomarker & Metabolic Assessment Modal */}
+      <AiBiomarkerModal
+        isOpen={isAiAssessmentModalOpen}
+        onClose={() => setIsAiAssessmentModalOpen(false)}
+        onOpenBookingModal={() => setIsBookingModalOpen(true)}
+      />
+
+      {/* AI Meal Biohacker Modal */}
+      <AiMealBiohackModal
+        isOpen={isAiMealModalOpen}
+        onClose={() => setIsAiMealModalOpen(false)}
+        onOpenBookingModal={() => setIsBookingModalOpen(true)}
+      />
 
       {/* Booking Consultation Modal */}
       <BookingModal
