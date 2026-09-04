@@ -40,12 +40,38 @@ Tono:
 `;
 
 // Resilient model execution with multi-model fallback cascade
-// gemini-3.1-flash-lite is prioritized as the primary high-availability model
+// gemini-2.5-flash is prioritized as the primary high-availability model
 const FALLBACK_MODELS = [
-  "gemini-3.1-flash-lite",
+  "gemini-2.5-flash",
+  "gemini-2.0-flash",
   "gemini-flash-latest",
-  "gemini-3.8-flash",
 ];
+
+// Pure helpers: sanitize chat history for the Gemini API.
+// The API rejects requests whose first content has role "model" and
+// rejects empty text parts, so strip leading model messages,
+// drop empty texts, and cap history to avoid token blowup.
+export type ChatInputMessage = { role: string; text: string };
+
+export function toGeminiContents(messages: ChatInputMessage[]) {
+  const mapped = (messages || [])
+    .filter((m) => m && typeof m.text === "string" && m.text.trim().length > 0)
+    .map((m) => ({
+      role: m.role === "assistant" || m.role === "model" ? "model" : "user",
+      parts: [{ text: m.text.trim() }],
+    }));
+  while (mapped.length > 0 && mapped[0].role === "model") mapped.shift();
+  return mapped.slice(-20);
+}
+
+export function getLastUserText(messages: ChatInputMessage[]): string {
+  for (let i = (messages || []).length - 1; i >= 0; i--) {
+    const m = messages[i] as ChatInputMessage;
+    if (m && m.role !== "assistant" && m.role !== "model" && m.text) return m.text;
+  }
+  const last = (messages || [])[(messages || []).length - 1] as ChatInputMessage | undefined;
+  return last?.text || "";
+}
 
 export async function generateContentWithCascade(
   ai: GoogleGenAI,

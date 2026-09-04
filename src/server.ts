@@ -4,7 +4,7 @@ import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
-import { getGenAI, generateContentWithCascade, generateClinicalChatFallback, generateAssessmentFallback, generateMealBiohackFallback, SYSTEM_PROMPT_CAROLINA } from "./geminiService";
+import { getGenAI, generateContentWithCascade, generateClinicalChatFallback, generateAssessmentFallback, generateMealBiohackFallback, SYSTEM_PROMPT_CAROLINA, toGeminiContents, getLastUserText } from "./geminiService";
 
 dotenv.config();
 
@@ -58,11 +58,12 @@ app.post("/api/ai/chat", async (req, res) => {
 
     const ai = getGenAI();
 
-    // Convert messages to Gemini conversation format
-    const contents = messages.map((m: { role: string; text: string }) => ({
-      role: m.role === "assistant" || m.role === "model" ? "model" : "user",
-      parts: [{ text: m.text }],
-    }));
+    // Convert messages to Gemini conversation format (sanitized:
+    // no leading model message, no empty parts, capped history)
+    const contents = toGeminiContents(messages);
+    if (contents.length === 0) {
+      return res.status(400).json({ error: "Missing or invalid messages array" });
+    }
 
     let contextInstruction = SYSTEM_PROMPT_CAROLINA;
     if (userContext) {
@@ -83,7 +84,7 @@ app.post("/api/ai/chat", async (req, res) => {
     console.error("Gemini API Error (/api/ai/chat):", error?.message || error);
     // Graceful clinical fallback so the patient/user never experiences a broken chat
     const { messages } = req.body || {};
-    const lastUserMsg = Array.isArray(messages) && messages.length > 0 ? messages[messages.length - 1].text : "";
+    const lastUserMsg = getLastUserText(Array.isArray(messages) ? messages : []);
     const fallbackReply = generateClinicalChatFallback(lastUserMsg);
     res.json({ reply: fallbackReply, fallback: true });
   }

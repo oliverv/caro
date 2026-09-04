@@ -5,6 +5,7 @@ import { ASSETS } from '../data';
 interface Message {
   role: 'user' | 'assistant';
   text: string;
+  fallback?: boolean;
 }
 
 interface AiConsultationDrawerProps {
@@ -82,12 +83,19 @@ export const AiConsultationDrawer: React.FC<AiConsultationDrawerProps> = ({
       }
 
       const data = await response.json();
-      setMessages([...newMessages, { role: 'assistant', text: data.reply }]);
+      setMessages([...newMessages, { role: 'assistant', text: data.reply, fallback: data.fallback === true }]);
     } catch (err: any) {
       setError(err.message || 'No pudimos procesar la consulta en este momento.');
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const getLastUserText = (): string | undefined => {
+    for (let i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].role === 'user') return messages[i].text;
+    }
+    return undefined;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -143,7 +151,7 @@ export const AiConsultationDrawer: React.FC<AiConsultationDrawerProps> = ({
                   Carolina AI
                 </h3>
                 <span className="px-2 py-0.5 rounded-full bg-[#F8CFD5]/50 text-[#EE295C] text-[10px] font-bold uppercase tracking-wider">
-                  Gemini 3.8
+                  Gemini 2.5
                 </span>
               </div>
               <p className="text-[11px] text-[#685354]">
@@ -218,6 +226,11 @@ export const AiConsultationDrawer: React.FC<AiConsultationDrawerProps> = ({
                     <p className="whitespace-pre-wrap">{m.text}</p>
                   ) : (
                     <div className="space-y-2 text-[#201415]">
+                      {m.fallback && (
+                        <span className="inline-block px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider">
+                          Respuesta offline — reintenta para IA en vivo
+                        </span>
+                      )}
                       <ReactMarkdown>{m.text}</ReactMarkdown>
                     </div>
                   )}
@@ -252,14 +265,26 @@ export const AiConsultationDrawer: React.FC<AiConsultationDrawerProps> = ({
                 <span className="material-symbols-outlined text-[16px] shrink-0">error</span>
                 <span>{error}</span>
               </div>
-              {messages.length > 0 && messages[messages.length - 1].role === 'user' && (
+              {getLastUserText() && (
                 <button
-                  onClick={() => handleSendMessage(messages[messages.length - 1].text)}
+                  onClick={() => handleSendMessage(getLastUserText())}
                   className="px-2.5 py-1 bg-white border border-red-300 rounded-md text-[11px] font-semibold text-red-700 hover:bg-red-100 transition-colors shrink-0 cursor-pointer shadow-2xs"
                 >
                   Reintentar
                 </button>
               )}
+            </div>
+          )}
+
+          {!error && !isLoading && messages.length > 0 && messages[messages.length - 1].fallback && getLastUserText() && (
+            <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 flex items-center justify-between gap-2">
+              <span>Estás viendo una respuesta local. La IA en vivo no respondió.</span>
+              <button
+                onClick={() => handleSendMessage(getLastUserText())}
+                className="px-2.5 py-1 bg-white border border-amber-300 rounded-md text-[11px] font-semibold text-amber-800 hover:bg-amber-100 transition-colors shrink-0 cursor-pointer shadow-2xs"
+              >
+                Reintentar IA
+              </button>
             </div>
           )}
 

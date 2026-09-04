@@ -84,12 +84,33 @@ app.post("/api/upload-audio", (req, res) => {
 });
 
 // Resilient model execution with multi-model fallback cascade
-// gemini-3.1-flash-lite is prioritized as the primary high-availability model
+// gemini-2.5-flash is prioritized as the primary high-availability model
 const FALLBACK_MODELS = [
-  "gemini-3.1-flash-lite",
+  "gemini-2.5-flash",
+  "gemini-2.0-flash",
   "gemini-flash-latest",
-  "gemini-3.8-flash",
 ];
+
+// Pure helper: Gemini rejects a first content with role "model" and
+// empty text parts — strip leading model messages and cap history.
+function toGeminiContents(messages: Array<{ role: string; text: string }>) {
+  const mapped = (messages || [])
+    .filter((m) => m && typeof m.text === "string" && m.text.trim().length > 0)
+    .map((m) => ({
+      role: m.role === "assistant" || m.role === "model" ? "model" : "user",
+      parts: [{ text: m.text.trim() }],
+    }));
+  while (mapped.length > 0 && mapped[0].role === "model") mapped.shift();
+  return mapped.slice(-20);
+}
+
+function getLastUserText(messages: Array<{ role: string; text: string }>): string {
+  for (let i = (messages || []).length - 1; i >= 0; i--) {
+    const m = messages[i];
+    if (m && m.role !== "assistant" && m.role !== "model" && m.text) return m.text;
+  }
+  return messages?.[messages.length - 1]?.text || "";
+}
 
 async function generateContentWithCascade(
   ai: GoogleGenAI,
@@ -147,11 +168,12 @@ app.post("/api/ai/chat", async (req, res) => {
 
     const ai = getGenAI();
 
-    // Convert messages to Gemini conversation format
-    const contents = messages.map((m: { role: string; text: string }) => ({
-      role: m.role === "assistant" || m.role === "model" ? "model" : "user",
-      parts: [{ text: m.text }],
-    }));
+    // Convert messages to Gemini conversation format (sanitized:
+    // no leading model message, no empty parts, capped history)
+    const contents = toGeminiContents(messages);
+    if (contents.length === 0) {
+      return res.status(400).json({ error: "Missing or invalid messages array" });
+    }
 
     let contextInstruction = SYSTEM_PROMPT_CAROLINA;
     if (userContext) {
@@ -172,7 +194,7 @@ app.post("/api/ai/chat", async (req, res) => {
     console.error("Gemini API Error (/api/ai/chat):", error?.message || error);
     // Graceful clinical fallback so the patient/user never experiences a broken chat
     const { messages } = req.body || {};
-    const lastUserMsg = Array.isArray(messages) && messages.length > 0 ? messages[messages.length - 1].text : "";
+    const lastUserMsg = getLastUserText(Array.isArray(messages) ? messages : []);
     const fallbackReply = generateClinicalChatFallback(lastUserMsg);
     res.json({ reply: fallbackReply, fallback: true });
   }

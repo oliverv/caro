@@ -2,6 +2,8 @@ import {
   getGenAI,
   generateContentWithCascade,
   generateClinicalChatFallback,
+  toGeminiContents,
+  getLastUserText,
   SYSTEM_PROMPT_CAROLINA,
 } from "../../src/geminiService";
 
@@ -41,10 +43,10 @@ export default async function handler(req: any, res: any) {
   try {
     const ai = getGenAI();
 
-    const contents = messages.map((m: { role: string; text: string }) => ({
-      role: m.role === "assistant" || m.role === "model" ? "model" : "user",
-      parts: [{ text: m.text }],
-    }));
+    const contents = toGeminiContents(messages);
+    if (contents.length === 0) {
+      return res.status(400).json({ error: "Missing or invalid messages array" });
+    }
 
     let contextInstruction = SYSTEM_PROMPT_CAROLINA;
     if (userContext) {
@@ -65,10 +67,7 @@ export default async function handler(req: any, res: any) {
     return res.status(200).json({ reply });
   } catch (error: any) {
     console.error("[Vercel API] Error in /api/ai/chat:", error?.message || error);
-    const lastUserMsg =
-      Array.isArray(messages) && messages.length > 0
-        ? messages[messages.length - 1].text
-        : "";
+    const lastUserMsg = getLastUserText(Array.isArray(messages) ? messages : []);
     const fallbackReply = generateClinicalChatFallback(lastUserMsg);
     return res.status(200).json({ reply: fallbackReply, fallback: true });
   }
