@@ -4,11 +4,11 @@ import { ASSETS } from '../data';
 
 // Candidate audio paths for Carolina's real voice recording
 const CANDIDATE_AUDIO_URLS = [
-  '/audio/carolina-welcome.opus',
-  '/audio/carolina-welcome.ogg',
   '/audio/carolina-welcome.mp3',
   '/audio/carolina-welcome.m4a',
-  '/audio/carolina-welcome.wav'
+  '/audio/carolina-welcome.wav',
+  '/audio/carolina-welcome.ogg',
+  '/audio/carolina-welcome.opus'
 ];
 
 export const AudioWelcome: React.FC = () => {
@@ -19,10 +19,10 @@ export const AudioWelcome: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(25);
+  const [duration, setDuration] = useState(25.5);
   const [showTranscript, setShowTranscript] = useState(false);
-  const [hasRealAudio, setHasRealAudio] = useState<boolean>(false);
-  const [activeAudioSrc, setActiveAudioSrc] = useState<string | null>(null);
+  const [hasRealAudio, setHasRealAudio] = useState<boolean>(true);
+  const [activeAudioSrc, setActiveAudioSrc] = useState<string | null>('/audio/carolina-welcome.mp3');
 
   // Real Audio element ref
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
@@ -42,8 +42,16 @@ export const AudioWelcome: React.FC = () => {
     const testAudioSources = async () => {
       for (const url of CANDIDATE_AUDIO_URLS) {
         try {
-          const res = await fetch(url, { method: 'HEAD' });
-          if (res.ok) {
+          const res = await fetch(url);
+          const contentType = res.headers.get('content-type') || '';
+          // Ensure it is actually an audio MIME type and not an HTML SPA fallback
+          if (
+            res.ok &&
+            (contentType.startsWith('audio/') ||
+              contentType.includes('mpeg') ||
+              contentType.includes('audio') ||
+              contentType.includes('octet-stream'))
+          ) {
             if (!isCancelled) {
               setActiveAudioSrc(url);
               setHasRealAudio(true);
@@ -86,7 +94,7 @@ export const AudioWelcome: React.FC = () => {
     if (!activeAudioSrc) return;
 
     const audio = new Audio(activeAudioSrc);
-    audio.preload = 'metadata';
+    audio.preload = 'auto';
     audioElementRef.current = audio;
 
     const onLoadedMetadata = () => {
