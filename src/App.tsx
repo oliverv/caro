@@ -26,13 +26,11 @@ import { WaitlistModal } from './components/WaitlistModal';
 import { DiagnosticModal } from './components/DiagnosticModal';
 import { TrajectoryModal } from './components/TrajectoryModal';
 import { BookingModal } from './components/BookingModal';
-import { AiConsultationDrawer } from './components/AiConsultationDrawer';
-import { AiBiomarkerModal } from './components/AiBiomarkerModal';
-import { AiMealBiohackModal } from './components/AiMealBiohackModal';
 
 function getPageFromHash(): PageId {
   const hash = window.location.hash.replace('#', '').toLowerCase();
   if (hash === 'sobre-mi') return 'sobre-mi';
+  if (hash === 'el-metodo') return 'el-metodo';
   if (hash === 'planes') return 'planes';
   if (hash === 'blog') return 'blog';
   if (hash === 'contacto') return 'contacto';
@@ -53,9 +51,6 @@ function MainAppContent() {
   const [isDiagnosticModalOpen, setIsDiagnosticModalOpen] = useState(false);
   const [isTrajectoryModalOpen, setIsTrajectoryModalOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [isAiDrawerOpen, setIsAiDrawerOpen] = useState(false);
-  const [isAiAssessmentModalOpen, setIsAiAssessmentModalOpen] = useState(false);
-  const [isAiMealModalOpen, setIsAiMealModalOpen] = useState(false);
 
   // Sync hash on browser back/forward
   useEffect(() => {
@@ -120,9 +115,6 @@ function MainAppContent() {
         onOpenWaitlistModal={handleOpenWaitlist}
         onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
         onOpenBookingModal={() => setIsBookingModalOpen(true)}
-        onOpenAiDrawer={() => setIsAiDrawerOpen(true)}
-        onOpenAiAssessment={() => setIsAiAssessmentModalOpen(true)}
-        onOpenAiMealBiohack={() => setIsAiMealModalOpen(true)}
       />
 
       {/* Main Content: Switches between Inicio and Dedicated Pages */}
@@ -160,7 +152,6 @@ function MainAppContent() {
             {/* Autodiagnóstico 40+ with interactive assessment */}
             <DiagnosticSection
               onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
-              onOpenAiAssessment={() => setIsAiAssessmentModalOpen(true)}
             />
 
             {/* Carolina's Story, Credentials & Metrics */}
@@ -191,7 +182,7 @@ function MainAppContent() {
           />
         )}
 
-        {currentPage === 'planes' && (
+        {(currentPage === 'planes' || currentPage === 'el-metodo') && (
           <PlanesPage
             onOpenBookingModal={() => setIsBookingModalOpen(true)}
             onNavigateHome={() => navigateToPage('inicio')}
@@ -225,70 +216,22 @@ function MainAppContent() {
         onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
       />
 
-      {/* Floating Quick Action Widget */}
+      {/* Floating WhatsApp */}
       <aside
         id="floating-whatsapp-container"
-        className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5"
+        className="fixed bottom-6 right-6 z-40"
       >
-        {/* Floating AI Assistant Trigger */}
-        <button
-          id="floating-ai-assistant-btn"
-          onClick={() => setIsAiDrawerOpen(true)}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gradient-to-r from-[#201415] to-[#362224] text-white text-[12px] font-bold fine-border shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer border border-[#C7A46B]/40 group"
-          title="Abrir Asistente Clínico IA"
+        <a
+          id="floating-whatsapp-btn"
+          href="https://api.whatsapp.com/send/?phone=34601317959&text=Hola%20Carolina,%20estoy%20interesada%20en%20tu%20m%C3%A9todo%20de%20salud%20y%20longevidad"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contactar por WhatsApp"
+          className="w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_12px_32px_-4px_rgba(37,211,102,0.45)] hover:shadow-[0_16px_36px_-2px_rgba(37,211,102,0.6)] hover:scale-105 active:scale-95 transition-all duration-200"
         >
-          <span className="material-symbols-outlined text-[16px] text-[#C7A46B] animate-pulse">auto_awesome</span>
-          <span>Asistente IA</span>
-          <span className="w-2 h-2 rounded-full bg-emerald-400" />
-        </button>
-
-        {/* Quick Booking Button */}
-        <button
-          id="floating-booking-btn"
-          onClick={() => setIsBookingModalOpen(true)}
-          className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#201415] text-[12px] font-bold fine-border shadow-lg hover:bg-[#F8CFD5]/40 hover:text-[#EE295C] transition-all cursor-pointer"
-        >
-          <span className="material-symbols-outlined text-[17px] text-[#EE295C]">calendar_month</span>
-          <span>Reservar Cita</span>
-        </button>
-
-        {/* WhatsApp Button with tooltip */}
-        <div className="flex items-center group">
-          <div className="hidden sm:block mr-2 px-3 py-1.5 rounded-full bg-white text-[#201415] text-[12px] font-semibold fine-border crisp-shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
-            Hablar con Carolina
-          </div>
-          <button
-            id="floating-whatsapp-btn"
-            onClick={openWhatsAppChat}
-            aria-label="Abrir chat de WhatsApp con Carolina"
-            className="w-13 h-13 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_22px_rgba(37,211,102,0.6)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
-          >
-            <span className="material-symbols-outlined text-[26px]">chat</span>
-          </button>
-        </div>
+          <span className="material-symbols-outlined text-[28px]">chat</span>
+        </a>
       </aside>
-
-      {/* AI Assistant Consultation Drawer */}
-      <AiConsultationDrawer
-        isOpen={isAiDrawerOpen}
-        onClose={() => setIsAiDrawerOpen(false)}
-        onOpenBookingModal={() => setIsBookingModalOpen(true)}
-        onOpenAiAssessment={() => setIsAiAssessmentModalOpen(true)}
-      />
-
-      {/* AI Epigenetic Biomarker & Metabolic Assessment Modal */}
-      <AiBiomarkerModal
-        isOpen={isAiAssessmentModalOpen}
-        onClose={() => setIsAiAssessmentModalOpen(false)}
-        onOpenBookingModal={() => setIsBookingModalOpen(true)}
-      />
-
-      {/* AI Meal Biohacker Modal */}
-      <AiMealBiohackModal
-        isOpen={isAiMealModalOpen}
-        onClose={() => setIsAiMealModalOpen(false)}
-        onOpenBookingModal={() => setIsBookingModalOpen(true)}
-      />
 
       {/* Booking Consultation Modal */}
       <BookingModal

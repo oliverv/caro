@@ -45,7 +45,7 @@ export interface DiagnosticCard {
   borderColor: string;
 }
 
-export type PageId = 'inicio' | 'sobre-mi' | 'planes' | 'blog' | 'contacto' | 'privacy';
+export type PageId = 'inicio' | 'sobre-mi' | 'el-metodo' | 'planes' | 'blog' | 'contacto' | 'privacy';
 
 export interface BlogPost {
   id: string;

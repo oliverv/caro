@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
 
 interface SobreMiPageProps {
   onOpenBookingModal: () => void;
@@ -10,313 +9,281 @@ interface SobreMiPageProps {
 export const SobreMiPage: React.FC<SobreMiPageProps> = ({
   onOpenBookingModal,
   onNavigateHome,
-  onNavigatePlanes
+  onNavigatePlanes,
 }) => {
-  const { language } = useLanguage();
-
-  const openWhatsApp = () => {
-    window.open(
-      'https://api.whatsapp.com/send/?phone=34601317959&text=Hola%20Carolina,%20he%20le%C3%ADdo%20tu%20historia%20en%20Sobre%20M%C3%AD%20y%20quiero%20conocer%20tu%20m%C3%A9todo',
-      '_blank'
-    );
-  };
-
   return (
-    <article id="sobre-mi-page" className="w-full bg-[#F6F1EA] text-[#201415] pb-24">
-      {/* Breadcrumb Header */}
-      <section className="border-b border-[#C7A46B]/20 bg-white/40 backdrop-blur-sm py-4">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex items-center justify-between text-[13px]">
-          <nav className="flex items-center gap-2 text-[#685354]">
-            <button
-              onClick={onNavigateHome}
-              className="hover:text-[#EE295C] transition-colors cursor-pointer flex items-center gap-1"
-            >
-              <span className="material-symbols-outlined text-[16px]">home</span>
-              <span>{language === 'es' ? 'Inicio' : language === 'fr' ? 'Accueil' : 'Home'}</span>
-            </button>
-            <span>/</span>
-            <span className="text-[#201415] font-semibold">
-              {language === 'es' ? 'Sobre mí' : language === 'fr' ? 'À propos' : 'About me'}
-            </span>
-          </nav>
-          <span className="text-[11px] uppercase tracking-widest text-[#C7A46B] font-bold hidden sm:inline-block">
-            Mentora & Autora de El Código Diosa
-          </span>
-        </div>
-      </section>
-
-      {/* Hero Statement */}
-      <header className="max-w-[1200px] mx-auto px-4 md:px-8 pt-12 md:pt-16 pb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8CFD5]/40 text-[#EE295C] text-[12px] font-bold tracking-widest uppercase mb-4 fine-border">
-          <span className="w-2 h-2 rounded-full bg-[#EE295C] animate-pulse" />
-          <span>{language === 'es' ? 'Tu código no es tu destino' : language === 'fr' ? 'Votre code n\'est pas votre destin' : 'Your code is not your destiny'}</span>
-        </div>
-
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#201415] font-bold tracking-tight leading-[1.15] max-w-3xl">
-          {language === 'es'
-            ? 'Reprograma tu biología: El arte de habitar en ti.'
-            : language === 'fr'
-            ? 'Reprogrammez votre biologie : L\'art d\'habiter son corps.'
-            : 'Reprogram your biology: The art of dwelling within yourself.'}
-        </h1>
-
-        <p className="mt-6 text-lg sm:text-xl text-[#685354] max-w-2xl font-light leading-relaxed">
-          {language === 'es'
-            ? 'Soberanía Biológica: Ciencia rigurosa y conciencia corporal puestas al servicio de tu longevidad y vitalidad femenina tras los 40.'
-            : language === 'fr'
-            ? 'Souveraineté biologique : Science rigoureuse et conscience corporelle au service de votre vitalité après 40 ans.'
-            : 'Biological Sovereignty: Rigorous science and somatic awareness serving your longevity and vitality beyond 40.'}
+    <div id="sobre-mi-page" className="w-full bg-surface text-on-surface">
+      {/* SECTION 1: EDITORIAL HEADER */}
+      <section className="w-full max-w-[1120px] mx-auto px-gutter pt-space-xl pb-space-2xl text-center flex flex-col items-center">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 mb-space-sm">
+          <button onClick={onNavigateHome} className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+            Inicio
+          </button>
+          <span className="text-on-surface-variant/40 font-body-sm text-body-sm">/</span>
+          <span className="font-body-sm text-body-sm text-on-surface font-medium">Sobre mí</span>
+        </nav>
+        <p className="font-label-sm text-label-sm uppercase tracking-[0.2em] text-tertiary font-bold mb-space-sm">
+          Mentora & Autora de El Código Diosa
         </p>
-      </header>
+        <div className="inline-flex items-center px-space-md py-1 rounded-full bg-surface-container mb-space-lg shadow-sm">
+          <span className="font-label-sm text-label-sm text-primary font-semibold tracking-wide">
+            Tu código no es tu destino
+          </span>
+        </div>
+        <h1 className="font-headline-lg text-headline-lg md:text-display-lg text-on-surface max-w-4xl tracking-tight leading-tight mb-space-md">
+          Reprograma tu biología: <br className="hidden sm:inline" />
+          <span className="italic font-normal font-headline-lg text-primary">El arte de habitar en ti.</span>
+        </h1>
+        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+          Soberanía Biológica: Ciencia rigurosa y conciencia corporal puestas al servicio de tu longevidad y vitalidad femenina tras los 40.
+        </p>
+      </section>
 
-      {/* Story & Personal Journey */}
-      <section className="max-w-[1200px] mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Photos Showcase */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl fine-border bg-[#201415]">
-              <img
-                src="https://carolinabarcellona.com/wp-content/uploads/2025/03/image00022-768x1152.jpeg"
-                alt="Carolina Barcellona"
-                referrerPolicy="no-referrer"
-                className="w-full h-[520px] object-cover object-top hover:scale-102 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#201415]/90 via-transparent to-transparent flex flex-col justify-end p-6">
-                <p className="text-white font-serif text-xl font-bold">Carolina Barcellona</p>
-                <p className="text-[#F8CFD5] text-xs uppercase tracking-widest font-semibold mt-0.5">
-                  Especialista en Medicina del Estilo de Vida & Epigenética
-                </p>
+      {/* SECTION 2: STORY (TWO COLUMNS) */}
+      <section className="w-full max-w-[1120px] mx-auto px-gutter pb-space-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+          {/* Left Column: Portrait */}
+          <div className="lg:col-span-5 lg:sticky lg:top-28 flex flex-col items-center">
+            <div className="relative w-full max-w-[380px]">
+              <div className="absolute -inset-4 bg-surface-container rounded-[48px] -rotate-2 transform-gpu filter blur-xl opacity-75 pointer-events-none" />
+              <div className="relative w-full aspect-[2/3] rounded-t-[180px] rounded-b-[32px] overflow-hidden bg-surface-container-high shadow-[0_16px_40px_-8px_rgba(104,83,84,0.12)]">
+                <img
+                  alt="Carolina Barcellona practicando yoga y consciencia corporal"
+                  className="w-full h-full object-cover object-center"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-xSbN3a7SCLc3CtdRqJe6urPdVBaUG9NBoghbFs6FuQHPEi9NQoSgqK4youeUKdRkWhjpwAJcn_9rE5c26x4-DJynHpTkdlUW4c3WGDx2kIUr4_-FyGLsO7PQUF4SFU2isRgTXZdi9xSczSjErPSMEnLLHmw9yJbo1zhFqyYOMtilby9_p28Zthjh7qoUjWnu0dAPAlncJgmercT2SqZf2hvDZh-BW7n7r7Qv5a-DHD_i8YgY3puLhgI3bCtquFupP2A"
+                />
+                <div className="absolute bottom-4 left-4 right-4 p-space-md rounded-[20px] bg-surface-container-lowest/90 backdrop-blur-md shadow-md text-center">
+                  <h3 className="font-headline-sm text-headline-sm text-on-surface leading-tight">Carolina Barcellona</h3>
+                  <p className="font-label-sm text-label-sm uppercase tracking-wider text-tertiary mt-1 font-semibold">
+                    Especialista en Medicina del Estilo de Vida
+                  </p>
+                </div>
               </div>
             </div>
-
-            {/* Floating Credential Pill */}
-            <div className="absolute -bottom-6 -right-4 sm:right-6 bg-white p-4 rounded-2xl shadow-xl fine-border max-w-[260px]">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="material-symbols-outlined text-[#EE295C] text-[20px]">verified</span>
-                <span className="text-[12px] font-bold text-[#201415]">UCM Nirakara Labs</span>
+            {/* Accreditation Tag */}
+            <div className="mt-space-lg w-full max-w-[380px] bg-surface-container-lowest p-space-md rounded-2xl shadow-sm flex items-center gap-space-md">
+              <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-primary text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
               </div>
-              <p className="text-[11px] text-[#685354] leading-snug">
-                Medicina del Estilo de Vida • Universidad Complutense de Madrid
-              </p>
+              <div className="flex flex-col">
+                <span className="font-title-md text-title-md text-on-surface leading-snug">UCM Nirakara Labs</span>
+                <span className="font-body-sm text-body-sm text-on-surface-variant">Medicina del Estilo de Vida • Universidad Complutense de Madrid</span>
+              </div>
             </div>
           </div>
 
-          {/* Written Bio / Narrative from carolinabarcellona.com */}
-          <div className="lg:col-span-7 space-y-6 text-[#201415]">
-            <div className="border-l-2 border-[#EE295C] pl-5">
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#201415]">
-                {language === 'es' ? 'Hola, soy Carolina' : language === 'fr' ? 'Bonjour, je suis Carolina' : 'Hello, I am Carolina'}
-              </h2>
-              <p className="text-[15px] text-[#EE295C] font-semibold mt-1">
-                {language === 'es' ? 'No siempre habité mi cuerpo en paz.' : 'I did not always inhabit my body in peace.'}
+          {/* Right Column: Story */}
+          <div className="lg:col-span-7 flex flex-col pt-space-xs">
+            <h2 className="font-headline-md text-headline-md text-on-surface mb-2">
+              Hola, soy Carolina
+            </h2>
+            <p className="font-script-accent text-script-accent text-tertiary mb-space-lg leading-tight">
+              No siempre habité mi cuerpo en paz.
+            </p>
+            <p className="font-body-lg text-body-lg text-on-surface font-medium mb-space-lg leading-relaxed">
+              Llevo más de seis años acompañando a mujeres a recuperar su energía, su metabolismo y su bienestar. Combino nutrición personalizada, medicina del estilo de vida, salud funcional y biohacking, con la base de mi formación como profesora de yoga certificada.
+            </p>
+            <div className="flex flex-col gap-space-md text-on-surface-variant font-body-md text-body-md leading-relaxed">
+              <p>
+                Durante años, mi vida transcurrió entre shootings fotográficos y aeropuertos internacionales de moda mientras, en silencio, mi cuerpo reflejaba el impacto acumulativo de vivir desconectada de mi propia biología.
+              </p>
+              <p>
+                Mi piel, mis niveles de energía, mi relación con la comida y mi salud general se convirtieron en señales de alarma de un desequilibrio mucho más profundo. Pero fue la maternidad la que me obligó a detenerme por completo, escucharme de verdad y reconstruirme desde los mismos cimientos.
+              </p>
+              <p>
+                Ese fue el inicio de un camino de transformación que no comenzó en un aula teórica, sino en la necesidad vital de recuperar mi propio equilibrio físico, hormonal y mental. Comencé a estudiar, investigar y experimentar en mi propio organismo la íntima relación entre nutrición celular, sistema nervioso autónomo, inflamación crónica, movimiento consciente, descanso y presencia corporal.
               </p>
             </div>
-
-            <div className="space-y-4 text-[15px] sm:text-[16px] text-[#685354] leading-relaxed">
-              <p>
-                {language === 'es'
-                  ? 'Durante años, mi vida transcurrió entre shootings fotográficos y aeropuertos internacionales de moda mientras, en silencio, mi cuerpo reflejaba el impacto acumulativo de vivir desconectada de mi propia biología.'
-                  : 'For years, my life unfolded between high-pace photo shoots and international airports while, in silence, my body reflected the cumulative toll of living disconnected from my own biology.'}
-              </p>
-              <p>
-                {language === 'es'
-                  ? 'Mi piel, mis niveles de energía, mi relación con la comida y mi salud general se convirtieron en señales de alarma de un desequilibrio mucho más profundo. Pero fue la maternidad la que me obligó a detenerme por completo, escucharme de verdad y reconstruirme desde los mismos cimientos.'
-                  : 'My skin, my energy levels, my relationship with food, and my overall health became warning signals of a deeper imbalance. But it was motherhood that compelled me to pause completely, truly listen to myself, and rebuild from the ground up.'}
-              </p>
-              <p>
-                {language === 'es'
-                  ? 'Ese fue el inicio de un camino de transformación que no comenzó en un aula teórica, sino en la necesidad vital de recuperar mi propio equilibrio físico, hormonal y mental. Comencé a estudiar, investigar y experimentar en mi propio organismo la íntima relación entre nutrición celular, sistema nervioso autónomo, inflamación crónica, movimiento consciente, descanso y presencia corporal.'
-                  : 'That was the start of a transformation journey that began not in a theoretical classroom, but from the imperative need to reclaim my own physical, hormonal, and mental equilibrium.'}
-              </p>
-              <p className="font-medium text-[#201415] bg-[#F8CFD5]/20 p-4 rounded-2xl border border-[#EE295C]/20">
-                {language === 'es'
-                  ? '«Y comprendí algo esencial: el cuerpo responde a cómo pensamos, respiramos, descansamos, nos alimentamos y nos relacionamos con nosotras mismas. Cuando el organismo recupera su coherencia, cambia la energía, cambia la frecuencia.»'
-                  : '«And I understood something essential: the body responds to how we think, breathe, rest, nourish ourselves, and relate to ourselves. When the organism regains its coherence, energy transforms, frequency shifts.»'}
-              </p>
-            </div>
-
-            {/* Quick CTAs */}
-            <div className="pt-2 flex flex-wrap gap-4">
+            {/* CTAs */}
+            <div className="mt-space-xl flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md">
               <button
-                id="sobre-mi-booking-btn"
                 onClick={onOpenBookingModal}
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white font-bold text-[14px] shadow-md hover:shadow-lg hover:scale-102 transition-all cursor-pointer flex items-center gap-2"
+                className="inline-flex items-center justify-center gap-space-sm px-space-xl py-space-md rounded-full font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
               >
-                <span>{language === 'es' ? 'Reserva tu sesión informativa gratuita' : 'Book free introductory session'}</span>
-                <span className="material-symbols-outlined text-[18px]">calendar_month</span>
+                <span className="material-symbols-outlined text-[20px]">calendar_month</span>
+                <span>Reserva tu sesión informativa gratuita</span>
               </button>
-
-              <button
-                id="sobre-mi-whatsapp-btn"
-                onClick={openWhatsApp}
-                className="px-6 py-3 rounded-full bg-white fine-border text-[#201415] hover:text-[#EE295C] font-semibold text-[14px] shadow-xs hover:bg-[#F8CFD5]/30 transition-all cursor-pointer flex items-center gap-2"
+              <a
+                className="inline-flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-full font-title-md text-title-md text-on-surface bg-surface-container-lowest shadow-sm hover:bg-surface-container-low transition-all"
+                href="https://wa.me/34601317959"
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                <span className="material-symbols-outlined text-[18px] text-emerald-600">chat</span>
+                <span className="material-symbols-outlined text-primary text-[20px]">chat</span>
                 <span>WhatsApp</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Scientific Credentials: El Respaldo Detrás de la Transformación */}
-      <section className="max-w-[1200px] mx-auto px-4 md:px-8 mt-20">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[11px] font-bold text-[#C7A46B] uppercase tracking-[0.2em] block mb-2">
-            Rigor Científico & Acreditación
+      {/* SECTION 3: QUOTE BAND */}
+      <section className="w-full bg-inverse-surface text-inverse-on-surface py-space-2xl px-gutter relative overflow-hidden my-space-xl">
+        <div className="absolute inset-0 bg-radial from-primary/20 via-transparent to-transparent pointer-events-none opacity-60" />
+        <div className="w-full max-w-[900px] mx-auto text-center relative z-10 flex flex-col items-center">
+          <span className="font-headline-lg text-display-lg text-secondary-fixed-dim select-none leading-none mb-space-sm block">"</span>
+          <blockquote className="font-headline-md text-headline-md md:text-headline-lg text-inverse-on-surface font-normal leading-relaxed tracking-tight mb-space-sm">
+            «Y comprendí algo esencial: el cuerpo responde a cómo pensamos, respiramos, descansamos, nos alimentamos y nos relacionamos con nosotras mismas. Cuando el organismo recupera su coherencia, cambia la energía,{' '}
+            <span className="font-script-accent text-script-accent text-secondary-fixed-dim whitespace-nowrap">cambia la frecuencia</span>.»
+          </blockquote>
+        </div>
+      </section>
+
+      {/* SECTION 4: PROOF STRIP & TESTIMONIAL */}
+      <section className="w-full max-w-[1120px] mx-auto px-gutter py-space-xl flex flex-col items-center">
+        <div className="w-full max-w-[820px] grid grid-cols-1 md:grid-cols-3 gap-space-lg md:gap-0 bg-surface-container-lowest p-space-lg rounded-[28px] shadow-sm mb-space-xl">
+          <div className="flex flex-col items-center text-center px-space-md">
+            <span className="font-headline-lg text-display-lg text-primary font-semibold leading-tight">6+</span>
+            <span className="font-label-md text-label-md uppercase tracking-wider text-tertiary mt-1">Años de Trayectoria</span>
+          </div>
+          <div className="flex flex-col items-center text-center px-space-md md:border-x md:border-outline-variant/30">
+            <span className="font-headline-lg text-display-lg text-primary font-semibold leading-tight">100%</span>
+            <span className="font-label-md text-label-md uppercase tracking-wider text-tertiary mt-1">Personalizado</span>
+          </div>
+          <div className="flex flex-col items-center text-center px-space-md">
+            <div className="flex items-center gap-1 text-tertiary-container mb-1">
+              {[1,2,3,4,5].map(i => (
+                <span key={i} className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+              ))}
+            </div>
+            <span className="font-headline-lg text-display-lg text-primary font-semibold leading-tight">5.0</span>
+            <span className="font-label-md text-label-md uppercase tracking-wider text-tertiary mt-1">En Google Reviews</span>
+          </div>
+        </div>
+        {/* Testimonial */}
+        <div className="w-full max-w-[760px] bg-surface-container-lowest p-space-xl rounded-[24px] shadow-[0_8px_30px_-4px_rgba(104,83,84,0.07)] text-center flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-space-sm">
+            <div className="flex text-tertiary-container">
+              {[1,2,3,4,5].map(i => (
+                <span key={i} className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+              ))}
+            </div>
+            <span className="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold px-2 py-0.5 rounded-full bg-surface-container">
+              Verificada en Google
+            </span>
+          </div>
+          <p className="font-headline-sm text-headline-sm text-on-surface font-normal italic leading-relaxed mb-space-md max-w-xl">
+            "Conocer a Caro me cambió la relación con la comida, con mi cuerpo y conmigo. Te escucha, te entiende y te guía sin juicios."
+          </p>
+          <span className="font-title-md text-title-md text-tertiary font-bold tracking-tight">
+            — Carmen Moreno
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#201415] font-bold">
-            {language === 'es' ? 'El Respaldo Detrás de la Transformación' : 'The Clinical Backing Behind Transformation'}
+        </div>
+      </section>
+
+      {/* SECTION 5: CREDENTIALS */}
+      <section className="w-full max-w-[1120px] mx-auto px-gutter py-space-2xl">
+        <div className="text-center max-w-2xl mx-auto mb-space-xl">
+          <p className="font-label-md text-label-md uppercase tracking-[0.18em] text-tertiary font-bold mb-space-xs">
+            Rigor Científico & Acreditación
+          </p>
+          <h2 className="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-space-sm">
+            El Respaldo Detrás de la Transformación
           </h2>
-          <p className="text-[#685354] text-[15px] mt-3">
-            {language === 'es'
-              ? 'He unido mi experiencia vital con una formación académica de excelencia para ofrecerte resultados medibles y sostenibles:'
-              : 'Combining real personal experience with rigorous academic training for measurable, sustainable results:'}
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            He unido mi experiencia vital con una formación académica de excelencia para ofrecerte resultados medibles y sostenibles:
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl fine-border shadow-xs hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-[#EE295C]/10 text-[#EE295C] flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-[24px]">local_hospital</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+          {[
+            {
+              icon: 'local_hospital',
+              title: 'Medicina del Estilo de Vida',
+              subtitle: 'Universidad Complutense de Madrid',
+              desc: 'Formación avanzada en Nirakara Labs y Facultad de Medicina UCM sobre modificación de hábitos y reversión de factores de riesgo.',
+            },
+            {
+              icon: 'biotech',
+              title: 'Nutrición Ortomolecular',
+              subtitle: 'UCAM (Univ. Católica de Murcia)',
+              desc: 'Equilibrio celular de micronutrientes, aminoácidos, cofactores enzimáticos y modulación mitocondrial individualizada.',
+            },
+            {
+              icon: 'self_improvement',
+              title: 'Kundalini Yoga & Mindfulness',
+              subtitle: 'Instructora Certificada IKYTA',
+              desc: 'Técnicas de regulación del tono vagal, respiración diafragmática y coherencia cardíaca para calmar el sistema simpático.',
+            },
+          ].map((card) => (
+            <div key={card.title} className="bg-surface-container-lowest p-space-xl rounded-[24px] shadow-[0_8px_30px_-4px_rgba(104,83,84,0.07)] flex flex-col items-start hover:-translate-y-1 transition-transform">
+              <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary mb-space-md">
+                <span className="material-symbols-outlined text-[28px]">{card.icon}</span>
+              </div>
+              <h3 className="font-headline-sm text-headline-sm text-on-surface mb-1">{card.title}</h3>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-semibold mb-space-md">{card.subtitle}</p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{card.desc}</p>
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#201415]">
-              Medicina del Estilo de Vida
-            </h3>
-            <p className="text-[13px] text-[#EE295C] font-semibold mt-1">
-              Universidad Complutense de Madrid
-            </p>
-            <p className="text-[12px] text-[#685354] mt-2 leading-relaxed">
-              Formación avanzada en Nirakara Labs y Facultad de Medicina UCM sobre modificación de hábitos y reversión de factores de riesgo.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl fine-border shadow-xs hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-[#C7A46B]/15 text-[#C7A46B] flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-[24px]">biotech</span>
-            </div>
-            <h3 className="font-serif text-lg font-bold text-[#201415]">
-              Nutrición Ortomolecular
-            </h3>
-            <p className="text-[13px] text-[#C7A46B] font-semibold mt-1">
-              UCAM (Univ. Católica de Murcia)
-            </p>
-            <p className="text-[12px] text-[#685354] mt-2 leading-relaxed">
-              Equilibrio celular de micronutrientes, aminoácidos, cofactores enzimáticos y modulación mitocondrial individualizada.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl fine-border shadow-xs hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-[#FF6161]/15 text-[#FF6161] flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-[24px]">dna</span>
-            </div>
-            <h3 className="font-serif text-lg font-bold text-[#201415]">
-              Nutrigenética & Epigenética
-            </h3>
-            <p className="text-[13px] text-[#FF6161] font-semibold mt-1">
-              Instituto de Nutrigenómica
-            </p>
-            <p className="text-[12px] text-[#685354] mt-2 leading-relaxed">
-              Interpretación de polimorfismos y modulación de la expresión génica a través de alimentos bioactivos y ritmos circadianos.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl fine-border shadow-xs hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-[#F69C05]/15 text-[#F69C05] flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-[24px]">self_improvement</span>
-            </div>
-            <h3 className="font-serif text-lg font-bold text-[#201415]">
-              Kundalini Yoga & Mindfulness
-            </h3>
-            <p className="text-[13px] text-[#F69C05] font-semibold mt-1">
-              Instructora Certificada IKYTA
-            </p>
-            <p className="text-[12px] text-[#685354] mt-2 leading-relaxed">
-              Técnicas de regulación del tono vagal, respiración diafragmática y coherencia cardíaca para calmar el sistema simpático.
-            </p>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* 3-Step Transformation Ritual from carolinabarcellona.com */}
-      <section className="max-w-[1200px] mx-auto px-4 md:px-8 mt-20">
-        <div className="bg-gradient-to-br from-[#201415] to-[#2F1D1F] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
-          <div className="relative z-10">
-            <span className="text-[11px] font-bold text-[#C7A46B] uppercase tracking-[0.2em] block mb-2">
-              Tu Ritual de Transformación
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4">
-              {language === 'es' ? 'El Método Código Diosa' : 'The Goddess Code Method'}
-            </h2>
-            <p className="text-[#F6F1EA]/80 text-[15px] max-w-2xl mb-10">
-              {language === 'es'
-                ? 'Mi método no es una dieta restrictiva: es una reprogramación integral para recuperar tu soberanía biológica en 3 fases secuenciales.'
-                : 'My method is not a restrictive diet: it is an integral reprogramming to reclaim your biological sovereignty.'}
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
-                <span className="font-serif text-3xl font-bold text-[#FF6161]">01</span>
-                <h3 className="font-serif text-lg font-bold mt-2 text-white">
-                  Diagnóstico Epigenético
-                </h3>
-                <p className="text-xs text-[#C7A46B] uppercase tracking-wider font-semibold mt-1">
-                  Alta Precisión Celular
-                </p>
-                <p className="text-[13px] text-[#F6F1EA]/70 mt-3 leading-relaxed">
-                  Evaluamos tus biomarcadores sanguíneos, composición tisular por bioimpedancia y niveles de estrés celular para saber exactamente dónde empezar.
-                </p>
+      {/* SECTION 6: METHOD */}
+      <section className="w-full max-w-[1120px] mx-auto px-gutter py-space-2xl">
+        <div className="text-center max-w-2xl mx-auto mb-space-xl">
+          <p className="font-label-md text-label-md uppercase tracking-[0.18em] text-tertiary font-bold mb-space-xs">
+            Tu Ritual de Transformación
+          </p>
+          <h2 className="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-space-sm">
+            El Método Código Diosa
+          </h2>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            Mi método no es una dieta restrictiva: es una reprogramación integral para recuperar tu soberanía biológica en 3 fases secuenciales.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+          {[
+            { num: '01', badge: 'DIAGNÓSTICO', title: 'Alta Precisión Celular', desc: 'Evaluamos tu historia, tus hábitos y, si lo deseas, tus biomarcadores sanguíneos para saber exactamente dónde empezar.' },
+            { num: '02', badge: 'PROTOCOLO', title: 'Nutrición & Longevidad', desc: 'Estructuramos tu plan nutricional antiinflamatorio, sincronización circadiana, fuerza progresiva y suplementación ortomolecular precisa, si es necesaria.' },
+            { num: '03', badge: 'MENTORÍA', title: 'Acompañamiento 1 a 1', desc: '6 mentorías 1:1 con Carolina, mensajes directos por WhatsApp y ajustes continuos basados en tu evolución para sostener los cambios de por vida.' },
+          ].map((card) => (
+            <div key={card.num} className="bg-surface-container-lowest p-space-xl rounded-[28px] shadow-[0_8px_30px_-4px_rgba(104,83,84,0.07)] relative overflow-hidden flex flex-col justify-between group">
+              <div className="mb-space-lg">
+                <span className="font-headline-lg text-display-lg text-outline-variant/50 block select-none leading-none mb-space-sm group-hover:text-primary transition-colors">
+                  {card.num}
+                </span>
+                <p className="font-label-md text-label-md uppercase tracking-wider text-tertiary font-bold mb-1">{card.badge}</p>
+                <h3 className="font-headline-sm text-headline-sm text-on-surface mb-space-sm">{card.title}</h3>
+                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{card.desc}</p>
               </div>
-
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
-                <span className="font-serif text-3xl font-bold text-[#EE295C]">02</span>
-                <h3 className="font-serif text-lg font-bold mt-2 text-white">
-                  Protocolo Biohacking
-                </h3>
-                <p className="text-xs text-[#F8CFD5] uppercase tracking-wider font-semibold mt-1">
-                  Nutrición & Longevidad
-                </p>
-                <p className="text-[13px] text-[#F6F1EA]/70 mt-3 leading-relaxed">
-                  Estructuramos tu plan nutricional antiinflamatorio, sincronización circadiana, fuerza progresiva y suplementación ortomolecular precisa.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
-                <span className="font-serif text-3xl font-bold text-[#C7A46B]">03</span>
-                <h3 className="font-serif text-lg font-bold mt-2 text-white">
-                  Mentoría Continua
-                </h3>
-                <p className="text-xs text-[#C7A46B] uppercase tracking-wider font-semibold mt-1">
-                  Acompañamiento 1 a 1
-                </p>
-                <p className="text-[13px] text-[#F6F1EA]/70 mt-3 leading-relaxed">
-                  Sesiones quincenales directas con Carolina, resolución de dudas por canal privado y ajustes basados en tu evolución para sostener los cambios de por vida.
-                </p>
-              </div>
+              <div className="w-8 h-1 rounded-full bg-primary/20" />
             </div>
-
-            <div className="mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <p className="text-[14px] text-[#F6F1EA]/80 font-medium">
-                ¿Lista para descifrar tu código biológico y vivir en coherencia?
-              </p>
-              <div className="flex gap-3">
-                <button
-                  onClick={onNavigatePlanes}
-                  className="px-5 py-2.5 rounded-full bg-white text-[#201415] hover:bg-[#F8CFD5] text-[13px] font-bold transition-all cursor-pointer"
-                >
-                  Ver Planes & Precios
-                </button>
-                <button
-                  onClick={onOpenBookingModal}
-                  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold hover:opacity-90 transition-all cursor-pointer shadow-md"
-                >
-                  Reservar Cita
-                </button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
-    </article>
+
+      {/* SECTION 7: FINAL CTA */}
+      <section className="w-full bg-inverse-surface text-inverse-on-surface py-space-2xl px-gutter relative overflow-hidden">
+        <div className="absolute inset-0 bg-radial from-primary/25 via-transparent to-transparent pointer-events-none" />
+        <div className="w-full max-w-[820px] mx-auto text-center relative z-10 flex flex-col items-center">
+          <h2 className="font-headline-md text-headline-md md:text-headline-lg text-inverse-on-surface tracking-tight leading-tight mb-space-xl max-w-xl">
+            ¿Lista para descifrar tu código biológico y vivir en coherencia?
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center gap-space-md mb-space-md w-full sm:w-auto">
+            <button
+              onClick={onOpenBookingModal}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-space-xl py-space-md rounded-full font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.4)] hover:shadow-[0_12px_32px_rgba(238,41,92,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            >
+              Aplicar al Método
+            </button>
+            <button
+              onClick={() => onNavigatePlanes()}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-space-lg py-space-md rounded-full font-title-md text-title-md text-inverse-on-surface bg-transparent hover:bg-inverse-on-surface/10 transition-colors cursor-pointer"
+            >
+              Reservar Cita
+            </button>
+          </div>
+          <a
+            className="font-body-md text-body-md text-secondary-fixed-dim hover:text-on-primary underline underline-offset-4 transition-colors mb-space-sm cursor-pointer"
+            onClick={() => onNavigatePlanes()}
+            href="#"
+          >
+            Ver Planes & Precios
+          </a>
+          <p className="font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">
+            Sin compromiso al aplicar
+          </p>
+        </div>
+      </section>
+    </div>
   );
 };

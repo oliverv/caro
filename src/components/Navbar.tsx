@@ -10,36 +10,24 @@ interface NavbarProps {
   onOpenWaitlistModal: (areaTitle: string) => void;
   onOpenDiagnosticModal: () => void;
   onOpenBookingModal: () => void;
-  onOpenAiDrawer: () => void;
-  onOpenAiAssessment: () => void;
-  onOpenAiMealBiohack: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentPage,
   onNavigate,
-  onOpenProgramModal,
-  onOpenWaitlistModal,
-  onOpenDiagnosticModal,
   onOpenBookingModal,
-  onOpenAiDrawer,
-  onOpenAiAssessment,
-  onOpenAiMealBiohack
 }) => {
   const { language, setLanguage, t } = useLanguage();
   const n = t.nav;
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const toolsRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setDrawerOpen(false);
-        setToolsDropdownOpen(false);
         setLangDropdownOpen(false);
       }
     };
@@ -58,9 +46,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Click outside to close dropdowns
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (toolsRef.current && !toolsRef.current.contains(event.target as Node)) {
-        setToolsDropdownOpen(false);
-      }
       if (langRef.current && !langRef.current.contains(event.target as Node)) {
         setLangDropdownOpen(false);
       }
@@ -71,29 +56,23 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const handlePageClick = (page: PageId) => {
     setDrawerOpen(false);
-    setToolsDropdownOpen(false);
     setLangDropdownOpen(false);
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleScrollToSection = (id: string) => {
-    setDrawerOpen(false);
-    setToolsDropdownOpen(false);
-    setLangDropdownOpen(false);
-    if (currentPage !== 'inicio') {
-      onNavigate('inicio');
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 150);
-    } else {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const currentLangObj = AVAILABLE_LANGUAGES.find((l) => l.code === language) || AVAILABLE_LANGUAGES[0];
+
+  const navLinks: { label: string; page: PageId }[] = [
+    { label: n.inicio, page: 'inicio' },
+    { label: n.sobreMi, page: 'sobre-mi' },
+    { label: 'El Método', page: 'el-metodo' },
+    { label: n.planes, page: 'planes' },
+    { label: n.blog, page: 'blog' },
+    { label: n.contacto, page: 'contacto' },
+  ];
+
+  const isElMetodoActive = currentPage === 'el-metodo' || currentPage === 'planes';
 
   return (
     <>
@@ -119,256 +98,28 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </button>
 
-          {/* Desktop Nav Links (Extracted pages from carolinabarcellona.com) */}
+          {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-6">
-            <button
-              id="nav-link-inicio"
-              onClick={() => handlePageClick('inicio')}
-              className={`text-[14px] font-semibold tracking-wide transition-all relative py-1 cursor-pointer ${
-                currentPage === 'inicio'
-                  ? 'text-[#EE295C] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
-                  : 'text-[#685354] hover:text-[#201415]'
-              }`}
-            >
-              {n.inicio}
-            </button>
-
-            <button
-              id="nav-link-sobre-mi"
-              onClick={() => handlePageClick('sobre-mi')}
-              className={`text-[14px] font-semibold tracking-wide transition-all relative py-1 cursor-pointer ${
-                currentPage === 'sobre-mi'
-                  ? 'text-[#EE295C] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
-                  : 'text-[#685354] hover:text-[#201415]'
-              }`}
-            >
-              {n.sobreMi}
-            </button>
-
-            <button
-              id="nav-link-planes"
-              onClick={() => handlePageClick('planes')}
-              className={`text-[14px] font-semibold tracking-wide transition-all relative py-1 cursor-pointer ${
-                currentPage === 'planes'
-                  ? 'text-[#EE295C] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
-                  : 'text-[#685354] hover:text-[#201415]'
-              }`}
-            >
-              {n.planes}
-            </button>
-
-            <button
-              id="nav-link-blog"
-              onClick={() => handlePageClick('blog')}
-              className={`text-[14px] font-semibold tracking-wide transition-all relative py-1 cursor-pointer ${
-                currentPage === 'blog'
-                  ? 'text-[#EE295C] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
-                  : 'text-[#685354] hover:text-[#201415]'
-              }`}
-            >
-              {n.blog}
-            </button>
-
-            <button
-              id="nav-link-contacto"
-              onClick={() => handlePageClick('contacto')}
-              className={`text-[14px] font-semibold tracking-wide transition-all relative py-1 cursor-pointer ${
-                currentPage === 'contacto'
-                  ? 'text-[#EE295C] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
-                  : 'text-[#685354] hover:text-[#201415]'
-              }`}
-            >
-              {n.contacto}
-            </button>
-
-            {/* Interactive Dropdown: Herramientas & Recursos */}
-            <div className="relative" ref={toolsRef}>
-              <button
-                id="tools-menu-btn"
-                aria-haspopup="true"
-                aria-expanded={toolsDropdownOpen}
-                onClick={() => setToolsDropdownOpen(!toolsDropdownOpen)}
-                onMouseEnter={() => setToolsDropdownOpen(true)}
-                className="flex items-center gap-1 text-[14px] text-[#685354] hover:text-[#201415] font-medium transition-colors py-2 focus:outline-none cursor-pointer"
-              >
-                <span>{n.herramientas}</span>
-                <span
-                  className={`material-symbols-outlined text-[17px] text-[#C7A46B] transition-transform duration-300 ${
-                    toolsDropdownOpen ? 'rotate-180 text-[#EE295C]' : ''
+            {navLinks.map((link) => {
+              const isActive =
+                link.page === 'el-metodo'
+                  ? isElMetodoActive
+                  : currentPage === link.page;
+              return (
+                <button
+                  key={link.page}
+                  id={`nav-link-${link.page}`}
+                  onClick={() => handlePageClick(link.page)}
+                  className={`text-[14px] font-semibold tracking-wide transition-all relative py-1 cursor-pointer ${
+                    isActive
+                      ? 'text-[#EE295C] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
+                      : 'text-[#685354] hover:text-[#201415]'
                   }`}
                 >
-                  expand_more
-                </span>
-              </button>
-
-              {/* Dropdown Card Menu */}
-              {toolsDropdownOpen && (
-                <div
-                  id="desktop-dropdown"
-                  onMouseLeave={() => setToolsDropdownOpen(false)}
-                  className="absolute top-full left-0 mt-1 w-80 bg-white rounded-2xl p-3 shadow-2xl fine-border z-50 animate-fadeIn"
-                >
-                  <div className="p-2 border-b border-[#C7A46B]/15 mb-1 flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-widest text-[#EE295C] font-bold flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[13px]">auto_awesome</span>
-                      Herramientas IA & Ciencia
-                    </span>
-                    <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[#EE295C]/10 text-[#EE295C] font-bold">
-                      GEMINI
-                    </span>
-                  </div>
-
-                  {/* AI Assistant Chat */}
-                  <button
-                    id="dropdown-item-ai-chat"
-                    onClick={() => {
-                      setToolsDropdownOpen(false);
-                      onOpenAiDrawer();
-                    }}
-                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl bg-gradient-to-r from-[#F8CFD5]/20 to-transparent hover:from-[#F8CFD5]/40 transition-colors group cursor-pointer border border-[#EE295C]/15 mb-1"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#EE295C] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
-                      <span className="material-symbols-outlined text-[18px]">smart_toy</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1.5">
-                        <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
-                          Asistente Clínico IA
-                        </p>
-                        <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-[#EE295C] text-white">NUEVO</span>
-                      </div>
-                      <p className="text-[11px] text-[#685354] leading-snug">
-                        Consulta interactiva sobre hormonas, suplementos y dieta 40+.
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* AI Epigenetic Assessment */}
-                  <button
-                    id="dropdown-item-ai-assessment"
-                    onClick={() => {
-                      setToolsDropdownOpen(false);
-                      onOpenAiAssessment();
-                    }}
-                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#C7A46B]/20 text-[#201415] flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="material-symbols-outlined text-[18px] text-[#C7A46B]">biotech</span>
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
-                        Evaluador Epigenético con IA
-                      </p>
-                      <p className="text-[11px] text-[#685354] leading-snug">
-                        Analiza síntomas y predice biomarcadores a evaluar.
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* AI Meal Biohacker */}
-                  <button
-                    id="dropdown-item-ai-meal"
-                    onClick={() => {
-                      setToolsDropdownOpen(false);
-                      onOpenAiMealBiohack();
-                    }}
-                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#FF6161]/15 text-[#FF6161] flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="material-symbols-outlined text-[18px]">restaurant</span>
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
-                        Optimizador de Platos con IA
-                      </p>
-                      <p className="text-[11px] text-[#685354] leading-snug">
-                        Bio-hackea tus comidas para activar sirtuinas y glucosa estable.
-                      </p>
-                    </div>
-                  </button>
-
-                  <div className="my-1 border-t border-[#C7A46B]/15" />
-
-                  <button
-                    id="dropdown-item-calc"
-                    onClick={() => handleScrollToSection('calculadora-40')}
-                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#FF6161]/15 text-[#FF6161] flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="material-symbols-outlined text-[18px]">calculate</span>
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
-                        {n.calculadora}
-                      </p>
-                      <p className="text-[11px] text-[#685354] leading-snug">
-                        Calcula tu ingesta proteica y biomarcadores ideales.
-                      </p>
-                    </div>
-                  </button>
-
-                  <button
-                    id="dropdown-item-diag"
-                    onClick={() => {
-                      setToolsDropdownOpen(false);
-                      onOpenDiagnosticModal();
-                    }}
-                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#EE295C]/15 text-[#EE295C] flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="material-symbols-outlined text-[18px]">clinical_notes</span>
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
-                        {n.autodiagnostico}
-                      </p>
-                      <p className="text-[11px] text-[#685354] leading-snug">
-                        Test de salud celular y balance hormonal en 3 minutos.
-                      </p>
-                    </div>
-                  </button>
-
-                  <button
-                    id="dropdown-item-evidence"
-                    onClick={() => handleScrollToSection('evidencia-clinica')}
-                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#C7A46B]/20 text-[#C7A46B] flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="material-symbols-outlined text-[18px]">biotech</span>
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
-                        {n.evidencia}
-                      </p>
-                      <p className="text-[11px] text-[#685354] leading-snug">
-                        Estudios clínicos y referencias científicas.
-                      </p>
-                    </div>
-                  </button>
-
-                  <button
-                    id="dropdown-item-diosa"
-                    onClick={() => {
-                      setToolsDropdownOpen(false);
-                      onOpenProgramModal();
-                    }}
-                    className="w-full text-left flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8CFD5]/25 transition-colors group cursor-pointer border-t border-[#C7A46B]/15 mt-1"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#FF6161] to-[#EE295C] text-white flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="material-symbols-outlined text-[18px]">auto_awesome</span>
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-[#201415] group-hover:text-[#EE295C]">
-                        {n.diosaProgramTitle}
-                      </p>
-                      <p className="text-[11px] text-[#685354] leading-snug">
-                        Dossier del Método 180 Días.
-                      </p>
-                    </div>
-                  </button>
-                </div>
-              )}
-            </div>
+                  {link.label}
+                </button>
+              );
+            })}
           </nav>
 
           {/* Action CTAs, Language Picker & Drawer Trigger */}
@@ -428,29 +179,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="material-symbols-outlined text-[18px]">chat</span>
             </a>
 
-            {/* AI Assistant Button */}
-            <button
-              id="nav-btn-ai-assistant"
-              onClick={onOpenAiDrawer}
-              className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-[#201415] to-[#362224] text-white text-[12px] sm:text-[12.5px] font-bold shadow-md hover:scale-103 transition-all cursor-pointer border border-[#C7A46B]/40"
-              title="Consultar al Asistente de Longevidad IA"
-            >
-              <span className="material-symbols-outlined text-[15px] sm:text-[16px] text-[#C7A46B] animate-pulse">
-                auto_awesome
-              </span>
-              <span className="hidden sm:inline">Asistente IA</span>
-              <span className="sm:hidden">IA</span>
-            </button>
-
-            {/* Booking CTA Button */}
+            {/* Aplicar al Método CTA Button */}
             <button
               id="nav-btn-booking"
               onClick={onOpenBookingModal}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4.5 py-2.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-full shadow-md hover:shadow-lg hover:scale-102 transition-all cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer"
             >
-              <span className="material-symbols-outlined text-[17px]">calendar_month</span>
-              <span>{n.reservaCita}</span>
+              Aplicar al Método
             </button>
+
+            {/* Person icon */}
+            <div className="w-8 h-8 rounded-full bg-[#EE295C] flex items-center justify-center shadow-sm">
+              <span className="material-symbols-outlined text-white text-[18px]">person</span>
+            </div>
 
             {/* Mobile Hamburger toggle */}
             <button
@@ -536,195 +277,30 @@ export const Navbar: React.FC<NavbarProps> = ({
               {n.navegacionPrincipal}
             </p>
             <ul className="space-y-1">
-              <li>
-                <button
-                  id="drawer-link-inicio"
-                  onClick={() => handlePageClick('inicio')}
-                  className={`w-full flex items-center justify-between py-2 px-3 rounded-xl font-serif text-[16px] font-bold transition-all text-left cursor-pointer ${
-                    currentPage === 'inicio'
-                      ? 'bg-white text-[#EE295C] shadow-xs'
-                      : 'text-[#201415] hover:bg-white/60'
-                  }`}
-                >
-                  <span>{n.inicio}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">
-                    home
-                  </span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  id="drawer-link-sobre-mi"
-                  onClick={() => handlePageClick('sobre-mi')}
-                  className={`w-full flex items-center justify-between py-2 px-3 rounded-xl font-serif text-[16px] font-bold transition-all text-left cursor-pointer ${
-                    currentPage === 'sobre-mi'
-                      ? 'bg-white text-[#EE295C] shadow-xs'
-                      : 'text-[#201415] hover:bg-white/60'
-                  }`}
-                >
-                  <span>{n.sobreMi}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">
-                    person
-                  </span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  id="drawer-link-planes"
-                  onClick={() => handlePageClick('planes')}
-                  className={`w-full flex items-center justify-between py-2 px-3 rounded-xl font-serif text-[16px] font-bold transition-all text-left cursor-pointer ${
-                    currentPage === 'planes'
-                      ? 'bg-white text-[#EE295C] shadow-xs'
-                      : 'text-[#201415] hover:bg-white/60'
-                  }`}
-                >
-                  <span>{n.planes}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">
-                    spa
-                  </span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  id="drawer-link-blog"
-                  onClick={() => handlePageClick('blog')}
-                  className={`w-full flex items-center justify-between py-2 px-3 rounded-xl font-serif text-[16px] font-bold transition-all text-left cursor-pointer ${
-                    currentPage === 'blog'
-                      ? 'bg-white text-[#EE295C] shadow-xs'
-                      : 'text-[#201415] hover:bg-white/60'
-                  }`}
-                >
-                  <span>{n.blog}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">
-                    menu_book
-                  </span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  id="drawer-link-contacto"
-                  onClick={() => handlePageClick('contacto')}
-                  className={`w-full flex items-center justify-between py-2 px-3 rounded-xl font-serif text-[16px] font-bold transition-all text-left cursor-pointer ${
-                    currentPage === 'contacto'
-                      ? 'bg-white text-[#EE295C] shadow-xs'
-                      : 'text-[#201415] hover:bg-white/60'
-                  }`}
-                >
-                  <span>{n.contacto}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">
-                    contact_mail
-                  </span>
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Tools & Resources */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-[10px] font-bold text-[#EE295C] uppercase tracking-[0.2em] flex items-center gap-1">
-                <span className="material-symbols-outlined text-[13px]">auto_awesome</span>
-                Herramientas IA & Salud 40+
-              </p>
-              <span className="text-[9px] px-1.5 py-0.2 bg-[#EE295C]/10 text-[#EE295C] rounded-full font-bold">
-                GEMINI
-              </span>
-            </div>
-            <ul className="space-y-1.5 text-sm">
-              <li>
-                <button
-                  onClick={() => {
-                    setDrawerOpen(false);
-                    onOpenAiDrawer();
-                  }}
-                  className="w-full flex items-center justify-between p-2 rounded-xl bg-gradient-to-r from-[#F8CFD5]/40 to-white fine-border text-left cursor-pointer"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[18px] text-[#EE295C]">smart_toy</span>
-                    <div>
-                      <p className="text-[13px] font-bold text-[#201415]">Asistente Clínico IA</p>
-                      <p className="text-[10px] text-[#685354]">Chat interactivo de longevidad</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold text-[#EE295C] uppercase">Abrir</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setDrawerOpen(false);
-                    onOpenAiAssessment();
-                  }}
-                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
-                >
-                  <span>Evaluador Epigenético con IA</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">biotech</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setDrawerOpen(false);
-                    onOpenAiMealBiohack();
-                  }}
-                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
-                >
-                  <span>Optimizador de Platos con IA</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#FF6161]">restaurant</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleScrollToSection('calculadora-40')}
-                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
-                >
-                  <span>{n.calculadora}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#FF6161]">calculate</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setDrawerOpen(false);
-                    onOpenDiagnosticModal();
-                  }}
-                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
-                >
-                  <span>{n.autodiagnostico}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#EE295C]">clinical_notes</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleScrollToSection('evidencia-clinica')}
-                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
-                >
-                  <span>{n.evidencia}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">biotech</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleScrollToSection('testimonios')}
-                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
-                >
-                  <span>{n.testimonios}</span>
-                  <span className="text-amber-500 text-xs">★★★★★</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleScrollToSection('faq')}
-                  className="w-full flex items-center justify-between py-1.5 px-3 rounded-lg text-[#685354] hover:text-[#201415] hover:bg-white/50 text-left cursor-pointer"
-                >
-                  <span>{n.faq}</span>
-                  <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">help_outline</span>
-                </button>
-              </li>
+              {navLinks.map((link) => {
+                const isActive =
+                  link.page === 'el-metodo'
+                    ? isElMetodoActive
+                    : currentPage === link.page;
+                return (
+                  <li key={link.page}>
+                    <button
+                      id={`drawer-link-${link.page}`}
+                      onClick={() => handlePageClick(link.page)}
+                      className={`w-full flex items-center justify-between py-2 px-3 rounded-xl font-serif text-[16px] font-bold transition-all text-left cursor-pointer ${
+                        isActive
+                          ? 'bg-white text-[#EE295C] shadow-xs'
+                          : 'text-[#201415] hover:bg-white/60'
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">
+                        chevron_right
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -738,7 +314,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="w-full py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-xl text-center shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span className="material-symbols-outlined text-[18px]">calendar_month</span>
-              <span>{n.reservaCita}</span>
+              <span>Aplicar al Método</span>
             </button>
 
             <a
