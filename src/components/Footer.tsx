@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ASSETS } from '../data';
+import { BrandMark } from './BrandMark';
 import { useLanguage } from '../context/LanguageContext';
 import { PageId } from '../types';
 
@@ -42,11 +42,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Col */}
           <div className="md:col-span-4">
             <div className="flex items-center gap-3 mb-4">
-              <img
-                alt="Carolina Barcellona"
-                className="h-9 w-auto mix-blend-luminosity invert"
-                src={ASSETS.logo}
-              />
+              <BrandMark className="h-9 w-auto" />
               <div className="flex flex-col">
                 <span className="font-serif text-[17px] tracking-tight font-bold text-white">
                   CAROLINA BARCELLONA
@@ -165,12 +161,11 @@ export const Footer: React.FC<FooterProps> = ({
               </form>
             )}
 
-            {/* Payment & Security Badges */}
+            {/* Payment & Security Badges — confirmed: Stripe + Klarna */}
             <div className="mt-4 flex items-center gap-2 text-[10px] text-[#F6F1EA]/50 font-semibold tracking-wider">
               <span>{ft.paymentMethods}</span>
-              <span className="px-2 py-0.5 rounded bg-white/10 text-white">BIZUM</span>
-              <span className="px-2 py-0.5 rounded bg-white/10 text-white">PAYPAL</span>
-              <span className="px-2 py-0.5 rounded bg-white/10 text-white">TRANSFERENCIA</span>
+              <span className="px-2 py-0.5 rounded bg-white/10 text-white">STRIPE</span>
+              <span className="px-2 py-0.5 rounded bg-white/10 text-white">KLARNA</span>
             </div>
           </div>
         </div>

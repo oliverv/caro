@@ -28,7 +28,7 @@ Tu filosofía está basada en:
 2. Salud Celular & Mitocondrial: La fatiga y el aumento de peso no son falta de fuerza de voluntad, sino disfunción mitocondrial y resistencia a la insulina perimenopáusica.
 3. Mantenimiento y Ganancia de Masa Muscular: El músculo es el órgano endocrino de la longevidad. Es vital consumir suficiente proteína (1.4 a 1.8g/kg) y entrenamiento de fuerza.
 4. Ritmo Circadiano & Sueño: La arquitectura del sueño profundo modula el cortisol, la hormona de crecimiento y la reparación celular.
-5. El Método Código Diosa: Un enfoque en 4 pilares (Biología & Epigenética, Nutrición Celular, Regeneración & Descanso, Mente & Fortaleza) de 90 días, sin dietas restrictivas ni soluciones temporales.
+5. El Método Código Diosa: Un enfoque en 4 pilares (Biología & Epigenética, Nutrición Celular, Regeneración & Descanso, Mente & Fortaleza) de 180 días, sin dietas restrictivas ni soluciones temporales.
 
 Tono:
 - Empático, riguroso, científico pero accesible, cálido y motivador.
@@ -147,7 +147,7 @@ export function generateAssessmentFallback(body: any) {
       { title: "Sincronización Circadiana", action: "Cenar temprano (antes de las 20:30) y oscuridad absoluta para restaurar el pulso nocturno de hormona de crecimiento." },
       { title: "Músculo como Órgano Endocrino", action: "Incorporar 3 sesiones semanales de fuerza progresiva para activar transportadores GLUT4 independientes de insulina." }
     ],
-    recommendedProgram: "Método Código Diosa 90 Días: Sistema Integral de Longevidad y Balance Metabólico Femenino"
+    recommendedProgram: "Método Código Diosa 180 Días: Sistema Integral de Longevidad y Balance Metabólico Femenino"
   };
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { CODIGO_DIOSA } from '../data/codigoDiosa';
 
 interface PlanesPageProps {
   onOpenBookingModal: () => void;
@@ -81,7 +82,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
                   : 'text-[#685354] hover:text-[#201415] hover:bg-[#F6F1EA]'
               }`}
             >
-              El Método Código Diosa (90 Días)
+              El Método Código Diosa (180 Días)
             </button>
             <button
               onClick={() => setActiveTab('intensivo')}
@@ -120,10 +121,13 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
                     Hoja de Ruta hacia tu Soberanía Biológica
                   </span>
                   <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#201415] mt-1">
-                    El Método Código Diosa (90 Días)
+                    El Método Código Diosa (180 Días · 6 meses)
                   </h2>
                   <p className="text-[15px] text-[#685354] mt-2">
-                    Acompañamiento clínico integral de 3 meses para mujeres 40+ que desean resetear su metabolismo, regular hormonas y alcanzar una composición corporal definida y saludable sin pasar hambre.
+                    Acompañamiento clínico integral de 6 meses para mujeres 40+ que desean resetear su metabolismo, regular hormonas y alcanzar una composición corporal definida y saludable sin pasar hambre. Esto no es otro programa de fitness.
+                  </p>
+                  <p className="text-[13px] text-[#201415] mt-2 font-semibold bg-[#F6F1EA] border border-[#C7A46B]/30 rounded-xl px-3 py-2">
+                    Precio a consultar — pendiente de confirmación final. Sin compromiso al aplicar.
                   </p>
                 </div>
 
@@ -181,19 +185,57 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
                 <div className="pt-4 flex flex-wrap gap-4 items-center">
                   <button
                     onClick={onOpenProgramModal}
-                    className="px-6 py-3 rounded-full bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white font-bold text-[14px] shadow-md hover:scale-102 transition-all cursor-pointer flex items-center gap-2"
+                    className="px-6 py-3 rounded-full bg-white border-2 border-[#201415] hover:border-[#EE295C] hover:text-[#EE295C] text-[#201415] font-bold text-[14px] transition-all cursor-pointer flex items-center gap-2"
                   >
                     <span>Ver Detalles & Dossier Completo</span>
                     <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                   </button>
 
+                  <a
+                    href={CODIGO_DIOSA.applyFormUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-full bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white font-bold text-[14px] shadow-md hover:opacity-95 transition-all cursor-pointer flex items-center gap-2"
+                  >
+                    <span>Aplicar al Método</span>
+                    <span className="material-symbols-outlined text-[18px]">arrow_outward</span>
+                  </a>
+
                   <button
-                    onClick={() => openWhatsApp('Método Código Diosa 90 Días')}
+                    onClick={() => openWhatsApp('Método Código Diosa 180 Días')}
                     className="px-6 py-3 rounded-full bg-[#25D366] text-white hover:bg-emerald-600 font-bold text-[14px] shadow-xs transition-all cursor-pointer flex items-center gap-2"
                   >
                     <span className="material-symbols-outlined text-[18px]">chat</span>
                     <span>Consultar por WhatsApp</span>
                   </button>
+                </div>
+
+                {/* Official Partners — external add-ons */}
+                <div className="pt-2 p-4 rounded-2xl bg-[#F6F1EA]/60 fine-border">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#201415]">
+                    Official Partners · complementos opcionales
+                  </p>
+                  <p className="text-[12px] text-[#685354] mt-1">
+                    No incluidos en el precio del plan. Precio y compra en sus webs.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <a
+                      href={CODIGO_DIOSA.partners.axo.referralUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#EE295C] transition-colors"
+                    >
+                      Axo Longevity ↗
+                    </a>
+                    <a
+                      href={CODIGO_DIOSA.partners.epixlife.reportUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#EE295C] transition-colors"
+                    >
+                      Epixlife ↗
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -208,7 +250,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
                   />
                   <div className="p-5 text-white space-y-2">
                     <div className="flex items-center justify-between text-xs text-[#C7A46B] font-bold uppercase tracking-wider">
-                      <span>Duración: 90 Días</span>
+                      <span>Duración: 180 Días · 6 meses</span>
                       <span>Modalidad: Online o Presencial</span>
                     </div>
                     <p className="text-[13px] text-white/80 leading-snug">
@@ -217,12 +259,11 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
                   </div>
                 </div>
 
-                {/* Payment Methods */}
+                {/* Payment Methods — confirmed: Stripe + Klarna */}
                 <div className="mt-4 flex items-center gap-2 text-[11px] text-[#685354] font-semibold uppercase tracking-wider">
                   <span>Métodos de Pago:</span>
-                  <span className="px-2 py-0.5 rounded bg-white fine-border text-[#201415]">Bizum</span>
-                  <span className="px-2 py-0.5 rounded bg-white fine-border text-[#201415]">PayPal</span>
-                  <span className="px-2 py-0.5 rounded bg-white fine-border text-[#201415]">Transferencia</span>
+                  <span className="px-2 py-0.5 rounded bg-white fine-border text-[#201415]">Stripe</span>
+                  <span className="px-2 py-0.5 rounded bg-white fine-border text-[#201415]">Klarna</span>
                 </div>
               </div>
             </div>
@@ -326,7 +367,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-[#C7A46B]/20 text-[11px] text-[#EE295C] font-bold uppercase tracking-wider">
-              -6kg de Grasa • 90 Días
+              -6kg de Grasa • Método Código Diosa
             </div>
           </div>
 

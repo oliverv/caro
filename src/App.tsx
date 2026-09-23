@@ -296,7 +296,7 @@ function MainAppContent() {
         onClose={() => setIsBookingModalOpen(false)}
       />
 
-      {/* Program Details Modal (Código Diosa 90 Días) */}
+      {/* Program Details Modal (Código Diosa 180 Días) */}
       <ProgramModal
         isOpen={isProgramModalOpen}
         onClose={() => setIsProgramModalOpen(false)}

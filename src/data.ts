@@ -48,7 +48,7 @@ export const PRACTICAL_AREAS: PracticalArea[] = [
       'Salud digestiva y microbioma balanceado'
     ],
     icon: 'check_circle',
-    ctaText: 'Explorar Código Diosa 90'
+    ctaText: 'Ver Detalles & Dossier Completo'
   },
   {
     id: 'area-sueno',
@@ -84,7 +84,7 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
   {
     id: 'diag-1',
     icon: 'thermostat',
-    title: 'Cambios corporales y composición',
+    title: 'Sofocos y cambios en el cuerpo',
     description: 'Sientes que tu cuerpo está cambiando —sofocos, cambios en la composición corporal, inflamación, digestión o recuperación— y quieres comprender qué está pasando para responder a esta nueva etapa con una estrategia personalizada.',
     badgeBg: 'bg-[#F8CFD5]/40',
     iconColor: 'text-[#FF6161]',
@@ -111,8 +111,8 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
   {
     id: 'diag-4',
     icon: 'self_improvement',
-    title: 'Regulación del estrés y sueño',
-    description: 'Tu estrés, tu sueño o tu estado emocional han cambiado y quieres aprender a regularlos desde una estrategia integral y compasiva con tu fisiología.',
+    title: 'Insomnio, estrés y cambios en el estado de ánimo',
+    description: 'Tu sueño (insomnio, despertares), tu estrés o tu estado de ánimo han cambiado y quieres aprender a regularlos desde una estrategia integral y compasiva con tu fisiología en esta etapa.',
     badgeBg: 'bg-[#F8CFD5]/40',
     iconColor: 'text-[#FF6161]',
     borderColor: 'border-[#F8CFD5]'
@@ -143,7 +143,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Raquel Llorente',
     initials: 'RL',
     location: 'Madrid • Verificada en Google',
-    program: 'Programa 90 Días',
+    program: 'Método Código Diosa',
     rating: 5,
     text: '“¡Carolina, una persona maravillosa! El resultado de este proceso para mí ha sido de 10. Los problemas de hinchazón están controlados y ya sé lo que debo comer. Me llevo una nueva forma de comer divertida y disfrutona, no una dieta. Antes llegaba muerta al final del día tomándome hasta 4 cafés, ¡y ahora me sobran baterías! He perdido 6kg de grasa de manera progresiva y sin pasar hambre.”'
   },
@@ -183,7 +183,7 @@ export const FAQS: FaqItem[] = [
   {
     id: 'faq-3',
     question: '¿En qué consiste el proceso del método Diosa?',
-    answer: 'Es un proceso personalizado de 90 días a seis meses para mujeres 40+ que quieren comprender los cambios de su cuerpo, mejorar su salud y construir hábitos que puedan sostener a largo plazo. Comenzamos con una evaluación profunda de tu situación actual, analíticas y objetivos, adaptando continuamente el plan al ritmo biológico de tu cuerpo.'
+    answer: 'Es un proceso personalizado de 180 días (seis meses) para mujeres 40+ que quieren comprender los cambios de su cuerpo, mejorar su salud y construir hábitos que puedan sostener a largo plazo. Comenzamos con una evaluación profunda de tu situación actual, analíticas y objetivos, adaptando continuamente el plan al ritmo biológico de tu cuerpo.'
   },
   {
     id: 'faq-4',
@@ -210,6 +210,9 @@ export const FAQS: FaqItem[] = [
 
 export const ASSETS = {
   logo: 'https://lh3.googleusercontent.com/aida/AEtjO1WUQJQn3QzgL285sOjWVWBshljUgj4WvtMw8FVqa1gKEfzbygbSatz5AoEET-X0bTB68ueNVP7qDESCv0pXhDEqeG_ysdLvxzaYhmt-_A8wiMKIXM0dAqduDB53Pfo5JNizw21d8-uqwM1skyturHTX_Ny6-QU7LmJ2XuVYx55MH6VJV1ubtz5XdSXJWkoL5Gu88wJQJ89HMvawJLvVvvrxYSY1KVbrzzT3IbNL8Q_z8Z3cssjduw9Yyg',
+  // Client bicolor logo (handoff v2 §0). Drop file at this path to activate:
+  //   public/assets/Logo-C_barcellona_bicolor_2.jpg
+  logoLocal: '/assets/Logo-C_barcellona_bicolor_2.jpg',
   heroBg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB63K9jeNXJn0dlhfEm8peKWbmwwRIooZuY4PWvqP7_AMX-fvQwY9fNUaziqAwnSOI1eBE_qc0AFK3EVg3s40r1dUiH6-wg7lgmcbl5uiVBhTjEWoMsLIePyu2OP75icAw4GX41Mzo8OCeZvMAbUSYL9UZbVzH8i3xgUsus5ujDsfrWbGRZwOxgnCBudoXxTlpzEwlZsMisK8ZqmU6Uglmjv_2XBUxB3I9yU_xBG-eMBvhKOyTfbTk',
   movementPhoto: 'https://lh3.googleusercontent.com/aida/AEtjO1UXnZXfbgIhyUsyN1vGe18U5r2h6BAIEQbAlOabLOOKhxPcVloMFJQVPlMobbtzfNe3nlFtwjmB6YYBoKe5Pi41CNm1DWVvWbZP3xjHJtsf6QUfMgyU5QPtoaFZXhicy-zmbfgqKrY4JqezkmISd4Uejlh3QVDk3SNsfa-emeFJIA-e7zNnMmdV-_FsLWhNoSa8qZ8Pl8wSnaLlc0n1MRRUILqV_3gy41tcSrsgCz4JkemIISJeGmzQJQ',
   vitalityPhoto: 'https://lh3.googleusercontent.com/aida/AEtjO1UDJKUlmU0Wt5nj71vKO_NcEZBt0Pq8FYrDPDcIATZwoLCiXT5dMp_EvgsyDmau5LXfg1Fa2NWWYGrFpEdlsPjKUkHlLkaSXhi0lkla7nK4jVPRxquGwj4Ns-bX7BZgyZdQ_fOku5Y1T0xn7qfUqVWBYCecVv6N7HsGfa5zZHURzegM3He5Q4JaRmLC-533IWVL5v-5Ki8hFs0rAQgVqXeI7a2pq0pBeHi5FFms9awGWE9ZJGCa_fcQ1A',

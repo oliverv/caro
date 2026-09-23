@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { CODIGO_DIOSA } from '../data/codigoDiosa';
 
 interface PracticalAreasProps {
   onOpenProgramModal: () => void;
@@ -19,7 +20,7 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
         <div className="text-center max-w-2xl mx-auto mb-space-3xl">
           <h2
             id="practical-areas-title"
-            className="font-serif text-[32px] md:text-[44px] text-[#201415] italic font-semibold tracking-tight"
+            className="font-display text-[32px] md:text-[44px] text-[#201415] font-bold tracking-tight"
           >
             {pa.title}
           </h2>
@@ -37,7 +38,7 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                 id={area.id}
                 className={`rounded-2xl p-space-xl flex flex-col justify-between crisp-shadow hover:crisp-shadow-elevated transition-all duration-300 relative ${
                   isActive
-                    ? 'bg-white border-2 border-[#FF6161]/40 hover:border-[#FF6161]'
+                    ? 'bg-white border-2 border-[#C7A46B]/60 hover:border-[#EE295C]/60'
                     : 'bg-white/80 fine-border'
                 }`}
               >
@@ -54,7 +55,7 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-[22px] text-[#201415] text-center font-bold mb-space-xs">
+                  <h3 className="font-display text-[22px] text-[#201415] text-center font-bold mb-space-xs">
                     {area.title}
                   </h3>
                   <p className="text-[13px] text-[#685354] text-center mb-space-lg leading-relaxed">
@@ -79,16 +80,57 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                       </li>
                     ))}
                   </ul>
+
+                  {isActive && (
+                    <div className="rounded-xl bg-[#F6F1EA] border border-[#C7A46B]/30 p-3 mb-space-lg">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#685354] mb-2 text-center">
+                        Official Partners
+                      </p>
+                      <div className="flex items-center justify-center gap-2 flex-wrap">
+                        <a
+                          href={CODIGO_DIOSA.partners.axo.referralUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#EE295C] hover:border-[#EE295C]/40 transition-colors"
+                        >
+                          Axo Longevity ↗
+                        </a>
+                        <a
+                          href={CODIGO_DIOSA.partners.epixlife.reportUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#EE295C] hover:border-[#EE295C]/40 transition-colors"
+                        >
+                          Epixlife ↗
+                        </a>
+                      </div>
+                      <p className="text-[11px] text-[#685354] text-center mt-2">
+                        Tests externos opcionales · se compran en sus webs
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {isActive ? (
-                  <button
-                    id="btn-explorar-diosa-90"
-                    onClick={onOpenProgramModal}
-                    className="w-full py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] hover:opacity-95 text-white text-[13px] font-bold rounded-full text-center shadow-[0_6px_18px_rgba(255,97,97,0.35)] transition-all cursor-pointer"
-                  >
-                    {area.ctaText}
-                  </button>
+                  <div className="space-y-2">
+                    <button
+                      id="btn-explorar-diosa-90"
+                      onClick={onOpenProgramModal}
+                      className="w-full py-3 bg-white border-2 border-[#201415] hover:border-[#EE295C] hover:text-[#EE295C] text-[#201415] text-[13px] font-bold rounded-full text-center transition-all cursor-pointer"
+                    >
+                      {area.ctaText}
+                    </button>
+                    <a
+                      id="btn-aplicar-diosa"
+                      href={CODIGO_DIOSA.applyFormUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] hover:opacity-95 text-white text-[13px] font-bold rounded-full text-center shadow-[0_6px_18px_rgba(255,97,97,0.35)] transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                    >
+                      <span>Aplicar al Método</span>
+                      <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+                    </a>
+                  </div>
                 ) : (
                   <button
                     id={`btn-waitlist-${area.id}`}

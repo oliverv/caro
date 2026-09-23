@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  /* Brand type system (handoff v2 §0):
+     - Display: "TAN Tangkiwood" (client files pending) → Vollkorn fallback
+     - Script accent: "The Something Script" (client files pending) → Ms Madi fallback
+     - Body/UI: "Garet" (client files pending) → Plus Jakarta Sans fallback
+     When the licensed files arrive, add @font-face blocks above and the
+     stacks below will pick them up automatically. */
+  --font-body: "Garet", "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Garet", "Plus Jakarta Sans", sans-serif;
   --font-serif: "Vollkorn", Georgia, serif;
-  --font-display: "Vollkorn", Georgia, serif;
+  --font-display: "TAN Tangkiwood", "Vollkorn", Georgia, serif;
+  --font-script: "The Something Script", "Ms Madi", cursive;
 
   --color-brand-cream: #F6F1EA;
   --color-brand-coral: #FF6161;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ASSETS } from '../data';
+import { BrandMark } from './BrandMark';
 import { useLanguage, AVAILABLE_LANGUAGES } from '../context/LanguageContext';
 import { PageId } from '../types';
 
@@ -108,11 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handlePageClick('inicio')}
             className="flex items-center gap-3 group text-left focus:outline-none cursor-pointer"
           >
-            <img
-              alt="Carolina Barcellona"
-              className="h-10 w-auto mix-blend-luminosity invert transform group-hover:scale-105 transition-transform duration-300"
-              src={ASSETS.logo}
-            />
+            <BrandMark className="h-10 w-auto transform group-hover:scale-105 transition-transform duration-300" />
             <div className="flex flex-col">
               <span className="font-serif text-[17px] tracking-tight text-[#201415] font-semibold leading-tight">
                 CAROLINA BARCELLONA
@@ -366,7 +362,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         {n.diosaProgramTitle}
                       </p>
                       <p className="text-[11px] text-[#685354] leading-snug">
-                        Dossier clínico del Método 90 Días.
+                        Dossier del Método 180 Días.
                       </p>
                     </div>
                   </button>
@@ -489,11 +485,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Drawer Header */}
         <div className="p-5 border-b border-[#C7A46B]/20 flex items-center justify-between bg-white">
           <div className="flex items-center gap-2.5">
-            <img
-              src={ASSETS.logo}
-              alt="Carolina Barcellona"
-              className="h-8 w-auto mix-blend-luminosity invert"
-            />
+            <BrandMark className="h-8 w-auto" />
             <div className="flex flex-col">
               <span className="font-serif text-[15px] tracking-tight text-[#201415] font-bold">
                 CAROLINA BARCELLONA

@@ -3,7 +3,7 @@ import {
   getGenAI,
   generateContentWithCascade,
   generateMealBiohackFallback,
-} from "../../src/server/geminiService";
+} from "../_geminiService.js";
 
 export default async function handler(req: any, res: any) {
   res.setHeader("Access-Control-Allow-Credentials", "true");

@@ -111,7 +111,7 @@ Proporciona una respuesta en formato JSON estructurado con los siguientes campos
 2. executiveSummary: párrafo breve que explique qué está pasando biológicamente con sus mitocondrias y receptores de estrógeno/cortisol.
 3. keyBiomarkersToTest: lista de 4-5 biomarcadores analíticos recomendados para evaluar en sangre (ej. HOMA-IR, PCR ultrasensible, Ferritina, etc.) con una breve justificación de cada uno.
 4. epigeneticPillars: lista de 3 pilares clave de acción inmediata (Nutrición Celular, Ritmo Circadiano, Músculo/Metabolismo), con recomendación concreta para cada uno.
-5. recommendedProgram: nombre del programa sugerido (ej. "Método Código Diosa 90 Días" o "Reset Metabólico 30 Días") y por qué es ideal para ella.
+ 5. recommendedProgram: nombre del programa sugerido (ej. "Método Código Diosa 180 Días" o "Reset Metabólico 30 Días") y por qué es ideal para ella.
 `;
 
     const response = await generateContentWithCascade(ai, {

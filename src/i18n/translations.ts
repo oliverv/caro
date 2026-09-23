@@ -351,7 +351,7 @@ export const translations: Record<Language, TranslationSchema> = {
       sobreMi: 'Sobre mí',
       planes: 'Planes',
       programasEspecializados: 'Programas Especializados',
-      diosaProgramTitle: 'Código Diosa 90 Días',
+      diosaProgramTitle: 'Código Diosa 180 Días',
       diosaProgramDesc: 'Metabolismo, equilibrio hormonal y longevidad celular.',
       suenoProgramTitle: 'Cronobiología & Sueño',
       suenoProgramDesc: 'Ritmo circadiano y arquitectura de descanso.',
@@ -452,7 +452,7 @@ export const translations: Record<Language, TranslationSchema> = {
             'Salud digestiva y microbioma balanceado'
           ],
           icon: 'check_circle',
-          ctaText: 'Explorar Código Diosa 90'
+          ctaText: 'Ver Detalles & Dossier Completo'
         },
         {
           id: 'area-sueno',
@@ -530,7 +530,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'diag-1',
           icon: 'thermostat',
-          title: 'Cambios corporales y composición',
+          title: 'Sofocos y cambios en el cuerpo',
           description: 'Sientes que tu cuerpo está cambiando —sofocos, cambios en la composición corporal, inflamación, digestión o recuperación— y quieres comprender qué está pasando para responder a esta nueva etapa con una estrategia personalizada.',
           badgeBg: 'bg-[#F8CFD5]/40',
           iconColor: 'text-[#FF6161]',
@@ -557,8 +557,8 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'diag-4',
           icon: 'self_improvement',
-          title: 'Regulación del estrés y sueño',
-          description: 'Tu estrés, tu sueño o tu estado emocional han cambiado y quieres aprender a regularlos desde una estrategia integral y compasiva con tu fisiología.',
+          title: 'Insomnio, estrés y cambios en el estado de ánimo',
+          description: 'Tu sueño (insomnio, despertares), tu estrés o tu estado de ánimo han cambiado y quieres aprender a regularlos desde una estrategia integral y compasiva con tu fisiología en esta etapa.',
           badgeBg: 'bg-[#F8CFD5]/40',
           iconColor: 'text-[#FF6161]',
           borderColor: 'border-[#F8CFD5]'
@@ -611,7 +611,7 @@ export const translations: Record<Language, TranslationSchema> = {
           level: 'Desajuste Bio-Hormonal & Epigenético Significativo',
           color: 'text-[#EE295C] bg-[#F8CFD5]/30 border-[#EE295C]/30',
           summary: 'Tus marcadores de fatiga, sueño interrumpido e inflamación sugieren un estrés oxidativo y mitocondrial importante. Necesitas un protocolo clínico 1 a 1 para desinflamar, reactivar tu tiroides y recuperar tu bienestar sin pasar hambre.',
-          pillar: 'Recomendación inmediata: Programa Código Diosa 90 Días con supervisión clínica directa.'
+          pillar: 'Recomendación inmediata: Programa Código Diosa 180 Días con supervisión clínica directa.'
         }
       },
       questions: [
@@ -684,7 +684,7 @@ export const translations: Record<Language, TranslationSchema> = {
           age: 48,
           symptoms: 'Resistencia a la insulina, aumento de perímetro abdominal y fatiga vespertina.',
           intervention: 'Protocolo de Nutrición Epigenética, desinflamación hepática y entrenamiento de fuerza con ventana 14:10.',
-          duration: '12 semanas (Código Diosa 90)',
+          duration: '12 semanas (Método Código Diosa)',
           markers: [
             { name: 'Insulina en Ayunas', before: '14.8', after: '5.4', unit: 'µIU/mL', status: '-63% (Rango óptimo)' },
             { name: 'Índice HOMA-IR', before: '3.4', after: '1.1', unit: 'ratio', status: 'Sensibilidad restaurada' },
@@ -719,7 +719,7 @@ export const translations: Record<Language, TranslationSchema> = {
           name: 'Raquel Llorente',
           initials: 'RL',
           location: 'Madrid • Verificada en Google',
-          program: 'Programa 90 Días',
+          program: 'Método Código Diosa',
           rating: 5,
           text: '“¡Carolina, una persona maravillosa! El resultado de este proceso para mí ha sido de 10. Los problemas de hinchazón están controlados y ya sé lo que debo comer. Me llevo una nueva forma de comer divertida y disfrutona, no una dieta. Antes llegaba muerta al final del día tomándome hasta 4 cafés, ¡y ahora me sobran baterías! He perdido 6kg de grasa de manera progresiva y sin pasar hambre.”'
         },
@@ -763,7 +763,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'faq-3',
           question: '¿En qué consiste el proceso del método Diosa?',
-          answer: 'Es un proceso personalizado de 90 días a seis meses para mujeres 40+ que quieren comprender los cambios de su cuerpo, mejorar su salud y construir hábitos que puedan sostener a largo plazo. Comenzamos con una evaluación profunda de tu situación actual, analíticas y objetivos, adaptando continuamente el plan al ritmo biológico de tu cuerpo.'
+          answer: 'Es un proceso personalizado de 180 días (6 meses) para mujeres 40+ que quieren comprender los cambios de su cuerpo, mejorar su salud y construir hábitos que puedan sostener a largo plazo. Comenzamos con una evaluación profunda de tu situación actual, analíticas y objetivos, adaptando continuamente el plan al ritmo biológico de tu cuerpo.'
         },
         {
           id: 'faq-4',
@@ -799,7 +799,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     collaborations: {
       title: 'Colaboraciones Clínicas & Red Profesional en Madrid',
-      partners: ['EPIGENETICS LAB', 'INTEGRATIVE CLINIC MADRID', 'LONGEVITY HUB 40+', 'ORTHOMOLECULAR RESEARCH']
+      partners: ['AXO LONGEVITY', 'EPIXLIFE']
     },
     footer: {
       brandDesc: 'Nutrición Epigenética, optimización metabólica y medicina del estilo de vida para mujeres después de los 40.',
@@ -807,7 +807,7 @@ export const translations: Record<Language, TranslationSchema> = {
       exploreTitle: 'Explorar',
       inicio: 'Inicio',
       sobreMi: 'Sobre mí',
-      metodoDiosa: 'Método Código Diosa 90',
+      metodoDiosa: 'Método Código Diosa 180',
       testEvaluacion: 'Test de Autoevaluación',
       calculadora: 'Calculadora 40+',
       casosExito: 'Casos de Éxito',
@@ -825,26 +825,32 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     programModal: {
       badge: 'Programa Activo • Inscripciones Abiertas',
-      title: 'Código Diosa 90 Días',
-      subtitle: 'Optimización Metabólica, Epigenética y Bienestar Hormonal para Mujeres 40+',
-      structureTitle: 'Estructura del Proceso en 3 Fases',
+      title: 'El Método Código Diosa · 180 Días',
+      subtitle: 'Diagnóstico + 3 fases: Activación, Reparación o Construcción, Optimización. Para mujeres 40+.',
+      structureTitle: 'Diagnóstico + 3 fases en un flujo continuo',
       phases: [
         {
+          number: 0,
+          title: 'Diagnóstico — Eres única y tus necesidades también lo son',
+          description: 'Recolección de datos + información de la persona para personalizar el método. Cada dato conecta con la transformación: un flujo continuo, no un bloque separado.',
+          color: 'bg-[#C7A46B]'
+        },
+        {
           number: 1,
-          title: 'Fase 1: Reset Celular & Desinflamación Profunda (Días 1 a 30)',
-          description: 'Auditoría metabólica completa. Eliminación de desencadenantes pro-inflamatorios, saneamiento del microbioma intestinal y reactivación mitocondrial para frenar la hinchazón y la retención.',
+          title: 'Fase 1 · Activación — Primero bajamos el ruido',
+          description: 'Estrés, inflamación, desorden interno. Calmamos el sistema para que el cuerpo vuelva a responder.',
           color: 'bg-[#FF6161]'
         },
         {
           number: 2,
-          title: 'Fase 2: Flexibilidad Metabólica & Masa Muscular Activa (Días 31 a 60)',
-          description: 'Sensibilización a la insulina y reordenamiento de carbohidratos estratégicos. Rutinas de fuerza inteligente adaptadas para preservar hueso y quemar grasa visceral sin agotar tu tiroides.',
+          title: 'Fase 2 · Reparación o Construcción — Después reparamos',
+          description: 'Metabolismo, músculo, estabilidad hormonal. Reconstruimos la base fisiológica.',
           color: 'bg-[#EE295C]'
         },
         {
           number: 3,
-          title: 'Fase 3: Anclaje Epigenético & Longevidad Vitalicia (Días 61 a 90)',
-          description: 'Automatización de sistemas sostenibles. Consolidación de un patrón alimentario gozoso y sin culpas, modulación del descanso y herramientas para gestionar el climaterio con plenitud.',
+          title: 'Fase 3 · Optimización — Y entonces afinamos',
+          description: 'Energía, longevidad, coherencia biológica, belleza. Afinamos para sostener el resultado décadas.',
           color: 'bg-[#F69C05]'
         }
       ],
@@ -965,7 +971,7 @@ export const translations: Record<Language, TranslationSchema> = {
       sobreMi: 'About Me',
       planes: 'Programs',
       programasEspecializados: 'Specialized Programs',
-      diosaProgramTitle: 'Diosa Code 90 Days',
+      diosaProgramTitle: 'Diosa Code 180 Days',
       diosaProgramDesc: 'Metabolism, hormonal balance and cellular longevity.',
       suenoProgramTitle: 'Chronobiology & Sleep',
       suenoProgramDesc: 'Circadian rhythm and deep sleep architecture.',
@@ -1066,7 +1072,7 @@ export const translations: Record<Language, TranslationSchema> = {
             'Gut microbiome restoration and swift digestion'
           ],
           icon: 'check_circle',
-          ctaText: 'Explore Diosa Code 90'
+          ctaText: 'View Details & Full Dossier'
         },
         {
           id: 'area-sueno',
@@ -1144,7 +1150,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'diag-1',
           icon: 'thermostat',
-          title: 'Body Composition Shifts',
+          title: 'Hot Flashes & Body Shifts',
           description: 'You sense your body evolving—hot flashes, stubborn abdominal adiposity, altered digestion, or slower recovery—and you want a personalized strategy.',
           badgeBg: 'bg-[#F8CFD5]/40',
           iconColor: 'text-[#FF6161]',
@@ -1171,8 +1177,8 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'diag-4',
           icon: 'self_improvement',
-          title: 'Stress & Sleep Dysregulation',
-          description: 'Your stress tolerance, sleep continuity, or emotional balance have shifted and you want a compassionate, science-backed approach.',
+          title: 'Insomnia, Stress & Mood Changes',
+          description: 'Your sleep (insomnia, night awakenings), stress tolerance, or mood have shifted and you want a compassionate, science-backed approach for this life stage.',
           badgeBg: 'bg-[#F8CFD5]/40',
           iconColor: 'text-[#FF6161]',
           borderColor: 'border-[#F8CFD5]'
@@ -1225,7 +1231,7 @@ export const translations: Record<Language, TranslationSchema> = {
           level: 'Significant Bio-Hormonal & Epigenetic Imbalance',
           color: 'text-[#EE295C] bg-[#F8CFD5]/30 border-[#EE295C]/30',
           summary: 'Chronic fatigue, broken sleep, and inflammation indicate significant oxidative and mitochondrial stress. A tailored 1-on-1 clinical protocol is needed to rebalance thyroid and restore vitality.',
-          pillar: 'Immediate Recommendation: Diosa Code 90 Days Program with direct clinical supervision.'
+          pillar: 'Immediate Recommendation: Diosa Code 180 Days Program with direct clinical supervision.'
         }
       },
       questions: [
@@ -1298,7 +1304,7 @@ export const translations: Record<Language, TranslationSchema> = {
           age: 48,
           symptoms: 'Insulin resistance, creeping abdominal girth, and severe afternoon fatigue.',
           intervention: 'Epigenetic nutrition protocol, liver detoxification, resistance training with 14:10 circadian fasting window.',
-          duration: '12 weeks (Diosa Code 90)',
+          duration: '12 weeks (Diosa Code Method)',
           markers: [
             { name: 'Fasting Insulin', before: '14.8', after: '5.4', unit: 'µIU/mL', status: '-63% (Optimal health range)' },
             { name: 'HOMA-IR Index', before: '3.4', after: '1.1', unit: 'ratio', status: 'Insulin sensitivity fully restored' },
@@ -1333,7 +1339,7 @@ export const translations: Record<Language, TranslationSchema> = {
           name: 'Raquel Llorente',
           initials: 'RL',
           location: 'Madrid • Google Verified Review',
-          program: '90-Day Program',
+          program: 'Diosa Code Method',
           rating: 5,
           text: '“Carolina is a truly wonderful practitioner! The outcome of this journey has been a complete 10/10. My chronic bloating is gone, and I finally understand what nourishes my body. I gained an enjoyable relationship with food, not another diet. I used to rely on 4 coffees a day just to survive; now I have abundant energy! I lost 6 kg of fat progressively without ever feeling hungry.”'
         },
@@ -1377,7 +1383,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'faq-3',
           question: 'What does the Diosa Method process involve?',
-          answer: 'It is a personalized 90-day to 6-month journey for women 40+ who want to understand bodily changes, improve cellular health, and install lasting habits. We begin with a deep clinical audit of your blood work, lifestyle markers, and goals, continually calibrating the plan to your biological response.'
+          answer: 'It is a personalized 180-day (6-month) journey for women 40+ who want to understand bodily changes, improve cellular health, and install lasting habits. We begin with a deep clinical audit of your blood work, lifestyle markers, and goals, continually calibrating the plan to your biological response.'
         },
         {
           id: 'faq-4',
@@ -1413,7 +1419,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     collaborations: {
       title: 'Clinical Collaborations & Professional Medical Network in Madrid',
-      partners: ['EPIGENETICS LAB', 'INTEGRATIVE CLINIC MADRID', 'LONGEVITY HUB 40+', 'ORTHOMOLECULAR RESEARCH']
+      partners: ['AXO LONGEVITY', 'EPIXLIFE']
     },
     footer: {
       brandDesc: 'Epigenetic Nutrition, metabolic optimization, and lifestyle medicine for women after 40.',
@@ -1421,7 +1427,7 @@ export const translations: Record<Language, TranslationSchema> = {
       exploreTitle: 'Explore',
       inicio: 'Home',
       sobreMi: 'About Me',
-      metodoDiosa: 'Diosa Code 90 Method',
+      metodoDiosa: 'Diosa Code 180 Method',
       testEvaluacion: 'Self-Assessment Quiz',
       calculadora: '40+ Calculator',
       casosExito: 'Success Stories',
@@ -1439,26 +1445,32 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     programModal: {
       badge: 'Active Program • Enrollment Open',
-      title: 'Diosa Code 90 Days',
-      subtitle: 'Metabolic Optimization, Epigenetics & Hormonal Balance for Women 40+',
-      structureTitle: '3-Phase Clinical Journey Structure',
+      title: 'The Diosa Code Method · 180 Days',
+      subtitle: 'Diagnostics + 3 phases: Activation, Repair or Rebuild, Optimization. For women 40+.',
+      structureTitle: 'Diagnostics + 3 phases in one continuous flow',
       phases: [
         {
+          number: 0,
+          title: 'Diagnostics — You are unique, and so are your needs',
+          description: 'Data + personal context collection to personalize the method. Every data point feeds the transformation: one continuous flow, not a separate block.',
+          color: 'bg-[#C7A46B]'
+        },
+        {
           number: 1,
-          title: 'Phase 1: Cellular Reset & Deep Anti-Inflammation (Days 1 to 30)',
-          description: 'Comprehensive metabolic audit. Elimination of pro-inflammatory triggers, gut microbiome rehabilitation, and mitochondrial reactivation to halt stubborn bloating and water retention.',
+          title: 'Phase 1 · Activation — First we lower the noise',
+          description: 'Stress, inflammation, internal disorder. We calm the system so the body responds again.',
           color: 'bg-[#FF6161]'
         },
         {
           number: 2,
-          title: 'Phase 2: Metabolic Flexibility & Active Muscle Density (Days 31 to 60)',
-          description: 'Insulin sensitization and strategic carbohydrate re-sequencing. Smart strength protocols tailored to preserve bone density and burn visceral fat without fatiguing your thyroid.',
+          title: 'Phase 2 · Repair or Rebuild — Then we repair',
+          description: 'Metabolism, muscle, hormonal stability. We rebuild the physiological foundation.',
           color: 'bg-[#EE295C]'
         },
         {
           number: 3,
-          title: 'Phase 3: Epigenetic Anchoring & Lifelong Longevity (Days 61 to 90)',
-          description: 'Sustainable habit automation. Consolidation of guilt-free, delicious nourishment, sleep circadian alignment, and tools to navigate menopause with radiant ease.',
+          title: 'Phase 3 · Optimization — Then we fine-tune',
+          description: 'Energy, longevity, biological coherence, radiance. We fine-tune to sustain results for decades.',
           color: 'bg-[#F69C05]'
         }
       ],
@@ -1579,7 +1591,7 @@ export const translations: Record<Language, TranslationSchema> = {
       sobreMi: 'À propos',
       planes: 'Programmes',
       programasEspecializados: 'Programmes Spécialisés',
-      diosaProgramTitle: 'Code Déesse 90 Jours',
+      diosaProgramTitle: 'Code Déesse 180 Jours',
       diosaProgramDesc: 'Métabolisme, équilibre hormonal et longévité cellulaire.',
       suenoProgramTitle: 'Chronobiologie & Sommeil',
       suenoProgramDesc: 'Rythme circadien et architecture du sommeil profond.',
@@ -1680,7 +1692,7 @@ export const translations: Record<Language, TranslationSchema> = {
             'Santé digestive et rééquilibrage du microbiote'
           ],
           icon: 'check_circle',
-          ctaText: 'Découvrir Code Déesse 90'
+          ctaText: 'Voir Détails & Dossier Complet'
         },
         {
           id: 'area-sueno',
@@ -1758,7 +1770,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'diag-1',
           icon: 'thermostat',
-          title: 'Modifications Corporelles & Poids',
+          title: 'Bouffées de Chaleur & Silhouette',
           description: 'Vous sentez votre silhouette changer — bouffées de chaleur, stockage abdominal inhabituel, digestion ralentie — et souhaitez une méthode personnalisée.',
           badgeBg: 'bg-[#F8CFD5]/40',
           iconColor: 'text-[#FF6161]',
@@ -1785,8 +1797,8 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'diag-4',
           icon: 'self_improvement',
-          title: 'Stress & Sommeil Perturbé',
-          description: 'Votre résistance au stress et votre repos nocturne ont changé et vous souhaitez les apaiser avec une stratégie bienveillante et scientifique.',
+          title: 'Insomnie, Stress & Humeur',
+          description: 'Votre sommeil (insomnie, réveils nocturnes), votre stress ou votre humeur ont changé et vous souhaitez les apaiser avec une stratégie bienveillante et scientifique adaptée à cette étape.',
           badgeBg: 'bg-[#F8CFD5]/40',
           iconColor: 'text-[#FF6161]',
           borderColor: 'border-[#F8CFD5]'
@@ -1839,7 +1851,7 @@ export const translations: Record<Language, TranslationSchema> = {
           level: 'Déséquilibre Bio-Hormonal & Épigénétique Marqué',
           color: 'text-[#EE295C] bg-[#F8CFD5]/30 border-[#EE295C]/30',
           summary: 'La fatigue chronique, le sommeil haché et l\'inflammation témoignent d\'un stress oxydatif important. Un accompagnement clinique individuel est indispensable.',
-          pillar: 'Recommandation immédiate : Programme Code Déesse 90 Jours avec supervision clinique directe.'
+          pillar: 'Recommandation immédiate : Programme Code Déesse 180 Jours avec supervision clinique directe.'
         }
       },
       questions: [
@@ -1912,7 +1924,7 @@ export const translations: Record<Language, TranslationSchema> = {
           age: 48,
           symptoms: 'Résistance à l\'insuline, prise de tour de taille et fatigue intense en fin d\'après-midi.',
           intervention: 'Protocole de nutrition épigénétique, détox hépatique et renforcement musculaire avec fenêtre 14:10.',
-          duration: '12 semaines (Code Déesse 90)',
+          duration: '12 semaines (Méthode Code Déesse)',
           markers: [
             { name: 'Insuline à Jeun', before: '14.8', after: '5.4', unit: 'µIU/mL', status: '-63% (Plage optimale)' },
             { name: 'Indice HOMA-IR', before: '3.4', after: '1.1', unit: 'ratio', status: 'Sensibilité rétablie' },
@@ -1947,7 +1959,7 @@ export const translations: Record<Language, TranslationSchema> = {
           name: 'Raquel Llorente',
           initials: 'RL',
           location: 'Madrid • Avis vérifié Google',
-          program: 'Programme 90 Jours',
+          program: 'Méthode Code Déesse',
           rating: 5,
           text: '« Carolina est une praticienne remarquable ! Le résultat pour moi a été un 10/10. Mes problèmes de ballonnements ont disparu et je sais désormais comment nourrir mon organisme avec plaisir. J\'ai perdu 6 kg de graisse progressivement sans jamais souffrir de la faim. J\'ai retrouvé une énergie débordante ! »'
         },
@@ -1991,7 +2003,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           id: 'faq-3',
           question: 'En quoi consiste le parcours de la méthode Déesse ?',
-          answer: 'C\'est un accompagnement personnalisé de 90 jours à 6 mois pour femmes 40+ désireuses de comprendre leurs mutations biologiques et d\'adopter des réflexes pérennes. Nous débutons par un bilan approfondi de vos analyses et ajustons continuellement la stratégie à votre rythme biologique.'
+          answer: 'C\'est un accompagnement personnalisé de 180 jours (6 mois) pour femmes 40+ désireuses de comprendre leurs mutations biologiques et d\'adopter des réflexes pérennes. Nous débutons par un bilan approfondi de vos analyses et ajustons continuellement la stratégie à votre rythme biologique.'
         },
         {
           id: 'faq-4',
@@ -2027,7 +2039,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     collaborations: {
       title: 'Collaborations Cliniques & Réseau Professionnel à Madrid',
-      partners: ['EPIGENETICS LAB', 'INTEGRATIVE CLINIC MADRID', 'LONGEVITY HUB 40+', 'ORTHOMOLECULAR RESEARCH']
+      partners: ['AXO LONGEVITY', 'EPIXLIFE']
     },
     footer: {
       brandDesc: 'Nutrition Épigénétique, optimisation métabolique et médecine du mode de vie pour femmes après 40 ans.',
@@ -2035,7 +2047,7 @@ export const translations: Record<Language, TranslationSchema> = {
       exploreTitle: 'Explorer',
       inicio: 'Accueil',
       sobreMi: 'À propos',
-      metodoDiosa: 'Méthode Code Déesse 90',
+      metodoDiosa: 'Méthode Code Déesse 180',
       testEvaluacion: 'Test d\'Auto-évaluation',
       calculadora: 'Calculateur 40+',
       casosExito: 'Témoignages',
@@ -2053,26 +2065,32 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     programModal: {
       badge: 'Programme Actif • Inscriptions Ouvertes',
-      title: 'Code Déesse 90 Jours',
-      subtitle: 'Optimisation Métabolique, Épigénétique et Équilibre Hormonal pour Femmes 40+',
-      structureTitle: 'Déroulement du Parcours en 3 Phases',
+      title: 'Méthode Code Déesse · 180 Jours',
+      subtitle: 'Diagnostic + 3 phases : Activation, Réparation ou Construction, Optimisation. Pour femmes 40+.',
+      structureTitle: 'Diagnostic + 3 phases en un flux continu',
       phases: [
         {
+          number: 0,
+          title: 'Diagnostic — Vous êtes unique, vos besoins aussi',
+          description: 'Collecte de données + informations personnelles pour personnaliser la méthode. Chaque donnée alimente la transformation : un flux continu, pas un bloc séparé.',
+          color: 'bg-[#C7A46B]'
+        },
+        {
           number: 1,
-          title: 'Phase 1 : Reset Cellulaire & Désinflammation Profonde (Jours 1 à 30)',
-          description: 'Audit métabolique exhaustif. Élimination des facteurs pro-inflammatoires, régénération du microbiote intestinal et stimulation mitochondriale pour stopper les gonflements et la rétention.',
+          title: 'Phase 1 · Activation — D\'abord apaiser le bruit',
+          description: 'Stress, inflammation, désordre interne. Nous apaisons le système pour que le corps réponde à nouveau.',
           color: 'bg-[#FF6161]'
         },
         {
           number: 2,
-          title: 'Phase 2 : Flexibilité Métabolique & Densité Musculaire (Jours 31 à 60)',
-          description: 'Sensibilisation à l\'insuline et réintroduction stratégique des glucides. Renforcement musculaire intelligent pour protéger la trame osseuse et déstocker la graisse abdominale sans surcharger la thyroïde.',
+          title: 'Phase 2 · Réparation ou Construction — Ensuite réparer',
+          description: 'Métabolisme, muscle, stabilité hormonale. Nous reconstruisons la base physiologique.',
           color: 'bg-[#EE295C]'
         },
         {
           number: 3,
-          title: 'Phase 3 : Ancrage Épigénétique & Longévité Pérenne (Jours 61 à 90)',
-          description: 'Automatisation d\'habitudes durables. Consolidation d\'une alimentation saine et gourmande, synchronisation du repos et sérénité face au cap de la cinquantaine.',
+          title: 'Phase 3 · Optimisation — Puis affiner',
+          description: 'Énergie, longévité, cohérence biologique, éclat. Nous affinons pour des résultats durables.',
           color: 'bg-[#F69C05]'
         }
       ],
