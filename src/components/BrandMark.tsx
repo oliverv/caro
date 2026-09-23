@@ -4,9 +4,9 @@ import { ASSETS } from '../data';
 /**
  * Brand logo with local-first loading.
  *
- * Drop the client file at `public/assets/Logo-C_barcellona_bicolor_2.jpg`
- * (exact name from the handoff) and it is used automatically.
- * Until then, falls back to the remote wordmark (which needs the
+ * Local-first logo: `public/assets/Logo-C_barcellona_bicolor_2.png`
+ * (transparent, derived from client bicolor artwork).
+ * Falls back to the remote white wordmark (which needs the
  * invert treatment on the cream header).
  */
 export const BrandMark: React.FC<{ className?: string }> = ({ className }) => {

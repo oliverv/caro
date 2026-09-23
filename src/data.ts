@@ -209,10 +209,10 @@ export const FAQS: FaqItem[] = [
 ];
 
 export const ASSETS = {
-  logo: 'https://lh3.googleusercontent.com/aida/AEtjO1WUQJQn3QzgL285sOjWVWBshljUgj4WvtMw8FVqa1gKEfzbygbSatz5AoEET-X0bTB68ueNVP7qDESCv0pXhDEqeG_ysdLvxzaYhmt-_A8wiMKIXM0dAqduDB53Pfo5JNizw21d8-uqwM1skyturHTX_Ny6-QU7LmJ2XuVYx55MH6VJV1ubtz5XdSXJWkoL5Gu88wJQJ89HMvawJLvVvvrxYSY1KVbrzzT3IbNL8Q_z8Z3cssjduw9Yyg',
-  // Client bicolor logo (handoff v2 §0). Drop file at this path to activate:
-  //   public/assets/Logo-C_barcellona_bicolor_2.jpg
-  logoLocal: '/assets/Logo-C_barcellona_bicolor_2.jpg',
+  // Remote fallback (white script, shown with invert treatment on cream).
+  logo: 'https://carolinabarcellona.com/wp-content/uploads/2025/03/cropped-image00098.png',
+  // Local-first logo (transparent PNG derived from client bicolor artwork).
+  logoLocal: '/assets/Logo-C_barcellona_bicolor_2.png',
   heroBg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB63K9jeNXJn0dlhfEm8peKWbmwwRIooZuY4PWvqP7_AMX-fvQwY9fNUaziqAwnSOI1eBE_qc0AFK3EVg3s40r1dUiH6-wg7lgmcbl5uiVBhTjEWoMsLIePyu2OP75icAw4GX41Mzo8OCeZvMAbUSYL9UZbVzH8i3xgUsus5ujDsfrWbGRZwOxgnCBudoXxTlpzEwlZsMisK8ZqmU6Uglmjv_2XBUxB3I9yU_xBG-eMBvhKOyTfbTk',
   movementPhoto: 'https://lh3.googleusercontent.com/aida/AEtjO1UXnZXfbgIhyUsyN1vGe18U5r2h6BAIEQbAlOabLOOKhxPcVloMFJQVPlMobbtzfNe3nlFtwjmB6YYBoKe5Pi41CNm1DWVvWbZP3xjHJtsf6QUfMgyU5QPtoaFZXhicy-zmbfgqKrY4JqezkmISd4Uejlh3QVDk3SNsfa-emeFJIA-e7zNnMmdV-_FsLWhNoSa8qZ8Pl8wSnaLlc0n1MRRUILqV_3gy41tcSrsgCz4JkemIISJeGmzQJQ',
   vitalityPhoto: 'https://lh3.googleusercontent.com/aida/AEtjO1UDJKUlmU0Wt5nj71vKO_NcEZBt0Pq8FYrDPDcIATZwoLCiXT5dMp_EvgsyDmau5LXfg1Fa2NWWYGrFpEdlsPjKUkHlLkaSXhi0lkla7nK4jVPRxquGwj4Ns-bX7BZgyZdQ_fOku5Y1T0xn7qfUqVWBYCecVv6N7HsGfa5zZHURzegM3He5Q4JaRmLC-533IWVL5v-5Ki8hFs0rAQgVqXeI7a2pq0pBeHi5FFms9awGWE9ZJGCa_fcQ1A',
