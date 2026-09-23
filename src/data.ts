@@ -213,8 +213,8 @@ export const ASSETS = {
   logo: 'https://carolinabarcellona.com/wp-content/uploads/2025/03/cropped-image00098.png',
   // Local-first logo (transparent PNG derived from client bicolor artwork).
   logoLocal: '/assets/Logo-C_barcellona_bicolor_2.png',
-  heroBg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB63K9jeNXJn0dlhfEm8peKWbmwwRIooZuY4PWvqP7_AMX-fvQwY9fNUaziqAwnSOI1eBE_qc0AFK3EVg3s40r1dUiH6-wg7lgmcbl5uiVBhTjEWoMsLIePyu2OP75icAw4GX41Mzo8OCeZvMAbUSYL9UZbVzH8i3xgUsus5ujDsfrWbGRZwOxgnCBudoXxTlpzEwlZsMisK8ZqmU6Uglmjv_2XBUxB3I9yU_xBG-eMBvhKOyTfbTk',
-  movementPhoto: 'https://lh3.googleusercontent.com/aida/AEtjO1UXnZXfbgIhyUsyN1vGe18U5r2h6BAIEQbAlOabLOOKhxPcVloMFJQVPlMobbtzfNe3nlFtwjmB6YYBoKe5Pi41CNm1DWVvWbZP3xjHJtsf6QUfMgyU5QPtoaFZXhicy-zmbfgqKrY4JqezkmISd4Uejlh3QVDk3SNsfa-emeFJIA-e7zNnMmdV-_FsLWhNoSa8qZ8Pl8wSnaLlc0n1MRRUILqV_3gy41tcSrsgCz4JkemIISJeGmzQJQ',
-  vitalityPhoto: 'https://lh3.googleusercontent.com/aida/AEtjO1UDJKUlmU0Wt5nj71vKO_NcEZBt0Pq8FYrDPDcIATZwoLCiXT5dMp_EvgsyDmau5LXfg1Fa2NWWYGrFpEdlsPjKUkHlLkaSXhi0lkla7nK4jVPRxquGwj4Ns-bX7BZgyZdQ_fOku5Y1T0xn7qfUqVWBYCecVv6N7HsGfa5zZHURzegM3He5Q4JaRmLC-533IWVL5v-5Ki8hFs0rAQgVqXeI7a2pq0pBeHi5FFms9awGWE9ZJGCa_fcQ1A',
-  portraitRedDress: 'https://lh3.googleusercontent.com/aida/AEtjO1WndKNiqc7SaLoDjWByI8hM50cFRBTTFyyYtKpI7b4rSaqeKT9Cud-5NguZAiNEWeq_BIVMsaMKlA6cy7MVEr4VAOpDjKFEr1WBeyF-BOBSnQaJ8roWvNfEreOMwqfQ8d8XnA2Qn--FryjYZqJS43fEdCc4Wv-Xbydi4DEMObCIFMDHIrcaF-iSvhn4poOrgG-dhN1-_KV-RK9sZN4JGiAs9KskKo5K4oRY24fIF_2eoXRZWkxZmK9Dew'
+  heroBg: '/assets/carolina-hero.jpg',
+  movementPhoto: '/assets/carolina-movement.jpg',
+  vitalityPhoto: '/assets/carolina-vitality.jpg',
+  portraitRedDress: '/assets/carolina-portrait.jpg'
 };

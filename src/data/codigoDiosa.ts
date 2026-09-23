@@ -67,6 +67,22 @@ export const CODIGO_DIOSA = {
     },
   ],
 
+  // Hero copy proposals (§6) — PENDING Carolina approval. Neither is live.
+  // To activate after approval, set heroOption to 'A' | 'B' and wire the
+  // dossier hero to heroCopy[CODIGO_DIOSA.heroOption]. Live copy stays
+  // untouched until then.
+  heroOption: 'none' as 'none' | 'A' | 'B',
+  heroCopy: {
+    A: {
+      headline: 'Tu cuerpo no necesita más dietas. Necesita un método.',
+      cta: 'Empieza tu diagnóstico',
+    },
+    B: {
+      headline: 'Recupera el control de tu cuerpo, en la etapa que más lo necesita.',
+      cta: 'Aplica al Método Código Diosa',
+    },
+  },
+
   // Expanded climacteric pain points (client-confirmed).
   painPointsEs: [
     'Falta de tiempo',
