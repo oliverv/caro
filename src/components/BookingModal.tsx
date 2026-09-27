@@ -261,6 +261,17 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
             </div>
 
             <div className="space-y-3">
+              {/* Calendly — 20-min discovery call (PRD §5.2) */}
+              <a
+                href="https://calendly.com/carolinabarcellona"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-full shadow-md hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-[18px]">videocam</span>
+                <span>Agendar videollamada 20 min (Calendly)</span>
+              </a>
+
               <button
                 onClick={shareConfirmedViaWhatsApp}
                 className="w-full py-3 bg-[#25D366] text-white text-[13px] font-bold rounded-full shadow-md hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"

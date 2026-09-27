@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand type system (handoff v2 §0):
-     - Display: "TAN Tangkiwood" (client files pending) → Vollkorn fallback
-     - Script accent: "The Something Script" (client files pending) → Ms Madi fallback
-     - Body/UI: "Garet" (client files pending) → Plus Jakarta Sans fallback
-     When the licensed files arrive, add @font-face blocks above and the
-     stacks below will pick them up automatically. */
-  --font-body: "Garet", "Plus Jakarta Sans", sans-serif;
-  --font-sans: "Garet", "Plus Jakarta Sans", sans-serif;
-  --font-serif: "Vollkorn", Georgia, serif;
-  --font-display: "TAN Tangkiwood", "Vollkorn", Georgia, serif;
+  /* ── Font families ────────────────────────────────────────────────────────
+     Stitch design system: Playfair Display (headings) + Montserrat (body/UI)
+     Brand licensed fonts (handoff v2 §0, files pending) kept as layer above:
+     - Display: "TAN Tangkiwood" → Playfair Display → Vollkorn fallback
+     - Script accent: "The Something Script" → Ms Madi fallback
+     - Body/UI: "Garet" → Montserrat → Plus Jakarta Sans fallback        */
+  --font-body: "Garet", "Montserrat", "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Garet", "Montserrat", "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Playfair Display", "Vollkorn", Georgia, serif;
+  --font-display: "TAN Tangkiwood", "Playfair Display", "Vollkorn", Georgia, serif;
   --font-script: "The Something Script", "Ms Madi", cursive;
 
+  /* ── Brand palette (original) ─────────────────────────────────────────── */
   --color-brand-cream: #F6F1EA;
   --color-brand-coral: #FF6161;
   --color-brand-berry: #EE295C;
@@ -23,6 +24,49 @@
   --color-brand-charcoal: #2B1D1E;
   --color-brand-text-muted: #685354;
   --color-brand-border: #EADFD3;
+
+  /* ── Stitch design system: Material color tokens ─────────────────────── */
+  --color-primary: #b81c36;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ff5364;
+  --color-on-primary-container: #5c0013;
+  --color-secondary: #5f5e5e;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e2dfde;
+  --color-on-secondary-container: #636262;
+  --color-tertiary: #5f5e5d;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #92918f;
+  --color-on-tertiary-container: #2a2a29;
+  --color-surface: #f7f9ff;
+  --color-on-surface: #141c25;
+  --color-surface-variant: #dbe3ef;
+  --color-on-surface-variant: #5a4040;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #eef4ff;
+  --color-surface-container: #e7eefb;
+  --color-surface-container-high: #e1e9f5;
+  --color-surface-container-highest: #dbe3ef;
+  --color-surface-bright: #f7f9ff;
+  --color-surface-dim: #d3dbe7;
+  --color-inverse-surface: #29313a;
+  --color-inverse-on-surface: #e9f1fe;
+  --color-inverse-primary: #ffb3b4;
+  --color-outline: #8e7070;
+  --color-outline-variant: #e2bebe;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Stitch named extras */
+  --color-coral-primary: #FF5364;
+  --color-coral-hover: #FF4B5C;
+  --color-rose-blush: #FFF0F2;
+  --color-linen-base: #FAF7F5;
+  --color-surface-card: #ffffff;
+  --color-deep-charcoal: #222222;
+  --color-muted-graphite: #4B535D;
 
   --spacing-space-2xs: 0.25rem;
   --spacing-space-xs: 0.5rem;
@@ -36,6 +80,73 @@
   --spacing-space-5xl: 8rem;
   --spacing-margin-mobile: 1.25rem;
   --spacing-margin-desktop: 3rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-max-width-content: 75rem;   /* 1200px */
+  --spacing-max-width-editorial: 48.75rem; /* 780px */
+}
+
+/* ── Stitch typography scale — utility classes ───────────────────────────────
+   Mirrors the design system's named type tokens so components using
+   font-display-xl / text-display-xl etc. resolve correctly.              */
+@layer utilities {
+  /* Display */
+  .font-display-xl  { font-family: var(--font-serif); font-size: 3.5rem;  font-weight: 600; line-height: 4rem;    letter-spacing: -0.02em; }
+  .text-display-xl  { font-size: 3.5rem;  line-height: 4rem; }
+  .font-display-lg  { font-family: var(--font-serif); font-size: 2.75rem; font-weight: 500; line-height: 3.25rem; letter-spacing: -0.015em; }
+  .text-display-lg  { font-size: 2.75rem; line-height: 3.25rem; }
+  .font-display-lg-mobile { font-family: var(--font-serif); font-size: 1.875rem; font-weight: 500; line-height: 2.375rem; letter-spacing: -0.01em; }
+  .text-display-lg-mobile { font-size: 1.875rem; line-height: 2.375rem; }
+  .font-display-xl-mobile { font-family: var(--font-serif); font-size: 2.25rem; font-weight: 600; line-height: 2.75rem; letter-spacing: -0.01em; }
+  .text-display-xl-mobile { font-size: 2.25rem; line-height: 2.75rem; }
+
+  /* Headline */
+  .font-headline-method { font-family: var(--font-serif); font-size: 3rem; font-weight: 700; line-height: 3.25rem; letter-spacing: 0.04em; }
+  .text-headline-method { font-size: 3rem; line-height: 3.25rem; }
+  .font-headline-lg { font-family: var(--font-serif); font-size: 2rem;   font-weight: 600; line-height: 2.5rem; }
+  .text-headline-lg { font-size: 2rem; line-height: 2.5rem; }
+  .font-headline-md { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; line-height: 2.25rem; }
+  .text-headline-md { font-size: 1.75rem; line-height: 2.25rem; }
+  .font-headline-sm { font-family: var(--font-serif); font-size: 1.375rem; font-weight: 600; line-height: 1.875rem; }
+  .text-headline-sm { font-size: 1.375rem; line-height: 1.875rem; }
+
+  /* Title */
+  .font-title-lg { font-family: var(--font-body); font-size: 1.125rem; font-weight: 600; line-height: 1.625rem; }
+  .text-title-lg { font-size: 1.125rem; line-height: 1.625rem; }
+  .font-title-md { font-family: var(--font-body); font-size: 1rem;    font-weight: 600; line-height: 1.5rem; letter-spacing: 0.01em; }
+  .text-title-md { font-size: 1rem; line-height: 1.5rem; }
+  .font-title-sm { font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; line-height: 1.25rem; letter-spacing: 0.01em; }
+  .text-title-sm { font-size: 0.875rem; line-height: 1.25rem; }
+
+  /* Body */
+  .font-body-lg { font-family: var(--font-body); font-size: 1.0625rem; font-weight: 400; line-height: 1.75rem; letter-spacing: -0.005em; }
+  .text-body-lg { font-size: 1.0625rem; line-height: 1.75rem; }
+  .font-body-md { font-family: var(--font-body); font-size: 0.9375rem; font-weight: 400; line-height: 1.5rem; }
+  .text-body-md { font-size: 0.9375rem; line-height: 1.5rem; }
+  .font-body-sm { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 400; line-height: 1.25rem; }
+  .text-body-sm { font-size: 0.8125rem; line-height: 1.25rem; }
+
+  /* Label */
+  .font-label-md   { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.125rem; }
+  .text-label-md   { font-size: 0.8125rem; line-height: 1.125rem; }
+  .font-label-sm   { font-family: var(--font-body); font-size: 0.75rem;   font-weight: 500; line-height: 1rem; }
+  .text-label-sm   { font-size: 0.75rem; line-height: 1rem; }
+  .font-label-caps { font-family: var(--font-body); font-size: 0.6875rem; font-weight: 600; line-height: 1rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .text-label-caps { font-size: 0.6875rem; line-height: 1rem; }
+
+  /* Quote / editorial italic */
+  .font-quote-editorial { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; line-height: 2rem; letter-spacing: 0.01em; font-style: italic; }
+  .text-quote-editorial { font-size: 1.25rem; line-height: 2rem; }
+
+  /* Spacing aliases used by components */
+  .px-gutter  { padding-left: var(--spacing-gutter);  padding-right: var(--spacing-gutter); }
+  .px-margin-mobile  { padding-left: var(--spacing-margin-mobile);  padding-right: var(--spacing-margin-mobile); }
+  .px-margin-desktop { padding-left: var(--spacing-margin-desktop); padding-right: var(--spacing-margin-desktop); }
+  .max-w-content   { max-width: var(--spacing-max-width-content); }
+  .max-w-editorial { max-width: var(--spacing-max-width-editorial); }
+
+  /* Tertiary fixed (used by PlanesPage badge) */
+  .bg-tertiary-fixed    { background-color: #e5e2e0; }
+  .text-on-tertiary-fixed { color: #1b1c1b; }
 }
 
 @layer base {

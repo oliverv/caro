@@ -47,7 +47,7 @@ const FAQ_ITEMS = [
   },
   {
     q: '¿Puedo pagarlo en cuotas?',
-    a: 'Sí, dispones de la opción de 6 cuotas de 165 € al mes a través de tarjeta o mediante la integración con Klarna, sin complicaciones.',
+    a: 'Sí, dispones de la opción de 6 cuotas de 160 € al mes a través de tarjeta o mediante la integración con Klarna, sin complicaciones.',
     defaultOpen: false,
   },
   {
@@ -335,10 +335,10 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
             </h3>
             <div className="my-space-lg">
               <div className="font-display-lg text-display-lg text-primary tracking-tight leading-none">
-                6 × 165 €<span className="text-2xl font-normal text-on-surface-variant">/mes</span>
+                6 × 160 €<span className="text-2xl font-normal text-on-surface-variant">/mes</span>
               </div>
               <p className="font-body-md text-body-md text-on-surface-variant mt-2 font-medium">
-                o 950 € en un pago
+                o 960 € en un pago
               </p>
             </div>
             <div className="space-y-space-sm max-w-md mx-auto text-left mb-space-xl">

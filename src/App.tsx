@@ -10,6 +10,7 @@ import { PracticalAreas } from './components/PracticalAreas';
 import { ClinicalEvidence } from './components/ClinicalEvidence';
 import { WhoIsItFor } from './components/WhoIsItFor';
 import { DiagnosticSection } from './components/DiagnosticSection';
+import { BibleSheetSection } from './components/BibleSheetSection';
 import { BioStory } from './components/BioStory';
 import { Testimonials } from './components/Testimonials';
 import { FaqSection } from './components/FaqSection';
@@ -155,6 +156,9 @@ function MainAppContent() {
             <DiagnosticSection
               onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
             />
+
+            {/* Bible Sheet 🌺 — Google Form apply embed (PRD §4.1.8) */}
+            <BibleSheetSection />
 
             {/* Carolina's Story, Credentials & Metrics */}
             <BioStory
