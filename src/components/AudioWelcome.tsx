@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ASSETS } from '../data';
+
+const VIDEO_SRC = '/assets/video.mp4';
 
 // Candidate audio paths for Carolina's real voice recording
 const CANDIDATE_AUDIO_URLS = [
@@ -23,6 +25,9 @@ export const AudioWelcome: React.FC = () => {
   const [showTranscript, setShowTranscript] = useState(false);
   const [hasRealAudio, setHasRealAudio] = useState<boolean>(true);
   const [activeAudioSrc, setActiveAudioSrc] = useState<string | null>('/audio/carolina-welcome.mp3');
+
+  const [showVideo, setShowVideo] = useState(false);
+  const previewVideoRef = useRef<HTMLVideoElement | null>(null);
 
   // Real Audio element ref
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
@@ -145,6 +150,26 @@ export const AudioWelcome: React.FC = () => {
       stopAudioPlayback();
     };
   }, [language]);
+
+  const openVideo = useCallback(() => {
+    setShowVideo(true);
+    // pause the preview loop so it doesn't fight the lightbox
+    previewVideoRef.current?.pause();
+  }, []);
+
+  const closeVideo = useCallback(() => {
+    setShowVideo(false);
+    // resume preview loop
+    previewVideoRef.current?.play().catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeVideo();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [closeVideo]);
 
   const initAmbientTone = () => {
     try {
@@ -478,16 +503,38 @@ export const AudioWelcome: React.FC = () => {
           {/* Ambient Glow */}
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#F8CFD5]/35 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Carolina Mini Portrait */}
+          {/* Carolina Portrait — tappable video preview */}
           <div className="relative shrink-0">
-            <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl overflow-hidden fine-border shadow-md">
+            <button
+              onClick={openVideo}
+              aria-label="Ver vídeo de Carolina"
+              title="Ver vídeo de Carolina"
+              className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden fine-border shadow-md group cursor-pointer block"
+            >
+              {/* Muted silent loop — portrait crop */}
+              <video
+                ref={previewVideoRef}
+                src={VIDEO_SRC}
+                muted
+                autoPlay
+                loop
+                playsInline
+                className="w-full h-full object-cover object-top"
+                aria-hidden="true"
+                onError={() => {}}
+              />
+              {/* Fallback portrait shown while video loads */}
               <img
                 src={ASSETS.portraitRedDress}
                 alt="Carolina Barcellona"
-                className="w-full h-full object-cover object-top"
+                className="absolute inset-0 w-full h-full object-cover object-top -z-10"
               />
-            </div>
-            {/* Live Indicator pulse when playing */}
+              {/* Play overlay */}
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <span className="material-symbols-outlined text-white text-[28px] drop-shadow">play_circle</span>
+              </div>
+            </button>
+            {/* Live Indicator pulse when playing audio */}
             {isPlaying && (
               <span className="absolute -top-1 -right-1 flex h-4 w-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EE295C] opacity-80" />
@@ -497,6 +544,37 @@ export const AudioWelcome: React.FC = () => {
               </span>
             )}
           </div>
+
+          {/* Video Lightbox */}
+          {showVideo && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+              onClick={closeVideo}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Vídeo de Carolina Barcellona"
+            >
+              <div
+                className="relative w-full max-w-sm mx-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <video
+                  src={VIDEO_SRC}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full rounded-2xl shadow-2xl"
+                />
+                <button
+                  onClick={closeVideo}
+                  aria-label="Cerrar vídeo"
+                  className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white text-[#201415] flex items-center justify-center shadow-md hover:bg-[#EE295C] hover:text-white transition-colors cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[18px]">close</span>
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Controls & Waveform */}
           <div className="flex-1 w-full">

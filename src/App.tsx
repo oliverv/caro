@@ -21,6 +21,7 @@ import { PlanesPage } from './components/PlanesPage';
 import { BlogPage } from './components/BlogPage';
 import { ContactoPage } from './components/ContactoPage';
 import { PrivacyPage } from './components/PrivacyPage';
+import { CondicionesPage } from './components/CondicionesPage';
 import { ProgramModal } from './components/ProgramModal';
 import { WaitlistModal } from './components/WaitlistModal';
 import { DiagnosticModal } from './components/DiagnosticModal';
@@ -35,6 +36,7 @@ function getPageFromHash(): PageId {
   if (hash === 'blog') return 'blog';
   if (hash === 'contacto') return 'contacto';
   if (hash === 'privacy') return 'privacy';
+  if (hash === 'condiciones') return 'condiciones';
   return 'inicio';
 }
 
@@ -206,6 +208,13 @@ function MainAppContent() {
 
         {currentPage === 'privacy' && (
           <PrivacyPage onNavigateHome={() => navigateToPage('inicio')} />
+        )}
+
+        {currentPage === 'condiciones' && (
+          <CondicionesPage
+            onNavigateHome={() => navigateToPage('inicio')}
+            onNavigatePrivacy={() => navigateToPage('privacy')}
+          />
         )}
       </main>
 

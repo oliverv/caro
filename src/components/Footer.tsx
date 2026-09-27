@@ -175,7 +175,7 @@ export const Footer: React.FC<FooterProps> = ({
           <p>© {new Date().getFullYear()} Carolina Barcellona. {ft.allRights}</p>
           <div className="flex items-center gap-4">
             <button
-              onClick={() => handlePageClick('privacy')}
+              onClick={() => handlePageClick('condiciones')}
               className="hover:text-white cursor-pointer transition-colors"
             >
               {ft.legalNotice}
