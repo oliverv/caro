@@ -374,10 +374,10 @@ export const translations: Record<Language, TranslationSchema> = {
       herramientas: 'Herramientas'
     },
     hero: {
-      badge: "Women's Health & Longevity para mujeres 40+",
-      titleLine1: 'Tu cuerpo cambia después de los 40.',
-      titleHighlight: 'Tu estrategia también.',
-      subtitle: 'Nutrición Epigenética: bio-hackea tus genes, recupera tu peso ideal y libera tu brillo interior.',
+      badge: 'Programa Activo · 180 Días · Mujeres 40+',
+      titleLine1: 'Tu código no es tu destino.',
+      titleHighlight: 'Reprograma tu biología: el arte de habitar en ti.',
+      subtitle: 'Soberanía Biológica: ciencia rigurosa, nutrición ortomolecular y medicina del estilo de vida al servicio de tu longevidad y vitalidad femenina tras los 40.',
       description: 'Para mujeres que quieren entender su biología, optimizar su salud y vivir esta etapa con más energía, fuerza y bienestar duradero.',
       ctaPrimary: 'Descubre mi método',
       ctaSecondary: 'Únete a la revolución',
@@ -994,10 +994,10 @@ export const translations: Record<Language, TranslationSchema> = {
       herramientas: 'Tools'
     },
     hero: {
-      badge: "Women's Health & Longevity for Women 40+",
-      titleLine1: 'Your body changes after 40.',
-      titleHighlight: 'Your strategy must too.',
-      subtitle: 'Epigenetic Nutrition: bio-hack your genes, reclaim your ideal weight, and unlock your radiant vitality.',
+      badge: 'Active Program · 180 Days · Women 40+',
+      titleLine1: 'Your code is not your destiny.',
+      titleHighlight: 'Reprogram your biology: the art of inhabiting yourself.',
+      subtitle: 'Biological Sovereignty: rigorous science, orthomolecular nutrition and lifestyle medicine in service of your longevity and feminine vitality after 40.',
       description: 'Designed for women seeking to understand their biology, optimize their health, and navigate this chapter with lasting energy, muscle strength, and deep well-being.',
       ctaPrimary: 'Discover My Method',
       ctaSecondary: 'Join the Movement',
@@ -1614,10 +1614,10 @@ export const translations: Record<Language, TranslationSchema> = {
       herramientas: 'Outils'
     },
     hero: {
-      badge: "Santé Féminine & Longévité pour Femmes 40+",
-      titleLine1: 'Votre corps change après 40 ans.',
-      titleHighlight: 'Votre stratégie doit changer aussi.',
-      subtitle: 'Nutrition Épigénétique : optimisez vos gènes, retrouvez votre poids idéal et révélez votre éclat intérieur.',
+      badge: 'Programme Actif · 180 Jours · Femmes 40+',
+      titleLine1: "Votre code n'est pas votre destin.",
+      titleHighlight: 'Reprogrammez votre biologie : l’art de vous habiter.',
+      subtitle: 'Souveraineté Biologique : science rigoureuse, nutrition orthomoléculaire et médecine du mode de vie au service de votre longévité et vitalité féminine après 40 ans.',
       description: 'Pour les femmes qui souhaitent comprendre leur biologie, revitaliser leur métabolisme et vivre cette étape avec une énergie durable et une force sereine.',
       ctaPrimary: 'Découvrir ma méthode',
       ctaSecondary: 'Rejoindre la révolution',

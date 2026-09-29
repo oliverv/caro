@@ -220,6 +220,44 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
         </div>
       </section>
 
+      {/* 3b. MUSCLE — EL ÓRGANO DE LA LONGEVIDAD (Stitch code.html) */}
+      <section className="w-full py-space-xl">
+        <div className="max-w-[1120px] mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-space-xl items-center">
+          <div className="bg-surface-container-lowest rounded-xl p-space-xl md:p-space-2xl shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-56 h-56 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10">
+              <span className="font-label-md text-label-md text-tertiary uppercase tracking-[0.16em] mb-2 block">El cuerpo en movimiento</span>
+              <h2 className="font-headline-lg text-headline-lg text-on-surface mb-space-md">
+                Músculo: El órgano de la longevidad
+              </h2>
+              <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+                A partir de los 40 años, la masa muscular se convierte en nuestro mayor reservorio metabólico y protector neurológico. En el Método Diosa no perseguimos el agotamiento, sino la estimulación de mioquinas protectoras, la densidad ósea y la resiliencia mitocondrial.
+              </p>
+              <div className="flex flex-wrap gap-space-sm">
+                {['Sin desgaste articular', '15-30 min funcionales', 'Fuerza & densidad ósea'].map((chip) => (
+                  <span key={chip} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container font-title-sm text-title-sm text-on-surface">
+                    <span className="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="bg-surface-container rounded-xl p-space-xl md:p-space-2xl text-center relative overflow-hidden shadow-sm">
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-tertiary-fixed/30 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10">
+              <span className="material-symbols-outlined text-primary text-[40px] mb-space-sm block">fitness_center</span>
+              <p className="font-headline-sm text-headline-sm text-on-surface mb-space-xs">
+                Primero se siente seguro, luego se equilibra… y solo después se transforma.
+              </p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">
+                Estimulación de mioquinas protectoras sin castigo ni agotamiento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. THE METHOD TIMELINE */}
       <section className="w-full py-space-2xl" id="como-funciona">
         <div className="max-w-[1120px] mx-auto px-gutter">
@@ -414,6 +452,42 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
           <p className="font-body-sm text-body-sm text-on-surface-variant/70 max-w-lg mx-auto">
             Enlaces de afiliada: Contratando con el código #CARO recibes 50€ de descuento en tu membresía Axo Longevity.
           </p>
+        </div>
+      </section>
+
+      {/* 8b. STEPS — EL CAMINO ES SENCILLO Y TRANSPARENTE (Stitch code.html) */}
+      <section className="w-full py-space-2xl">
+        <div className="max-w-[1120px] mx-auto px-gutter">
+          <div className="text-center max-w-3xl mx-auto mb-space-xl">
+            <span className="font-label-md text-label-md text-tertiary uppercase tracking-[0.16em] mb-space-xs block">Cómo empezar</span>
+            <h2 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+              El Camino es Sencillo y Transparente
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+            {[
+              { num: '01', title: 'Aplicas', desc: 'Completas el breve formulario inicial de salud para evaluar si tu situación encaja con la metodología.' },
+              { num: '02', title: 'Hablamos', desc: 'Agendamos una videollamada de 20 minutos sin coste para aclarar tus prioridades y diseñar el encuadre.' },
+              { num: '03', title: 'Empezamos', desc: 'Recibes tu kit inicial, cuestionarios de profundidad y tu primera sesión 1:1 de 75 minutos.' },
+            ].map((step) => (
+              <div key={step.num} className="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm text-center">
+                <span className="font-display-lg text-display-lg text-primary block leading-none mb-space-sm">{step.num}</span>
+                <h3 className="font-title-lg text-title-lg text-on-surface mb-2">{step.title}</h3>
+                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center font-body-sm text-body-sm text-on-surface-variant mt-space-lg max-w-2xl mx-auto">
+            Revisaré personalmente tus respuestas en menos de 24 horas laborables. Si tu caso es idóneo, te enviaré un enlace exclusivo de Calendly para reservar tu llamada de valoración gratuita de 20 minutos.
+          </p>
+          <div className="text-center mt-space-md">
+            <button
+              onClick={onOpenBookingModal}
+              className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary px-8 py-3.5 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            >
+              Aplicar al Método
+            </button>
+          </div>
         </div>
       </section>
 

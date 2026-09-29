@@ -407,6 +407,7 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                   { icon: 'location_on', label: 'Dirección', val: 'Calle Camino de los Bonetes 2, 28250 Madrid (Pozuelo de Alarcón)' },
                   { icon: 'schedule', label: 'Horario de Atención', val: 'Lunes a Jueves: 9:00 - 17:00\nViernes: Evaluaciones online con cita previa' },
                   { icon: 'phone', label: 'Teléfono / WhatsApp', val: '+34 601 31 79 59', href: 'tel:+34601317959' },
+                  { icon: 'call', label: 'Estudio · Cita Previa', val: '+34 694 585 399', href: 'tel:+34694585399' },
                   { icon: 'mail', label: 'Correo Electrónico', val: 'contacto@carolinabarcellona.com', href: 'mailto:contacto@carolinabarcellona.com' },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-3">

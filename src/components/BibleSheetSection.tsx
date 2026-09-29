@@ -13,6 +13,16 @@ export const BibleSheetSection: React.FC = () => {
   const title = language === 'es'
     ? 'Bible Sheet 🌺 — Tu Diagnóstico Personalizado'
     : 'Bible Sheet 🌺 — Your Personalised Diagnostic';
+  const planBadge = language === 'es' ? 'Plan Gran Diosa en 7+' : 'Gran Diosa Plan in 7+';
+  const toolLabel = language === 'es'
+    ? 'Herramienta oficial · Climaterio Glorioso'
+    : 'Official tool · Glorious Climacteric';
+  const quote = language === 'es'
+    ? '«Este es tu punto de partida hacia tu Climaterio Glorioso y tu soberanía biológica. Antes de saber a dónde vas, necesitas ver dónde estás.»'
+    : '"This is your starting point towards your Glorious Climacteric and biological sovereignty. Before knowing where you are going, you need to see where you are."';
+  const metaBadges = language === 'es'
+    ? ['100% Confidencial', '3-4 minutos', 'Cero juicio']
+    : ['100% Confidential', '3-4 minutes', 'Zero judgement'];
   const subtitle = language === 'es'
     ? 'Completa este formulario y Carolina revisará tu caso personalmente. Es el primer paso para entrar al Método Código Diosa.'
     : "Complete this form and Carolina will personally review your case. It's the first step to joining the Código Diosa Method.";
@@ -29,14 +39,28 @@ export const BibleSheetSection: React.FC = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full bg-[#EE295C]/10 text-[#EE295C] text-[11px] font-bold tracking-[0.18em] uppercase mb-3">
-              Paso 1 · Solicitud
+              Paso 1 · Solicitud · {toolLabel}
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#201415] mb-3 leading-tight">
               {title}
             </h2>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#C7A46B]/15 text-[#7E5B20] text-[11px] font-bold tracking-[0.14em] uppercase mb-4">
+              {planBadge}
+            </span>
+            <p className="font-serif italic text-[17px] text-[#685354] max-w-xl mx-auto leading-relaxed mb-3">
+              {quote}
+            </p>
             <p className="text-[15px] text-[#685354] max-w-xl mx-auto leading-relaxed">
               {subtitle}
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+              {metaBadges.map((badge) => (
+                <span key={badge} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white text-[11px] font-semibold text-[#685354] shadow-sm">
+                  <span className="material-symbols-outlined text-[14px] text-[#EE295C]">verified</span>
+                  {badge}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Form card */}
