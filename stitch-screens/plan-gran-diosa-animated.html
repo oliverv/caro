@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Vollkorn:ital,wght@0,500;0,600;0,700;1,400;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+  @layer base {
+    html, body { margin: 0; padding: 0; }
+    body { overscroll-behavior: none; }
+    main > :first-child { margin-top: 0 !important; }
+    main > :last-child { margin-bottom: 0 !important; }
+  }
+  ::-webkit-scrollbar { display: none; }
+
+  /* Smooth Keyframe Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes ambientPulse {
+    0%, 100% {
+      transform: translate(-50%, -20%) scale(1);
+      opacity: 0.22;
+    }
+    50% {
+      transform: translate(-50%, -25%) scale(1.12);
+      opacity: 0.38;
+    }
+  }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-7px); }
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-150%); }
+    100% { transform: translateX(150%); }
+  }
+
+  /* Shimmer button overlay */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent);
+    transform: translateX(-150%);
+    pointer-events: none;
+  }
+  .btn-shimmer:hover::after {
+    animation: shimmer 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Ambient Glow Pulsing Layer */
+  .animate-ambient-glow {
+    animation: ambientPulse 8s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+
+  /* Hero Sequence Delays */
+  .hero-animate-1 { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .hero-animate-2 { animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+  .hero-animate-3 { animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+  .hero-animate-4 { animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both; }
+  .hero-animate-5 { animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both; }
+
+  /* Scroll-Triggered Reveal Classes */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Image reflection sheen effect */
+  .editorial-img-container {
+    position: relative;
+    overflow: hidden;
+  }
+  .editorial-img-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    z-index: 10;
+    pointer-events: none;
+    transition: left 0.85s ease-out;
+  }
+  .editorial-img-container:hover::before {
+    left: 200%;
+  }
+
+  /* Diagnostic Card Micro-interactions */
+  .diagnostic-card {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .diagnostic-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px -8px rgba(238, 41, 92, 0.12);
+  }
+  .diagnostic-card:hover .diag-icon {
+    transform: scale(1.12) rotate(4deg);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Pillar Cards (B, N, M, H) */
+  .pillar-card {
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .pillar-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 36px -10px rgba(238, 41, 92, 0.15);
+  }
+  .pillar-card:hover .pillar-letter {
+    transform: scale(1.08);
+  }
+
+  /* Accordion Content Transition */
+  .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.38s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+  }
+  .faq-item.active .faq-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .faq-content > div {
+    overflow: hidden;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+    .reveal-on-scroll {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "brand-cream": "#F6F1EA",
+          "brand-coral": "#FF6161",
+          "brand-berry": "#EE295C",
+          "brand-pink": "#F8CFD5",
+          "brand-gold": "#F69C05",
+          "brand-sand": "#C7A46B",
+          "brand-espresso": "#201415",
+          "brand-charcoal": "#2B1D1E",
+          "brand-text-muted": "#685354",
+          "brand-border": "#EADFD3",
+          "primary": "#FF6161",
+          "primary-hover": "#E84E4E",
+          "secondary": "#EE295C",
+          "tertiary": "#F69C05",
+          "surface": "#F6F1EA",
+          "surface-card": "#FFFFFF",
+          "background": "#F6F1EA",
+          "on-surface": "#201415",
+          "on-surface-variant": "#685354",
+          "on-primary": "#FFFFFF"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.5rem",
+          "lg": "1rem",
+          "xl": "1.5rem",
+          "2xl": "2rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-4xl": "6rem",
+          "space-sm": "0.75rem",
+          "space-2xl": "3rem",
+          "space-xs": "0.5rem",
+          "margin-mobile": "1.25rem",
+          "space-md": "1rem",
+          "space-lg": "1.5rem",
+          "space-xl": "2rem",
+          "margin-desktop": "3rem",
+          "space-3xl": "4.5rem",
+          "space-5xl": "8rem",
+          "space-2xs": "0.25rem"
+        },
+        "fontFamily": {
+          "body": ["Plus Jakarta Sans", "sans-serif"],
+          "serif": ["Vollkorn", "Georgia", "serif"],
+          "display": ["Vollkorn", "Georgia", "serif"]
+        }
+      }
+    }
+  };</script></head><body class="bg-brand-cream font-body text-on-surface antialiased selection:bg-brand-pink selection:text-brand-berry"><header class="fixed top-0 w-full z-50 bg-brand-cream/90 backdrop-blur-xl border-b border-brand-sand/20 shadow-[0_2px_12px_rgba(32,20,21,0.03)] transition-all duration-300" id="main-header"><div class="h-20 max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-between"><a class="flex flex-col group transition-transform duration-300 hover:scale-[1.02]" data-path="inicio" href="#"><div class="flex items-center gap-space-xs"><img alt="Carolina Barcellona" class="h-10 w-auto mix-blend-luminosity invert transition-opacity duration-300 group-hover:opacity-80" src="https://lh3.googleusercontent.com/aida/AEtjO1WUQJQn3QzgL285sOjWVWBshljUgj4WvtMw8FVqa1gKEfzbygbSatz5AoEET-X0bTB68ueNVP7qDESCv0pXhDEqeG_ysdLvxzaYhmt-_A8wiMKIXM0dAqduDB53Pfo5JNizw21d8-uqwM1skyturHTX_Ny6-QU7LmJ2XuVYx55MH6VJV1ubtz5XdSXJWkoL5Gu88wJQJ89HMvawJLvVvvrxYSY1KVbrzzT3IbNL8Q_z8Z3cssjduw9Yyg"/><div class="hidden md:flex flex-col ml-2"><span class="font-serif text-[17px] tracking-tight text-brand-espresso font-semibold">CAROLINA BARCELLONA</span><span class="text-[10px] text-brand-sand tracking-[0.2em] font-semibold uppercase -mt-0.5">HEALTH &amp; LONGEVITY 40+</span></div></div></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-brand-berry font-semibold"><a aria-current="page" class="transition-all duration-300 text-brand-berry font-semibold text-[15px] relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-brand-berry after:rounded-full" data-path="inicio" href="#">Inicio</a><a class="text-[15px] text-brand-text-muted hover:text-brand-espresso transition-colors duration-300 hover:-translate-y-0.5 inline-block" data-path="sobre-mi" href="#">Sobre mí</a><a class="text-[15px] text-brand-text-muted hover:text-brand-espresso transition-colors duration-300 hover:-translate-y-0.5 inline-block" data-path="planes" href="#">Planes</a><a class="text-[15px] text-brand-text-muted hover:text-brand-espresso transition-colors duration-300 hover:-translate-y-0.5 inline-block" data-path="blog" href="#">Blog</a><a class="text-[15px] text-brand-text-muted hover:text-brand-espresso transition-colors duration-300 hover:-translate-y-0.5 inline-block" data-path="contacto" href="#">Contacto</a></nav><div class="flex items-center gap-space-md"><a class="btn-shimmer hidden sm:inline-flex items-center justify-center px-space-lg py-2.5 bg-gradient-to-r from-brand-coral to-brand-berry text-white text-[13px] font-semibold rounded-full shadow-[0_6px_20px_rgba(238,41,92,0.3)] hover:shadow-[0_8px_24px_rgba(238,41,92,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 cursor-pointer" data-path="metodo" href="#metodo-diosa">Descubre mi método</a><div class="w-9 h-9 rounded-full bg-brand-pink/50 border border-brand-sand/30 flex items-center justify-center text-brand-berry transition-transform duration-300 hover:scale-110 hover:bg-brand-pink cursor-pointer"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-brand-cream"><div class="flex flex-col w-full">
+<!-- HERO SECTION: Warm Brand Tone Palette (Espresso & Coral / Berry ambient glow) -->
+<section class="relative w-full overflow-hidden bg-brand-espresso text-white">
+<!-- Atmospheric Visual Layer -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-30 mix-blend-luminosity scale-105 transition-transform duration-1000 ease-out" data-alt="Majestic high mountain ridges emerging above a vast sea of rolling clouds and soft mist during golden hour sunrise. Atmospheric depth with warm peach and subtle rose light hitting the summits, editorial luxury travel and quiet longevity lifestyle aesthetic, serene, cinematic, ultra-sharp detail." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB63K9jeNXJn0dlhfEm8peKWbmwwRIooZuY4PWvqP7_AMX-fvQwY9fNUaziqAwnSOI1eBE_qc0AFK3EVg3s40r1dUiH6-wg7lgmcbl5uiVBhTjEWoMsLIePyu2OP75icAw4GX41Mzo8OCeZvMAbUSYL9UZbVzH8i3xgUsus5ujDsfrWbGRZwOxgnCBudoXxTlpzEwlZsMisK8ZqmU6Uglmjv_2XBUxB3I9yU_xBG-eMBvhKOyTfbTk')"></div>
+<!-- Warm Coral, Berry & Gold Radiant Glow with ambient pulsing animation -->
+<div class="absolute inset-0 bg-gradient-to-b from-brand-espresso/90 via-brand-espresso/75 to-brand-espresso"></div>
+<div class="absolute top-1/4 left-1/2 w-[700px] h-[350px] bg-gradient-to-r from-brand-coral/25 via-brand-berry/20 to-brand-gold/20 blur-3xl pointer-events-none rounded-full animate-ambient-glow"></div>
+<!-- Hero Content Container with Staggered Entrance Animations -->
+<div class="relative z-10 max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop pt-space-3xl pb-space-5xl flex flex-col items-center text-center">
+<!-- Refined Kicker Badge in Soft Blossom Pink -->
+<div class="hero-animate-1 inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-brand-pink/15 border border-brand-pink/30 backdrop-blur-md mb-space-lg shadow-sm hover:border-brand-pink/50 transition-colors duration-300">
+<span class="w-2 h-2 rounded-full bg-brand-coral animate-pulse"></span>
+<span class="text-[11px] font-bold tracking-[0.2em] text-brand-pink uppercase">
+          Women's Health &amp; Longevity para mujeres 40+
+        </span>
+</div>
+<!-- Grand Editorial Serif Title -->
+<h1 class="hero-animate-2 font-serif text-[38px] md:text-[58px] text-white max-w-4xl tracking-tight leading-[1.12] mb-space-md">
+        Tu cuerpo cambia después de los 40.<br/>
+<span class="italic font-normal bg-gradient-to-r from-brand-coral via-brand-pink to-brand-gold bg-clip-text text-transparent">Tu estrategia también.</span>
+</h1>
+<!-- Elegant Sub-headline -->
+<p class="hero-animate-3 font-serif italic text-[19px] md:text-[22px] text-brand-cream/90 max-w-2xl font-normal mb-space-sm leading-relaxed">
+        Nutrición Epigenética: bio-hackea tus genes, recupera tu peso ideal y libera tu brillo interior.
+      </p>
+<p class="hero-animate-4 text-[15px] md:text-[16px] text-brand-cream/75 max-w-xl font-normal mb-space-2xl leading-relaxed">
+        Para mujeres que quieren entender su biología, optimizar su salud y vivir esta etapa con más energía, fuerza y bienestar duradero.
+      </p>
+<!-- Primary & Secondary CTA actions with Shimmer & Micro-transitions -->
+<div class="hero-animate-5 flex flex-col sm:flex-row items-center justify-center gap-space-md w-full max-w-md">
+<a class="btn-shimmer w-full sm:w-auto px-space-xl py-3.5 bg-gradient-to-r from-brand-coral to-brand-berry text-white text-[14px] font-bold rounded-full shadow-[0_12px_28px_rgba(238,41,92,0.4)] hover:shadow-[0_16px_36px_rgba(255,97,97,0.55)] hover:scale-[1.03] active:scale-[0.96] transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer" href="https://api.whatsapp.com/send/?phone=34601317959&amp;text=Hola%20Carolina,%20quiero%20descubrir%20tu%20m%C3%A9todo" rel="noopener noreferrer" target="_blank">
+<span>Descubre mi método</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto px-space-xl py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 backdrop-blur-sm text-[14px] font-semibold rounded-full transition-all duration-300 flex items-center justify-center hover:scale-[1.02] active:scale-[0.96] cursor-pointer" href="#metodo-diosa">
+<span>Únete a la revolución</span>
+</a>
+</div>
+<!-- Quick Trust Indicators with Marigold Amber & Coral Accents -->
+<div class="hero-animate-5 mt-space-3xl flex flex-wrap items-center justify-center gap-space-xl text-brand-cream/80 text-[11px] font-semibold tracking-[0.18em] uppercase">
+<span class="flex items-center gap-2 hover:text-white transition-colors duration-200">
+<span class="material-symbols-outlined text-brand-gold text-[17px] animate-bounce" style="animation-duration: 2.5s;">verified</span>
+          +6 Años Especializada
+        </span>
+<span class="flex items-center gap-2 hover:text-white transition-colors duration-200">
+<span class="material-symbols-outlined text-brand-coral text-[17px]">science</span>
+          Nutrición Epigenética
+        </span>
+<span class="flex items-center gap-2 hover:text-white transition-colors duration-200">
+<span class="material-symbols-outlined text-brand-berry text-[17px]">favorite</span>
+          Enfoque Clínico 100% Personalizado
+        </span>
+</div>
+</div>
+</section>
+<!-- THE METHOD PILLARS: 4 Columns inspired directly by PEAK Method (B - N - M - H) -->
+<section class="w-full bg-white py-space-4xl shadow-sm relative z-20 border-b border-brand-sand/20" id="metodo-diosa">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Section Header -->
+<div class="reveal-on-scroll text-center max-w-2xl mx-auto mb-space-3xl">
+<span class="text-[12px] font-bold text-brand-berry tracking-[0.2em] uppercase block mb-space-2xs">
+          Marco Arquitectónico de Salud
+        </span>
+<h2 class="font-serif text-[32px] md:text-[46px] text-brand-espresso italic font-semibold tracking-tight mb-space-sm">
+          El Método Código Diosa
+        </h2>
+<p class="text-[15px] text-brand-text-muted leading-relaxed">
+          Un marco estructurado para el crecimiento y optimización biológica. Te ayuda a construir claridad, disciplina metabólica y vitalidad sostenida en tu cuerpo y descanso. No motivación pasajera: sistemas que funcionan y se multiplican con el tiempo.
+        </p>
+</div>
+<!-- 4-Column Pillars: B - N - M - H (Biología, Nutrición, Movimiento, Hábitos) with Interactive Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Pillar 1: B -->
+<div class="reveal-on-scroll pillar-card flex flex-col items-center text-center p-space-xl rounded-2xl bg-brand-cream/60 border border-brand-sand/20 hover:border-brand-coral/50 hover:bg-brand-pink/20 cursor-default group">
+<span class="pillar-letter font-serif text-[52px] leading-none font-bold text-brand-espresso group-hover:text-brand-coral transition-all duration-300 mb-space-2xs">
+            B
+          </span>
+<h3 class="text-[13px] text-brand-espresso tracking-[0.14em] uppercase font-bold mb-space-xs group-hover:text-brand-coral transition-colors duration-300">
+            Biología &amp; Epigenética
+          </h3>
+<div class="w-8 h-1 bg-gradient-to-r from-brand-coral to-brand-berry mb-space-md rounded-full group-hover:w-12 transition-all duration-300"></div>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Comprende quién eres y cómo está cambiando tu cuerpo por dentro. Sin el ruido de dietas pasajeras. Datos analíticos avanzados, equilibrio hormonal y evaluación celular.
+          </p>
+</div>
+<!-- Pillar 2: N -->
+<div class="reveal-on-scroll pillar-card flex flex-col items-center text-center p-space-xl rounded-2xl bg-brand-cream/60 border border-brand-sand/20 hover:border-brand-berry/50 hover:bg-brand-pink/20 cursor-default group" style="transition-delay: 100ms;">
+<span class="pillar-letter font-serif text-[52px] leading-none font-bold text-brand-espresso group-hover:text-brand-berry transition-all duration-300 mb-space-2xs">
+            N
+          </span>
+<h3 class="text-[13px] text-brand-espresso tracking-[0.14em] uppercase font-bold mb-space-xs group-hover:text-brand-berry transition-colors duration-300">
+            Nutrición Ortomolecular
+          </h3>
+<div class="w-8 h-1 bg-gradient-to-r from-brand-berry to-brand-coral mb-space-md rounded-full group-hover:w-12 transition-all duration-300"></div>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Audita lo que comes y sustituye la restricción por precisión celular. Estrategia nutricional que desinflama, apoya tu tiroides y reactiva la sensibilidad a la insulina.
+          </p>
+</div>
+<!-- Pillar 3: M -->
+<div class="reveal-on-scroll pillar-card flex flex-col items-center text-center p-space-xl rounded-2xl bg-brand-cream/60 border border-brand-sand/20 hover:border-brand-gold/60 hover:bg-brand-pink/20 cursor-default group" style="transition-delay: 200ms;">
+<span class="pillar-letter font-serif text-[52px] leading-none font-bold text-brand-espresso group-hover:text-brand-gold transition-all duration-300 mb-space-2xs">
+            M
+          </span>
+<h3 class="text-[13px] text-brand-espresso tracking-[0.14em] uppercase font-bold mb-space-xs group-hover:text-brand-gold transition-colors duration-300">
+            Movimiento &amp; Fuerza
+          </h3>
+<div class="w-8 h-1 bg-gradient-to-r from-brand-gold to-brand-coral mb-space-md rounded-full group-hover:w-12 transition-all duration-300"></div>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Construye tejido muscular metabólicamente activo adaptado a los 40+. Preserva tu masa ósea, estimula mitocondrias y mejora tu composición corporal sin agotamiento.
+          </p>
+</div>
+<!-- Pillar 4: H -->
+<div class="reveal-on-scroll pillar-card flex flex-col items-center text-center p-space-xl rounded-2xl bg-brand-cream/60 border border-brand-sand/20 hover:border-brand-sand hover:bg-brand-pink/20 cursor-default group" style="transition-delay: 300ms;">
+<span class="pillar-letter font-serif text-[52px] leading-none font-bold text-brand-espresso group-hover:text-brand-sand transition-all duration-300 mb-space-2xs">
+            H
+          </span>
+<h3 class="text-[13px] text-brand-espresso tracking-[0.14em] uppercase font-bold mb-space-xs group-hover:text-brand-sand transition-colors duration-300">
+            Hábitos &amp; Longevidad
+          </h3>
+<div class="w-8 h-1 bg-gradient-to-r from-brand-sand to-brand-berry mb-space-md rounded-full group-hover:w-12 transition-all duration-300"></div>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Optimiza tu descanso circadiano, disuelve la niebla mental y regula el cortisol. Sistemas simples y consistentes que garantizan vitalidad para las próximas décadas.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- PRACTICAL AREAS: 3 Cards directly reflecting Peak Method's 'Applied in 3 Practical Areas' layout -->
+<section class="w-full bg-brand-cream py-space-4xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="reveal-on-scroll text-center max-w-2xl mx-auto mb-space-3xl">
+<h2 class="font-serif text-[32px] md:text-[44px] text-brand-espresso italic font-semibold tracking-tight">
+          Aplicado en 3 Áreas Prácticas
+        </h2>
+<p class="text-[15px] text-brand-text-muted mt-space-xs">
+          Un protocolo tripartito diseñado para armonizar tu biología, tu energía vital y tu longevidad mental.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg items-stretch">
+<!-- Area 1: Cuerpo & Metabolismo (Active) -->
+<div class="reveal-on-scroll bg-white rounded-2xl p-space-xl flex flex-col justify-between shadow-sm hover:shadow-2xl border-2 border-brand-coral/40 hover:border-brand-coral transition-all duration-500 hover:-translate-y-2 relative group">
+<div>
+<div class="flex justify-end mb-space-xs">
+<span class="px-3 py-1 rounded-full bg-brand-pink text-brand-berry text-[10px] tracking-wider uppercase font-bold shadow-sm transition-transform duration-300 group-hover:scale-105">
+                Activo • Inscripciones Abiertas
+              </span>
+</div>
+<h3 class="font-serif text-[22px] text-brand-espresso text-center font-bold mb-space-xs group-hover:text-brand-coral transition-colors duration-300">
+              Cuerpo &amp; Metabolismo
+            </h3>
+<p class="text-[13px] text-brand-text-muted text-center mb-space-lg leading-relaxed">
+              Entrenamiento de fuerza inteligente. Nutrición epigenética sostenible. Desinflamación profunda y composición corporal sin reglas extremas ni pasar hambre.
+            </p>
+<ul class="space-y-space-xs text-brand-text-muted text-[13px] pb-space-lg">
+<li class="flex items-start gap-2.5 group-hover:translate-x-0.5 transition-transform duration-200">
+<span class="material-symbols-outlined text-brand-coral text-[19px] shrink-0">check_circle</span>
+<span>Optimización hormonal y alivio de sofocos</span>
+</li>
+<li class="flex items-start gap-2.5 group-hover:translate-x-0.5 transition-transform duration-200" style="transition-delay: 50ms;">
+<span class="material-symbols-outlined text-brand-coral text-[19px] shrink-0">check_circle</span>
+<span>Pérdida de grasa visceral respetando masa muscular</span>
+</li>
+<li class="flex items-start gap-2.5 group-hover:translate-x-0.5 transition-transform duration-200" style="transition-delay: 100ms;">
+<span class="material-symbols-outlined text-brand-coral text-[19px] shrink-0">check_circle</span>
+<span>Salud digestiva y microbioma balanceado</span>
+</li>
+</ul>
+</div>
+<a class="btn-shimmer w-full py-3 bg-gradient-to-r from-brand-coral to-brand-berry hover:opacity-95 text-white text-[13px] font-bold rounded-full text-center shadow-[0_6px_18px_rgba(255,97,97,0.35)] hover:shadow-[0_10px_24px_rgba(255,97,97,0.5)] active:scale-95 transition-all duration-300 cursor-pointer" href="https://api.whatsapp.com/send/?phone=34601317959&amp;text=Hola%20Carolina,%20quiero%20conocer%20el%20programa%20Cuerpo%20y%20Metabolismo" rel="noopener noreferrer" target="_blank">
+            Explorar Código Diosa 90
+          </a>
+</div>
+<!-- Area 2: Ritmo & Sueño (Coming Soon) -->
+<div class="reveal-on-scroll bg-white/80 rounded-2xl p-space-xl flex flex-col justify-between border border-brand-sand/20 shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 relative" style="transition-delay: 150ms;">
+<div>
+<div class="flex justify-end mb-space-xs">
+<span class="px-3 py-1 rounded-full bg-brand-cream border border-brand-sand/30 text-brand-text-muted text-[10px] tracking-wider uppercase font-semibold">
+                Próximamente
+              </span>
+</div>
+<h3 class="font-serif text-[22px] text-brand-espresso text-center font-bold mb-space-xs">
+              Cronobiología &amp; Sueño
+            </h3>
+<p class="text-[13px] text-brand-text-muted text-center mb-space-lg leading-relaxed">
+              Restauración del ritmo circadiano, arquitectura del sueño REM y regulación avanzada del cortisol y la melatonina para un descanso reparador sin fármacos.
+            </p>
+<ul class="space-y-space-xs text-brand-text-muted text-[13px] pb-space-lg opacity-75">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-brand-sand text-[19px] shrink-0">schedule</span>
+<span>Higiene de luz matutina y sincronización celular</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-brand-sand text-[19px] shrink-0">bedtime</span>
+<span>Protocolos contra el despertar nocturno a las 3:00 AM</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-brand-sand text-[19px] shrink-0">spa</span>
+<span>Regulación del sistema nervioso parasimpático</span>
+</li>
+</ul>
+</div>
+<button class="w-full py-3 bg-brand-cream border border-brand-sand/30 text-brand-text-muted text-[13px] font-semibold rounded-full text-center cursor-not-allowed transition-colors duration-200 hover:bg-brand-cream/70" disabled="" type="button">
+            Lista de Espera
+          </button>
+</div>
+<!-- Area 3: Claridad & Longevidad (Coming Soon) -->
+<div class="reveal-on-scroll bg-white/80 rounded-2xl p-space-xl flex flex-col justify-between border border-brand-sand/20 shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 relative" style="transition-delay: 250ms;">
+<div>
+<div class="flex justify-end mb-space-xs">
+<span class="px-3 py-1 rounded-full bg-brand-cream border border-brand-sand/30 text-brand-text-muted text-[10px] tracking-wider uppercase font-semibold">
+                Próximamente
+              </span>
+</div>
+<h3 class="font-serif text-[22px] text-brand-espresso text-center font-bold mb-space-xs">
+              Mente &amp; Bio-Longevidad
+            </h3>
+<p class="text-[13px] text-brand-text-muted text-center mb-space-lg leading-relaxed">
+              Eliminación de la niebla mental (brain fog), neuroprotección mitocondrial, enfoque ejecutivo y hábitos estratégicos para la mujer líder en su década de oro.
+            </p>
+<ul class="space-y-space-xs text-brand-text-muted text-[13px] pb-space-lg opacity-75">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-brand-gold text-[19px] shrink-0">psychology</span>
+<span>Noótropos naturales y alimentos pro-cognición</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-brand-gold text-[19px] shrink-0">bolt</span>
+<span>Energía sostenida sin picos ni bajones de café</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-brand-gold text-[19px] shrink-0">shield</span>
+<span>Prevención de inflamación cerebral a largo plazo</span>
+</li>
+</ul>
+</div>
+<button class="w-full py-3 bg-brand-cream border border-brand-sand/30 text-brand-text-muted text-[13px] font-semibold rounded-full text-center cursor-not-allowed transition-colors duration-200 hover:bg-brand-cream/70" disabled="" type="button">
+            Lista de Espera
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- WHO IS IT FOR? Section -->
+<section class="w-full bg-white py-space-4xl border-y border-brand-sand/20"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop"><div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center"><div class="reveal-on-scroll lg:col-span-7 flex flex-col justify-center text-center lg:text-left"><span class="text-[12px] font-bold text-brand-berry tracking-[0.2em] uppercase block mb-space-2xs">Filosofía &amp; Longevidad</span><h2 class="font-serif text-[32px] md:text-[44px] text-brand-espresso italic font-semibold mb-space-md">¿Para quién es?</h2><p class="font-serif italic text-[18px] md:text-[20px] text-brand-text-muted leading-relaxed mb-space-lg">Para mujeres de alto rendimiento y conciencia biológica que buscan estructura, no ruido. Que están cansadas de empezar de cero con dietas genéricas. Que están listas para aplicar, probar, ajustar y prosperar. No es solo un programa: es un sistema que usarás de por vida.</p><div class="flex flex-wrap items-center justify-center lg:justify-start gap-space-md text-[12px] font-semibold text-brand-espresso uppercase tracking-wider"><span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-pink/30 border border-brand-pink transition-all duration-300 hover:scale-105 hover:bg-brand-pink/60 cursor-default"><span class="material-symbols-outlined text-brand-berry text-[18px]">check_circle</span> Biología femenina 40+</span><span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-pink/30 border border-brand-pink transition-all duration-300 hover:scale-105 hover:bg-brand-pink/60 cursor-default"><span class="material-symbols-outlined text-brand-coral text-[18px]">check_circle</span> Sin restricciones agresivas</span><span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-pink/30 border border-brand-pink transition-all duration-300 hover:scale-105 hover:bg-brand-pink/60 cursor-default"><span class="material-symbols-outlined text-brand-gold text-[18px]">check_circle</span> Sostenible para siempre</span></div></div><div class="reveal-on-scroll lg:col-span-5 grid grid-cols-2 gap-space-md" style="transition-delay: 200ms;"><div class="editorial-img-container rounded-2xl shadow-lg border-2 border-brand-pink/40 aspect-[4/5] group cursor-pointer"><img alt="Carolina Barcellona - Movimiento y Equilibrio 40+" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1UD0GzE6lLTkbquYzZAiEW5HyGPVFWXetJHhKR2MrjZpnbrBDDRvNQVAIgF_UNFF-Iilo_TVSAmSr1uwC0PLWvn5o5itjFpKLUOGCvUYtCs4vpwGFJqD8-jilRxrm7lOaB6UIYCAMdO5OOJwLHk-PtvqeROBV62JBjDuoHaSe4kbUvywghkWgLOT2VXNV0KPKsViUzNZUk0AXc5B4INy0Mq7PahDGPmgoYYvj5eBFHMVLjKEp4fyD3IHQ"/></div><div class="editorial-img-container rounded-2xl shadow-lg border-2 border-brand-sand/40 aspect-[4/5] mt-space-lg group cursor-pointer"><img alt="Carolina Barcellona - Vitalidad y Longevidad" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1VUzn7rOuFOlgmPNG55Rp3fVmQLVVZFxOt5jBzOk3jeNHSny_ffIBxaZys5PbZ0rOLc1wfzFch1k2OGnZxdZy5sg39rH05wdmjAqogI4Nxh2lsz5YKDb7WP8wocMahVbrPTQYaTmuYmKXPa7JcXLBV_QevVMvq7dwKGh-6QffZ2DtB0UnZxx1zdI3OXG4YxvncL7aFtMOnriaQVFCDMinECHoTxp2hyBX0GQIoHwFPBy0YewU9ZwepATQ"/></div></div></div></div></section>
+<!-- ¿POR QUÉ ESTÁS AQUÍ? (Bento Grid of Verbatim Pain Points from Document) with interactive click/hover feedback -->
+<section class="w-full bg-brand-cream py-space-4xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="reveal-on-scroll max-w-2xl mx-auto text-center mb-space-3xl">
+<span class="text-[12px] font-bold text-brand-coral tracking-[0.2em] uppercase block mb-space-2xs">
+          Autodiagnóstico
+        </span>
+<h2 class="font-serif text-[32px] md:text-[44px] text-brand-espresso italic font-semibold tracking-tight">
+          ¿Por qué estás aquí?
+        </h2>
+<p class="text-[15px] text-brand-text-muted mt-space-xs">
+          Reconocer las señales de tu cuerpo es el primer paso hacia la transformación epigenética.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Point 1 -->
+<div class="reveal-on-scroll diagnostic-card bg-white p-space-xl rounded-2xl border border-brand-sand/20 hover:border-brand-coral/60 cursor-pointer flex flex-col justify-between group">
+<div>
+<div class="diag-icon w-11 h-11 rounded-xl bg-brand-pink/40 text-brand-coral flex items-center justify-center mb-space-md border border-brand-pink group-hover:bg-brand-coral group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[22px]">thermostat</span>
+</div>
+<h3 class="font-serif text-[19px] text-brand-espresso font-semibold mb-space-xs group-hover:text-brand-coral transition-colors duration-300">
+            Cambios corporales y composición
+          </h3>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Sientes que tu cuerpo está cambiando —sofocos, cambios en la composición corporal, inflamación, digestión o recuperación— y quieres comprender qué está pasando para responder a esta nueva etapa con una estrategia personalizada.
+          </p>
+</div>
+</div>
+<!-- Point 2 -->
+<div class="reveal-on-scroll diagnostic-card bg-white p-space-xl rounded-2xl border border-brand-sand/20 hover:border-brand-gold/60 cursor-pointer flex flex-col justify-between group" style="transition-delay: 100ms;">
+<div>
+<div class="diag-icon w-11 h-11 rounded-xl bg-amber-50 text-brand-gold flex items-center justify-center mb-space-md border border-brand-gold/30 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[22px]">battery_charging_full</span>
+</div>
+<h3 class="font-serif text-[19px] text-brand-espresso font-semibold mb-space-xs group-hover:text-brand-gold transition-colors duration-300">
+            Pérdida de energía y vitalidad
+          </h3>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Sientes que has perdido vitalidad y quieres volver a sentirte fuerte, activa y conectada con tu cuerpo, despertando cada mañana con entusiasmo real.
+          </p>
+</div>
+</div>
+<!-- Point 3 -->
+<div class="reveal-on-scroll diagnostic-card bg-white p-space-xl rounded-2xl border border-brand-sand/20 hover:border-brand-berry/60 cursor-pointer flex flex-col justify-between group" style="transition-delay: 200ms;">
+<div>
+<div class="diag-icon w-11 h-11 rounded-xl bg-brand-pink/40 text-brand-berry flex items-center justify-center mb-space-md border border-brand-pink group-hover:bg-brand-berry group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[22px]">psychology_alt</span>
+</div>
+<h3 class="font-serif text-[19px] text-brand-espresso font-semibold mb-space-xs group-hover:text-brand-berry transition-colors duration-300">
+            Niebla mental y falta de enfoque
+          </h3>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Notas más niebla mental, dificultad para concentrarte o cambios en tu claridad mental que antes no tenías y que interfieren en tu ritmo profesional y personal.
+          </p>
+</div>
+</div>
+<!-- Point 4 -->
+<div class="reveal-on-scroll diagnostic-card bg-white p-space-xl rounded-2xl border border-brand-sand/20 hover:border-brand-coral/60 cursor-pointer flex flex-col justify-between group" style="transition-delay: 100ms;">
+<div>
+<div class="diag-icon w-11 h-11 rounded-xl bg-brand-pink/40 text-brand-coral flex items-center justify-center mb-space-md border border-brand-pink group-hover:bg-brand-coral group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[22px]">self_improvement</span>
+</div>
+<h3 class="font-serif text-[19px] text-brand-espresso font-semibold mb-space-xs group-hover:text-brand-coral transition-colors duration-300">
+            Regulación del estrés y sueño
+          </h3>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Tu estrés, tu sueño o tu estado emocional han cambiado y quieres aprender a regularlos desde una estrategia integral y compasiva con tu fisiología.
+          </p>
+</div>
+</div>
+<!-- Point 5 -->
+<div class="reveal-on-scroll diagnostic-card bg-white p-space-xl rounded-2xl border border-brand-sand/20 hover:border-brand-gold/60 cursor-pointer flex flex-col justify-between group" style="transition-delay: 200ms;">
+<div>
+<div class="diag-icon w-11 h-11 rounded-xl bg-amber-50 text-brand-gold flex items-center justify-center mb-space-md border border-brand-gold/30 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[22px]">all_inclusive</span>
+</div>
+<h3 class="font-serif text-[19px] text-brand-espresso font-semibold mb-space-xs group-hover:text-brand-gold transition-colors duration-300">
+            Sostenibilidad a largo plazo
+          </h3>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            No quieres otra dieta restrictiva. Quieres un estilo de vida personalizado que puedas disfrutar, integrar y sostener con placer durante décadas.
+          </p>
+</div>
+</div>
+<!-- Point 6 -->
+<div class="reveal-on-scroll diagnostic-card bg-white p-space-xl rounded-2xl border border-brand-sand/20 hover:border-brand-berry/60 cursor-pointer flex flex-col justify-between group" style="transition-delay: 300ms;">
+<div>
+<div class="diag-icon w-11 h-11 rounded-xl bg-brand-pink/40 text-brand-berry flex items-center justify-center mb-space-md border border-brand-pink group-hover:bg-brand-berry group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[22px]">supervised_user_circle</span>
+</div>
+<h3 class="font-serif text-[19px] text-brand-espresso font-semibold mb-space-xs group-hover:text-brand-berry transition-colors duration-300">
+            Acompañamiento clínico 1 a 1
+          </h3>
+<p class="text-[13px] text-brand-text-muted leading-relaxed">
+            Quieres dejar de hacerlo sola y contar con la experiencia de una profesional que integre tus datos, tu historia y tus objetivos para diseñar una ruta a tu medida.
+          </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BIO STORY: Preserving Carolina's Red Dress Photo https://lh3.googleusercontent.com/aida/AEtjO1WndKNiqc7SaLoDjWByI8hM50cFRBTTFyyYtKpI7b4rSaqeKT9Cud-5NguZAiNEWeq_BIVMsaMKlA6cy7MVEr4VAOpDjKFEr1WBeyF-BOBSnQaJ8roWvNfEreOMwqfQ8d8XnA2Qn--FryjYZqJS43fEdCc4Wv-Xbydi4DEMObCIFMDHIrcaF-iSvhn4poOrgG-dhN1-_KV-RK9sZN4JGiAs9KskKo5K4oRY24fIF_2eoXRZWkxZmK9Dew with Zoom Sheen Effect & Counter Animation -->
+<section class="w-full bg-white py-space-4xl relative overflow-hidden border-b border-brand-sand/20">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Big Editorial Headline -->
+<div class="reveal-on-scroll mb-space-2xl">
+<h2 class="font-serif text-[32px] md:text-[46px] text-brand-espresso italic font-semibold tracking-tight">
+          No buscaba otra dieta genérica. Diseñé una estrategia real.
+        </h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- Photo Side (Editorial Portrait with Carolina in Red Dress) -->
+<div class="reveal-on-scroll lg:col-span-5">
+<div class="editorial-img-container relative rounded-2xl shadow-2xl aspect-[4/5] bg-brand-cream border-2 border-brand-pink/50 group cursor-pointer">
+<img alt="Carolina Barcellona - Health &amp; Longevity Specialist 40+" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1WndKNiqc7SaLoDjWByI8hM50cFRBTTFyyYtKpI7b4rSaqeKT9Cud-5NguZAiNEWeq_BIVMsaMKlA6cy7MVEr4VAOpDjKFEr1WBeyF-BOBSnQaJ8roWvNfEreOMwqfQ8d8XnA2Qn--FryjYZqJS43fEdCc4Wv-Xbydi4DEMObCIFMDHIrcaF-iSvhn4poOrgG-dhN1-_KV-RK9sZN4JGiAs9KskKo5K4oRY24fIF_2eoXRZWkxZmK9Dew"/>
+<!-- Overlay Label Badge with subtle floating effect -->
+<div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-space-md rounded-xl flex items-center justify-between border border-brand-sand/20 shadow-lg transition-transform duration-300 group-hover:-translate-y-1">
+<div>
+<p class="font-serif text-[17px] text-brand-espresso font-bold">Carolina Barcellona</p>
+<p class="text-[10px] text-brand-berry tracking-widest uppercase font-bold">Health &amp; Longevity Specialist 40+</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-gradient-to-r from-brand-coral to-brand-berry flex items-center justify-center text-white shadow-sm group-hover:rotate-12 transition-transform duration-300">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Narrative Side -->
+<div class="reveal-on-scroll lg:col-span-7 flex flex-col justify-center" style="transition-delay: 150ms;">
+<div class="inline-flex items-center gap-2 mb-space-xs text-brand-berry text-[12px] tracking-[0.2em] uppercase font-bold">
+<span class="w-2 h-2 rounded-full bg-brand-berry animate-pulse"></span>
+<span>Experta en Epigenética &amp; Salud Femenina</span>
+</div>
+<h3 class="font-serif text-[24px] md:text-[32px] md:leading-snug text-brand-espresso mb-space-md font-semibold">
+            Nutrición clínica, medicina del estilo de vida y optimización biológica.
+          </h3>
+<p class="text-[15px] text-brand-text-muted mb-space-md leading-relaxed">
+            Con más de 6 años de experiencia trabajando con mujeres y diseñando estrategias personalizadas de nutrición y bienestar integral. Su formación integra nutrición clínica e integrativa, dietoterapia, nutrición ortomolecular, nutrigenética, epigenética y lifestyle medicine.
+          </p>
+<p class="text-[15px] text-brand-text-muted mb-space-lg leading-relaxed">
+            Ha colaborado con centros especializados de Madrid, acompañando procesos clave de metabolismo, recomposición corporal, salud digestiva y envejecimiento saludable. Su enfoque nunca parte de plantillas genéricas: integra tu historia, tus marcadores analíticos y tus metas para construir una estrategia que funcione con tu biología real.
+          </p>
+<!-- Metric Highlights Bento with Animated Count-Up -->
+<div class="grid grid-cols-3 gap-space-sm p-space-md bg-brand-cream rounded-2xl mb-space-xl text-center border border-brand-sand/30 shadow-inner">
+<div class="p-2 transition-transform duration-300 hover:scale-105">
+<p class="font-serif text-[30px] text-brand-coral font-bold leading-tight" data-count-suffix="+" data-count-target="6">6+</p>
+<p class="text-[10px] text-brand-text-muted tracking-wider uppercase font-semibold">Años de Trayectoria</p>
+</div>
+<div class="p-2 border-x border-brand-sand/30 transition-transform duration-300 hover:scale-105">
+<p class="font-serif text-[30px] text-brand-berry font-bold leading-tight" data-count-suffix="%" data-count-target="100">100%</p>
+<p class="text-[10px] text-brand-text-muted tracking-wider uppercase font-semibold">Personalizado</p>
+</div>
+<div class="p-2 transition-transform duration-300 hover:scale-105">
+<p class="font-serif text-[30px] text-brand-gold font-bold leading-tight" data-count-decimals="1" data-count-suffix="" data-count-target="5.0">5.0</p>
+<p class="text-[10px] text-brand-text-muted tracking-wider uppercase font-semibold">En Google Reviews</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<a class="btn-shimmer px-space-xl py-3 bg-gradient-to-r from-brand-coral to-brand-berry hover:opacity-95 text-white text-[13px] font-bold rounded-full shadow-[0_6px_20px_rgba(238,41,92,0.3)] hover:shadow-[0_8px_24px_rgba(238,41,92,0.45)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer" href="https://api.whatsapp.com/send/?phone=34601317959&amp;text=Hola%20Carolina,%20quiero%20conocer%20m%C3%A1s%20sobre%20ti" rel="noopener noreferrer" target="_blank">
+              Contactar con Carolina
+            </a>
+<a class="text-[14px] font-semibold text-brand-espresso hover:text-brand-berry transition-colors inline-flex items-center gap-1.5 group cursor-pointer" href="https://carolinabarcellona.com/sobre-mi-carolina-el-codigo-diosa/">
+<span>Conoce mi trayectoria completa</span>
+<span class="material-symbols-outlined text-[17px] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TESTIMONIALS: 3 Editorial Cards with Real Testimonial Text & Golden Amber Stars -->
+<section class="w-full bg-brand-cream py-space-4xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="reveal-on-scroll flex flex-col md:flex-row md:items-end justify-between mb-space-3xl gap-space-md">
+<div>
+<span class="text-[12px] font-bold text-brand-coral tracking-[0.2em] uppercase block mb-space-2xs">
+            Casos Reales
+          </span>
+<h2 class="font-serif text-[32px] md:text-[44px] text-brand-espresso italic font-semibold">
+            Inspírate con estas historias
+          </h2>
+<p class="text-[15px] text-brand-text-muted">
+            Mujeres que ya trabajaron conmigo y recuperaron su bienestar y peso ideal.
+          </p>
+</div>
+<a class="inline-flex items-center gap-1.5 text-[13px] font-bold text-brand-berry hover:text-brand-coral transition-colors duration-200 group" href="https://www.google.com/maps/place/Biolifestyle+Studio+by+Carolina+B.+(Health+%26+Wellness+Coach+%7C+%7C+Biohacker)/@40.463279,-3.803412,17z/data=!3m1!4b1!4m6!3m5!1s0xd41870d8044157f:0x937709a17be439cd!8m2!3d40.463279!4d-3.803412!16s%2Fg%2F11rxnlwt1g" rel="noopener noreferrer" target="_blank">
+<span class="group-hover:underline">Leer reseñas en mi perfil de Google</span>
+<span class="text-brand-gold tracking-widest text-base group-hover:scale-110 transition-transform duration-300 inline-block">★★★★★</span>
+</a>
+</div>
+<!-- Testimonials Grid with Hover Lift and Soft Pink Glow -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Testimonial 1: Raquel Llorente -->
+<div class="reveal-on-scroll bg-white p-space-xl rounded-2xl border border-brand-sand/20 shadow-sm flex flex-col justify-between hover:shadow-xl hover:border-brand-pink hover:-translate-y-2 transition-all duration-300 group">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex text-brand-gold text-[15px] tracking-wider group-hover:scale-105 transition-transform duration-200">
+                ★★★★★
+              </div>
+<span class="px-2.5 py-0.5 rounded-full bg-brand-pink/50 text-[10px] text-brand-berry uppercase tracking-wider font-bold">Programa 90 Días</span>
+</div>
+<p class="font-serif italic text-[14px] text-brand-charcoal mb-space-md leading-relaxed">
+              “¡Carolina, una persona maravillosa! El resultado de este proceso para mí ha sido de 10. Los problemas de hinchazón están controlados y ya sé lo que debo comer. Me llevo una nueva forma de comer divertida y disfrutona, no una dieta. Antes llegaba muerta al final del día tomándome hasta 4 cafés, ¡y ahora me sobran baterías! He perdido 6kg de grasa de manera progresiva y sin pasar hambre.”
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-md border-t border-brand-sand/20">
+<div class="w-10 h-10 rounded-full bg-brand-pink text-brand-berry flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-110 transition-transform duration-200">
+              RL
+            </div>
+<div>
+<p class="font-serif text-[15px] text-brand-espresso font-bold">Raquel Llorente</p>
+<p class="text-[11px] text-brand-text-muted">Madrid • Verificada en Google</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2: Carmen Moreno -->
+<div class="reveal-on-scroll bg-white p-space-xl rounded-2xl border border-brand-sand/20 shadow-sm flex flex-col justify-between hover:shadow-xl hover:border-brand-pink hover:-translate-y-2 transition-all duration-300 group" style="transition-delay: 100ms;">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex text-brand-gold text-[15px] tracking-wider group-hover:scale-105 transition-transform duration-200">
+                ★★★★★
+              </div>
+<span class="px-2.5 py-0.5 rounded-full bg-brand-pink/50 text-[10px] text-brand-berry uppercase tracking-wider font-bold">Acompañamiento 1 a 1</span>
+</div>
+<p class="font-serif italic text-[14px] text-brand-charcoal mb-space-md leading-relaxed">
+              “Conocer a Caro me cambió la relación con la comida, con mi cuerpo y conmigo. Llegué buscando mejorar mi alimentación y me encontré con un proceso mucho más profundo. Hoy me siento con más energía, más paz y una visión totalmente distinta de lo que significa nutrirme. Te escucha, te entiende y te guía sin juicios. La elegiría una y mil veces.”
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-md border-t border-brand-sand/20">
+<div class="w-10 h-10 rounded-full bg-brand-pink text-brand-berry flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-110 transition-transform duration-200">
+              CM
+            </div>
+<div>
+<p class="font-serif text-[15px] text-brand-espresso font-bold">Carmen Moreno</p>
+<p class="text-[11px] text-brand-text-muted">Pozuelo • Verificada en Google</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3: Vanesa Carolina -->
+<div class="reveal-on-scroll bg-white p-space-xl rounded-2xl border border-brand-sand/20 shadow-sm flex flex-col justify-between hover:shadow-xl hover:border-brand-pink hover:-translate-y-2 transition-all duration-300 group" style="transition-delay: 200ms;">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex text-brand-gold text-[15px] tracking-wider group-hover:scale-105 transition-transform duration-200">
+                ★★★★★
+              </div>
+<span class="px-2.5 py-0.5 rounded-full bg-brand-pink/50 text-[10px] text-brand-berry uppercase tracking-wider font-bold">Optimización Metabólica</span>
+</div>
+<p class="font-serif italic text-[14px] text-brand-charcoal mb-space-md leading-relaxed">
+              “Mi experiencia con Carolina ha sido excelente. Su atención personalizada y recomendaciones valiosas han sido clave para mejorar mi metabolismo e ir alcanzando mis objetivos de salud en una etapa donde creía que nada funcionaba. ¡Altamente recomendado para cualquier mujer que busque un cambio genuino!”
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-md border-t border-brand-sand/20">
+<div class="w-10 h-10 rounded-full bg-brand-pink text-brand-berry flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-110 transition-transform duration-200">
+              VC
+            </div>
+<div>
+<p class="font-serif text-[15px] text-brand-espresso font-bold">Vanesa Carolina</p>
+<p class="text-[11px] text-brand-text-muted">Madrid • Verificada en Google</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ SECTION: Clean Interactive JS-Controlled Accordions with Smooth Chevron Rotations -->
+<section class="w-full bg-white py-space-4xl border-t border-brand-sand/20">
+<div class="max-w-[780px] mx-auto px-margin-mobile">
+<div class="reveal-on-scroll text-center mb-space-3xl">
+<span class="text-[12px] font-bold text-brand-berry tracking-[0.2em] uppercase block mb-space-2xs">
+          Claridad Absoluta
+        </span>
+<h2 class="font-serif text-[32px] md:text-[44px] text-brand-espresso italic font-semibold tracking-tight">
+          Preguntas Frecuentes
+        </h2>
+<p class="text-[15px] text-brand-text-muted mt-space-xs">
+          Respuestas transparentes sobre cómo construimos tu estrategia de longevidad.
+        </p>
+</div>
+<!-- Interactive FAQ Accordion Container -->
+<div class="space-y-space-md" id="faq-accordion-group">
+<!-- Q1 -->
+<div class="faq-item active bg-brand-cream rounded-2xl overflow-hidden border border-brand-sand/30 transition-all duration-300 shadow-sm hover:border-brand-coral/40">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg cursor-pointer select-none text-left font-serif text-[17px] text-brand-espresso font-semibold focus:outline-none transition-colors duration-200 hover:text-brand-coral" type="button">
+<span class="pr-space-md">¿Carolina Barcellona está capacitada para diseñar un tratamiento adecuado para mí?</span>
+<span class="material-symbols-outlined text-brand-coral transition-transform duration-300 shrink-0 rotate-180 faq-chevron">expand_more</span>
+</button>
+<div class="faq-content">
+<div>
+<div class="px-space-lg pb-space-lg pt-0 text-brand-text-muted text-[14px] leading-relaxed border-t border-brand-sand/20">
+<p class="pt-space-sm font-semibold text-brand-espresso mb-space-xs">
+              Sí. Carolina Barcellona cuenta con más de 6 años de experiencia trabajando con mujeres y diseñando estrategias personalizadas de nutrición, salud y bienestar.
+            </p>
+<p>
+              Su formación integra nutrición clínica e integrativa, dietoterapia, nutrición ortomolecular, nutrigenética, nutrigenómica, epigenética, lifestyle medicine, coaching de hábitos y movimiento, con una especialización creciente en salud femenina y longevidad. Su enfoque no parte de protocolos genéricos: integra tu historia, tus objetivos y, cuando está indicado, tus datos biológicos para construir una estrategia personalizada.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Q2 -->
+<div class="faq-item bg-brand-cream rounded-2xl overflow-hidden border border-brand-sand/30 transition-all duration-300 shadow-sm hover:border-brand-coral/40">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg cursor-pointer select-none text-left font-serif text-[17px] text-brand-espresso font-semibold focus:outline-none transition-colors duration-200 hover:text-brand-coral" type="button">
+<span class="pr-space-md">¿Por qué el método Diosa es diferente?</span>
+<span class="material-symbols-outlined text-brand-coral transition-transform duration-300 shrink-0 faq-chevron">expand_more</span>
+</button>
+<div class="faq-content">
+<div>
+<div class="px-space-lg pb-space-lg pt-0 text-brand-text-muted text-[14px] leading-relaxed border-t border-brand-sand/20">
+<p class="pt-space-sm">
+<strong class="text-brand-espresso">No es otra dieta, ni un protocolo genérico.</strong> El Método Código Diosa parte de ti: de tu historia, tu momento vital, tus objetivos, tus hábitos y de cómo está respondiendo tu cuerpo a los cambios que llegan después de los 40.
+            </p>
+<p class="mt-2">
+              Integramos nutrición, metabolismo, movimiento, descanso, gestión del estrés y cambio de hábitos. No se trata de hacer más ni de seguir otra lista rígida de reglas, sino de aprender a trabajar con tu biología.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Q3 -->
+<div class="faq-item bg-brand-cream rounded-2xl overflow-hidden border border-brand-sand/30 transition-all duration-300 shadow-sm hover:border-brand-coral/40">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg cursor-pointer select-none text-left font-serif text-[17px] text-brand-espresso font-semibold focus:outline-none transition-colors duration-200 hover:text-brand-coral" type="button">
+<span class="pr-space-md">¿En qué consiste el proceso del método Diosa?</span>
+<span class="material-symbols-outlined text-brand-coral transition-transform duration-300 shrink-0 faq-chevron">expand_more</span>
+</button>
+<div class="faq-content">
+<div>
+<div class="px-space-lg pb-space-lg pt-0 text-brand-text-muted text-[14px] leading-relaxed border-t border-brand-sand/20">
+<p class="pt-space-sm">
+              Es un proceso personalizado de 90 días a seis meses para mujeres 40+ que quieren comprender los cambios de su cuerpo, mejorar su salud y construir hábitos que puedan sostener a largo plazo. Comenzamos con una evaluación profunda de tu situación actual, analíticas y objetivos, adaptando continuamente el plan al ritmo biológico de tu cuerpo.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Q4 -->
+<div class="faq-item bg-brand-cream rounded-2xl overflow-hidden border border-brand-sand/30 transition-all duration-300 shadow-sm hover:border-brand-coral/40">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg cursor-pointer select-none text-left font-serif text-[17px] text-brand-espresso font-semibold focus:outline-none transition-colors duration-200 hover:text-brand-coral" type="button">
+<span class="pr-space-md">¿Qué papel tiene el movimiento en el Método?</span>
+<span class="material-symbols-outlined text-brand-coral transition-transform duration-300 shrink-0 faq-chevron">expand_more</span>
+</button>
+<div class="faq-content">
+<div>
+<div class="px-space-lg pb-space-lg pt-0 text-brand-text-muted text-[14px] leading-relaxed border-t border-brand-sand/20">
+<p class="pt-space-sm">
+              El movimiento es una parte fundamental de la salud después de los 40. No se trata de entrenar más o terminar exhausta, sino de encontrar la combinación adecuada de <strong>fuerza, movilidad, actividad diaria y recuperación</strong> para favorecer tu composición corporal, preservar hueso y reactivar tu sensibilidad insulínica.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Q5 -->
+<div class="faq-item bg-brand-cream rounded-2xl overflow-hidden border border-brand-sand/30 transition-all duration-300 shadow-sm hover:border-brand-coral/40">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg cursor-pointer select-none text-left font-serif text-[17px] text-brand-espresso font-semibold focus:outline-none transition-colors duration-200 hover:text-brand-coral" type="button">
+<span class="pr-space-md">¿Puede ayudarme con los sofocos y cambios del climaterio?</span>
+<span class="material-symbols-outlined text-brand-coral transition-transform duration-300 shrink-0 faq-chevron">expand_more</span>
+</button>
+<div class="faq-content">
+<div>
+<div class="px-space-lg pb-space-lg pt-0 text-brand-text-muted text-[14px] leading-relaxed border-t border-brand-sand/20">
+<p class="pt-space-sm">
+              Sí. Los sofocos, sudoraciones nocturnas, alteraciones del sueño y cambios de ánimo forman parte de la fluctuación hormonal. Trabajamos sobre los factores de estilo de vida modulables para que atravieses esta transición con calma, recursos y máximo bienestar.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Q6 -->
+<div class="faq-item bg-brand-cream rounded-2xl overflow-hidden border border-brand-sand/30 transition-all duration-300 shadow-sm hover:border-brand-coral/40">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg cursor-pointer select-none text-left font-serif text-[17px] text-brand-espresso font-semibold focus:outline-none transition-colors duration-200 hover:text-brand-coral" type="button">
+<span class="pr-space-md">¿Tus planes están relacionados con empresas como Herbalife o multinivel?</span>
+<span class="material-symbols-outlined text-brand-coral transition-transform duration-300 shrink-0 faq-chevron">expand_more</span>
+</button>
+<div class="faq-content">
+<div>
+<div class="px-space-lg pb-space-lg pt-0 text-brand-text-muted text-[14px] leading-relaxed border-t border-brand-sand/20">
+<p class="pt-space-sm">
+<strong class="text-brand-espresso">En absoluto.</strong> Mi método se basa exclusivamente en la ciencia clínica, la personalización individual y la sostenibilidad a largo plazo. No trabajo con suplementos de marketing multinivel ni con atajos artificiales sin evidencia.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Q7 -->
+<div class="faq-item bg-brand-cream rounded-2xl overflow-hidden border border-brand-sand/30 transition-all duration-300 shadow-sm hover:border-brand-coral/40">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg cursor-pointer select-none text-left font-serif text-[17px] text-brand-espresso font-semibold focus:outline-none transition-colors duration-200 hover:text-brand-coral" type="button">
+<span class="pr-space-md">¿Qué tipo de suplementos sueles recomendar?</span>
+<span class="material-symbols-outlined text-brand-coral transition-transform duration-300 shrink-0 faq-chevron">expand_more</span>
+</button>
+<div class="faq-content">
+<div>
+<div class="px-space-lg pb-space-lg pt-0 text-brand-text-muted text-[14px] leading-relaxed border-t border-brand-sand/20">
+<p class="pt-space-sm">
+              La suplementación no es el punto de partida ni una solución universal. Cuando está indicada, la selecciono de forma personalizada con vitaminas, minerales, ácidos grasos, aminoácidos o adaptógenos de alta pureza. <strong>Menos suplementos por rutina. Más precisión y propósito.</strong>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- HIGH-CONVERTING BOTTOM ACTION CALLOUT: Warm Espresso & Radiant Coral Glow -->
+<section class="w-full bg-brand-espresso text-white py-space-4xl relative overflow-hidden">
+<!-- Decorative subtle ambient glow in brand coral and berry with gentle pulse -->
+<div class="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-brand-coral/25 blur-3xl pointer-events-none animate-ambient-glow"></div>
+<div class="absolute -left-24 -top-24 w-96 h-96 rounded-full bg-brand-berry/20 blur-3xl pointer-events-none animate-ambient-glow" style="animation-delay: -3s;"></div>
+<div class="reveal-on-scroll max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop text-center relative z-10">
+<div class="inline-flex items-center gap-2 px-space-md py-1.5 rounded-full bg-white/10 border border-brand-pink/30 backdrop-blur-md mb-space-md hover:scale-105 transition-transform duration-300 cursor-default">
+<span class="text-[11px] tracking-[0.2em] text-brand-pink uppercase font-bold">
+          Tu Nueva Etapa Empieza Aquí
+        </span>
+</div>
+<h2 class="font-serif text-[36px] md:text-[54px] text-white italic tracking-tight max-w-3xl mx-auto mb-space-md leading-tight">
+        Es tu hora de brillar con salud celular y vitalidad.
+      </h2>
+<p class="text-[16px] text-brand-cream/80 max-w-xl mx-auto mb-space-2xl leading-relaxed">
+        Agenda tu primera sesión diagnóstica y conversemos sobre tus objetivos biológicos, composición corporal y longevidad.
+      </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-space-md max-w-md mx-auto">
+<a class="btn-shimmer w-full sm:w-auto px-space-2xl py-3.5 bg-gradient-to-r from-brand-coral to-brand-berry hover:opacity-95 text-white text-[13px] font-bold rounded-full shadow-[0_12px_28px_rgba(255,97,97,0.45)] hover:shadow-[0_16px_36px_rgba(255,97,97,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 tracking-wider cursor-pointer" href="https://api.whatsapp.com/send/?phone=34601317959&amp;text=Hola%20Carolina,%20quiero%20trabajar%20contigo" rel="noopener noreferrer" target="_blank">
+<span>QUIERO TRABAJAR CONTIGO</span>
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-full sm:w-auto px-space-xl py-3.5 bg-white/10 hover:bg-white/20 text-white text-[13px] font-semibold rounded-full transition-all duration-300 border border-white/20 hover:border-white/40 hover:scale-105 active:scale-95 cursor-pointer" href="https://calendly.com/coachcarolinabarcellona/" rel="noopener noreferrer" target="_blank">
+          Reservar en Calendly
+        </a>
+</div>
+<!-- Verified Studio Address / Studio Details -->
+<div class="mt-space-3xl pt-space-2xl border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-space-md text-brand-cream/70 text-[12px]">
+<div class="flex items-center gap-2 hover:text-brand-cream transition-colors duration-200">
+<span class="material-symbols-outlined text-brand-coral text-[18px]">location_on</span>
+<span>Biolifestyle Studio by Carolina B. • Pozuelo de Alarcón / Madrid • Atención Online Internacional</span>
+</div>
+<div class="flex items-center gap-space-lg text-[11px] font-semibold tracking-wider uppercase text-brand-sand">
+<span class="hover:text-white transition-colors duration-200">Metodología Biomarcadores</span>
+<span>•</span>
+<span class="hover:text-white transition-colors duration-200">Medicina del Estilo de Vida</span>
+<span>•</span>
+<span class="hover:text-white transition-colors duration-200">Longevidad Femenina 40+</span>
+</div>
+</div>
+</div>
+</section>
+<!-- COLLABORATIONS & REPUTATION ROW -->
+<section class="w-full bg-brand-cream py-space-2xl border-b border-brand-sand/20">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+<p class="text-center text-[10px] text-brand-sand tracking-[0.25em] uppercase font-bold mb-space-lg">
+        Colaboraciones y Respaldos en Salud Femenina • Madrid • Bio-Lifestyle
+      </p>
+<div class="flex flex-wrap items-center justify-center gap-space-2xl opacity-75 hover:opacity-100 transition-all duration-300">
+<div class="flex items-center gap-2 font-serif text-[16px] text-brand-espresso font-semibold hover:text-brand-coral transition-colors duration-200 cursor-default">
+<span class="material-symbols-outlined text-brand-coral text-[20px]">science</span>
+<span>Epigenetics Lab</span>
+</div>
+<div class="flex items-center gap-2 font-serif text-[16px] text-brand-espresso font-semibold hover:text-brand-berry transition-colors duration-200 cursor-default">
+<span class="material-symbols-outlined text-brand-berry text-[20px]">spa</span>
+<span>Integrative Clinic Madrid</span>
+</div>
+<div class="flex items-center gap-2 font-serif text-[16px] text-brand-espresso font-semibold hover:text-brand-gold transition-colors duration-200 cursor-default">
+<span class="material-symbols-outlined text-brand-gold text-[20px]">ecg_heart</span>
+<span>Longevity Hub 40+</span>
+</div>
+<div class="flex items-center gap-2 font-serif text-[16px] text-brand-espresso font-semibold hover:text-brand-sand transition-colors duration-200 cursor-default">
+<span class="material-symbols-outlined text-brand-sand text-[20px]">biotech</span>
+<span>Orthomolecular Research</span>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-white shadow-[0_-2px_12px_rgba(32,20,21,0.03)] border-t border-brand-sand/20"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop pt-space-3xl pb-space-2xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl pb-space-2xl border-b border-brand-sand/20"><div class="md:col-span-4 flex flex-col gap-space-sm"><div class="flex items-center gap-space-xs mb-space-xs"><img alt="Carolina Barcellona" class="h-9 w-auto mix-blend-luminosity invert hover:opacity-80 transition-opacity duration-200" src="https://lh3.googleusercontent.com/aida/AEtjO1WUQJQn3QzgL285sOjWVWBshljUgj4WvtMw8FVqa1gKEfzbygbSatz5AoEET-X0bTB68ueNVP7qDESCv0pXhDEqeG_ysdLvxzaYhmt-_A8wiMKIXM0dAqduDB53Pfo5JNizw21d8-uqwM1skyturHTX_Ny6-QU7LmJ2XuVYx55MH6VJV1ubtz5XdSXJWkoL5Gu88wJQJ89HMvawJLvVvvrxYSY1KVbrzzT3IbNL8Q_z8Z3cssjduw9Yyg"/><div class="flex flex-col ml-2"><span class="font-serif text-[16px] tracking-tight text-brand-espresso font-bold">CAROLINA BARCELLONA</span><span class="text-[10px] text-brand-sand tracking-[0.2em] font-semibold -mt-0.5">HEALTH &amp; LONGEVITY 40+</span></div></div><p class="text-[14px] text-brand-text-muted max-w-sm leading-relaxed">Optimización metabólica, vitalidad y longevidad personalizada para la mujer consciente de alto rendimiento.</p><div class="flex items-center gap-space-sm pt-space-xs"><a class="w-9 h-9 rounded-full bg-brand-cream border border-brand-sand/30 flex items-center justify-center text-brand-text-muted hover:bg-brand-pink hover:text-brand-berry hover:scale-110 active:scale-95 transition-all duration-200" href="https://api.whatsapp.com/send/?phone=34601317959&amp;text=Hola%20Carolina"><span class="material-symbols-outlined text-[18px]">chat</span></a><a class="w-9 h-9 rounded-full bg-brand-cream border border-brand-sand/30 flex items-center justify-center text-brand-text-muted hover:bg-brand-pink hover:text-brand-berry hover:scale-110 active:scale-95 transition-all duration-200" href="https://carolinabarcellona.com"><span class="material-symbols-outlined text-[18px]">public</span></a><a class="w-9 h-9 rounded-full bg-brand-cream border border-brand-sand/30 flex items-center justify-center text-brand-text-muted hover:bg-brand-pink hover:text-brand-berry hover:scale-110 active:scale-95 transition-all duration-200" href="https://calendly.com/coachcarolinabarcellona/"><span class="material-symbols-outlined text-[18px]">calendar_month</span></a></div></div><div class="md:col-span-3 flex flex-col gap-space-xs"><span class="text-[11px] font-bold text-brand-espresso uppercase tracking-wider mb-space-2xs">Explorar</span><a class="text-[14px] text-brand-text-muted hover:text-brand-berry transition-colors duration-200 hover:translate-x-1 inline-block" data-path="inicio" href="#">Inicio</a><a class="text-[14px] text-brand-text-muted hover:text-brand-berry transition-colors duration-200 hover:translate-x-1 inline-block" data-path="sobre-mi" href="#">Sobre mí</a><a class="text-[14px] text-brand-text-muted hover:text-brand-berry transition-colors duration-200 hover:translate-x-1 inline-block" data-path="planes" href="#">Planes y Programas</a><a class="text-[14px] text-brand-text-muted hover:text-brand-berry transition-colors duration-200 hover:translate-x-1 inline-block" data-path="metodo" href="#metodo-diosa">El Método Integral</a><a class="text-[14px] text-brand-text-muted hover:text-brand-berry transition-colors duration-200 hover:translate-x-1 inline-block" data-path="blog" href="#">Artículos &amp; Longevidad</a><a class="text-[14px] text-brand-text-muted hover:text-brand-berry transition-colors duration-200 hover:translate-x-1 inline-block" data-path="contacto" href="#">Contacto Privado</a></div><div class="md:col-span-5 flex flex-col gap-space-sm"><span class="font-serif text-[18px] font-bold text-brand-espresso">Únete a mi comunidad</span><p class="text-[14px] text-brand-text-muted leading-relaxed">Recibe cada semana protocolos científicos de longevidad femenina, salud hormonal y estilo de vida metabólico.</p><div class="flex flex-col sm:flex-row items-center gap-space-xs"><input class="w-full bg-brand-cream border border-brand-sand/40 rounded-xl px-space-md py-2.5 text-[14px] text-brand-espresso placeholder-brand-text-muted/60 focus:outline-none focus:border-brand-berry focus:ring-1 focus:ring-brand-berry transition-all duration-200" placeholder="Introduce tu correo electrónico" type="email"/><button class="btn-shimmer w-full sm:w-auto px-space-lg py-2.5 bg-gradient-to-r from-brand-coral to-brand-berry text-white text-[13px] font-bold rounded-xl whitespace-nowrap shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-200 cursor-pointer" type="button">Suscribirme</button></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex flex-wrap items-center gap-space-md"><span class="text-[11px] font-bold text-brand-sand uppercase tracking-wider">Métodos seguros:</span><span class="px-2 py-1 rounded-md bg-brand-cream text-[10px] text-brand-text-muted border border-brand-sand/30 font-semibold">BIZUM</span><span class="px-2 py-1 rounded-md bg-brand-cream text-[10px] text-brand-text-muted border border-brand-sand/30 font-semibold">PAYPAL</span><span class="px-2 py-1 rounded-md bg-brand-cream text-[10px] text-brand-text-muted border border-brand-sand/30 font-semibold">TRANSFERENCIA BANCARIA</span></div><div class="text-center md:text-right text-[12px] text-brand-text-muted">© 2025 Carolina Barcellona. Todos los derechos reservados. Longevidad femenina de precisión.</div></div></div></footer>
+<!-- Interactive Scripts (FAQ Accordion, IntersectionObserver Scroll Reveal, Stats Counter) -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Scroll Triggered Entrance via IntersectionObserver
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.12
+    };
+
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => scrollObserver.observe(el));
+
+    // 2. Animated Stats Counter
+    const statCounters = document.querySelectorAll('[data-count-target]');
+    let statsTriggered = false;
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !statsTriggered) {
+          statsTriggered = true;
+          statCounters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-count-target'));
+            const suffix = counter.getAttribute('data-count-suffix') || '';
+            const decimals = parseInt(counter.getAttribute('data-count-decimals') || '0', 10);
+            const duration = 1600;
+            const startTime = performance.now();
+
+            function updateCounter(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              // Ease out quart
+              const easeOut = 1 - Math.pow(1 - progress, 4);
+              const currentVal = (target * easeOut).toFixed(decimals);
+              counter.textContent = currentVal + suffix;
+
+              if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+              } else {
+                counter.textContent = target.toFixed(decimals) + suffix;
+              }
+            }
+            requestAnimationFrame(updateCounter);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (statCounters.length > 0) {
+      statsObserver.observe(statCounters[0]);
+    }
+
+    // 3. Smooth Interactive FAQ Accordion
+    const faqItems = document.querySelectorAll('#faq-accordion-group .faq-item');
+    faqItems.forEach(item => {
+      const trigger = item.querySelector('.faq-trigger');
+      const chevron = item.querySelector('.faq-chevron');
+
+      trigger.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close other items for single-open accordions
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherChevron = otherItem.querySelector('.faq-chevron');
+            if (otherChevron) otherChevron.classList.remove('rotate-180');
+          }
+        });
+
+        // Toggle current
+        if (isActive) {
+          item.classList.remove('active');
+          chevron.classList.remove('rotate-180');
+        } else {
+          item.classList.add('active');
+          chevron.classList.add('rotate-180');
+        }
+      });
+    });
+
+    // 4. Subtle Header shadow elevation on scroll
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('shadow-[0_4px_20px_rgba(32,20,21,0.08)]');
+      } else {
+        header.classList.remove('shadow-[0_4px_20px_rgba(32,20,21,0.08)]');
+      }
+    }, { passive: true });
+  });
+</script>
+</body></html>

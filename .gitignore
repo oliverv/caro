@@ -8,3 +8,17 @@ coverage/
 !.env.example
 .vercel
 .tmp/
+
+# BEGIN oh-my-opencode-slim worktrees
+.slim/worktrees/
+.slim/worktrees.json
+# END oh-my-opencode-slim worktrees
+
+# oh-my-agent runtime (local artifacts — do not commit)
+.antigravitycli/
+.agents/results/
+.agents/state/
+.agents/backup/
+docs/plans/
+.migration-backup/
+.qwen/tmp/

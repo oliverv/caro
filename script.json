@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "shorts",
+  "aspect": "9:16",
+  "locale": "es",
+  "title": "Carolina Barcellona - Plan Gran Diosa",
+  "music": "calm",
+  "brand": {},
+  "scenes": [
+    {
+      "id": "scene-01",
+      "durationSec": 6,
+      "narration": "¿Te sientes diferente al cumplir los cuarenta? ¿Cansancio, insomnio, cambios de peso inexplicables?",
+      "onScreenText": ["¿Sintiéndote", "diferente", "tras los 40? 🌺"],
+      "visual": {
+        "kind": "still",
+        "prompt": "Premium editorial photo of an elegant thoughtful woman in her 40s, near a bright window in a modern warm living room. Soft natural warm lighting, generous negative space, warm organic textures, Vollkorn aesthetic, 9:16 vertical composition.",
+        "source": "agent-authored"
+      }
+    },
+    {
+      "id": "scene-02",
+      "durationSec": 6,
+      "narration": "Te han dicho que es la edad y que debes resignarte. Pero no es vejez, son señales de tu cuerpo.",
+      "onScreenText": ["¿Es solo la edad?", "No te resignes."],
+      "visual": {
+        "kind": "still",
+        "prompt": "Artistic abstract visual representing metabolic vitality and cellular energy. Warm golden and soft coral tones, beautiful light refraction, elegant scientific macro photo, warm linen background, 9:16 vertical composition.",
+        "source": "agent-authored"
+      }
+    },
+    {
+      "id": "scene-03",
+      "durationSec": 6,
+      "narration": "El Método Código Diosa reprograma tu biología con epigenética y nutrición de precisión.",
+      "onScreenText": ["Reprograma", "tu biología 🔬", "Método Diosa"],
+      "visual": {
+        "kind": "still",
+        "prompt": "Elegant clinical wellness studio, minimalist aesthetic, warm linen colored walls, soft organic materials, architectural arched framing, warm sunlight, glassmorphic elements, 9:16 vertical composition.",
+        "source": "agent-authored"
+      }
+    },
+    {
+      "id": "scene-04",
+      "durationSec": 6,
+      "narration": "Escucha las señales de tu cuerpo. Diseña tu longevidad y recupera tu energía vital.",
+      "onScreenText": ["Escucha", "las señales", "Recupera tu energía"],
+      "visual": {
+        "kind": "still",
+        "prompt": "Radiant, confident healthy active woman in her late 40s smiling, soft natural lighting, outdoor architectural archways background, premium wellness brand look, 9:16 vertical composition.",
+        "source": "agent-authored"
+      }
+    },
+    {
+      "id": "scene-05",
+      "durationSec": 6,
+      "narration": "Empieza hoy tu autodiagnóstico gratuito. Completa tu Bible Sheet en el enlace de la bio.",
+      "onScreenText": ["Autodiagnóstico", "GRATUITO", "Bible Sheet 🌺"],
+      "visual": {
+        "kind": "still",
+        "prompt": "Clean close-up shot of a modern smartphone showing an elegant diagnostic wellness questionnaire. Clean design, warm linen background, premium coral buttons, 9:16 vertical composition.",
+        "source": "agent-authored"
+      }
+    }
+  ]
+}
