@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CODIGO_DIOSA } from '../data/codigoDiosa';
 import { useLanguage } from '../context/LanguageContext';
 
-// Embeds the Google Form as a styled section (PRD §4.1.8 — Bible Sheet 🌺)
+// Bible Sheet 🌺 application section (PRD §4.1.8)
 // The form URL is the single confirmed apply URL from codigoDiosa.ts.
-const EMBED_URL = CODIGO_DIOSA.applyFormUrl.replace('/viewform', '/viewform?embedded=true');
 
 export const BibleSheetSection: React.FC = () => {
   const { language } = useLanguage();
-  const [fullscreen, setFullscreen] = useState(false);
 
   const title = language === 'es'
     ? 'Bible Sheet 🌺 — Tu Diagnóstico Personalizado'
@@ -26,8 +24,10 @@ export const BibleSheetSection: React.FC = () => {
   const subtitle = language === 'es'
     ? 'Completa este formulario y Carolina revisará tu caso personalmente. Es el primer paso para entrar al Método Código Diosa.'
     : "Complete this form and Carolina will personally review your case. It's the first step to joining the Código Diosa Method.";
-  const expandLabel = language === 'es' ? 'Ver en pantalla completa' : 'View fullscreen';
-  const collapseLabel = language === 'es' ? 'Cerrar pantalla completa' : 'Close fullscreen';
+  const openLabel = language === 'es' ? 'Abrir formulario' : 'Open the form';
+  const formHint = language === 'es'
+    ? 'El formulario se abre en una pestaña nueva. Tardarás 3-4 minutos.'
+    : 'The form opens in a new tab. It takes 3-4 minutes.';
 
   return (
     <>
@@ -63,37 +63,24 @@ export const BibleSheetSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Form card */}
-          <div className="relative bg-white rounded-3xl shadow-[0_12px_40px_-8px_rgba(238,41,92,0.12)] overflow-hidden"
+          {/* Form card — opens in a new tab. The Google Form currently requires
+              sign-in, so it cannot be embedded; restore the iframe once Carolina
+              disables "Restrict to users" / "Require sign-in" in the form settings. */}
+          <div className="bg-white rounded-3xl shadow-[0_12px_40px_-8px_rgba(238,41,92,0.12)] px-6 py-10 md:px-10 md:py-12 text-center"
                style={{ border: '0.5px solid rgba(238,41,92,0.15)' }}>
-            {/* Expand button */}
-            <div className="flex items-center justify-between px-5 py-3 border-b border-[#EE295C]/10 bg-[#FFF8F9]">
-              <span className="text-[12px] font-semibold text-[#685354]">
-                Google Forms · Solicitud Método Código Diosa
-              </span>
-              <button
-                onClick={() => setFullscreen(true)}
-                className="flex items-center gap-1.5 text-[12px] font-bold text-[#B90040] hover:underline cursor-pointer"
-              >
-                <span className="material-symbols-outlined text-[16px]">open_in_full</span>
-                {expandLabel}
-              </button>
-            </div>
-
-            <iframe
-              id="bible-sheet-iframe"
-              src={EMBED_URL}
-              title="Bible Sheet — Solicitud Método Código Diosa"
-              width="100%"
-              height="720"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              className="block w-full"
-              loading="lazy"
+            <span className="material-symbols-outlined text-[40px] text-[#B90040] mb-3 block" aria-hidden="true">assignment</span>
+            <p className="text-[15px] text-[#685354] max-w-md mx-auto leading-relaxed mb-6">
+              {formHint}
+            </p>
+            <a
+              href={CODIGO_DIOSA.applyFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[15px] font-bold shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              Cargando formulario…
-            </iframe>
+              {openLabel}
+              <span className="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
+            </a>
           </div>
 
           {/* Trust note */}
@@ -104,42 +91,6 @@ export const BibleSheetSection: React.FC = () => {
         </div>
       </section>
 
-      {/* Fullscreen lightbox */}
-      {fullscreen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setFullscreen(false)}
-        >
-          <div
-            className="relative bg-white rounded-2xl overflow-hidden w-full max-w-3xl shadow-2xl"
-            style={{ maxHeight: '92vh' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between px-5 py-3 border-b border-[#EE295C]/10 bg-[#FFF8F9]">
-              <span className="text-[13px] font-semibold text-[#685354]">
-                Bible Sheet 🌺 — Solicitud Método Código Diosa
-              </span>
-              <button
-                onClick={() => setFullscreen(false)}
-                className="flex items-center gap-1 text-[12px] font-bold text-[#685354] hover:text-[#B90040] cursor-pointer"
-              >
-                <span className="material-symbols-outlined text-[18px]">close</span>
-                {collapseLabel}
-              </button>
-            </div>
-            <iframe
-              src={EMBED_URL}
-              title="Bible Sheet — Pantalla completa"
-              width="100%"
-              height="780"
-              frameBorder="0"
-              className="block w-full"
-            >
-              Cargando…
-            </iframe>
-          </div>
-        </div>
-      )}
     </>
   );
 };

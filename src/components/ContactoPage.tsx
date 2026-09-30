@@ -390,7 +390,7 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
               </div>
               <h3 className="font-headline-sm text-headline-sm text-on-surface">Studio & Consultas</h3>
               <div className="relative w-full h-44 rounded-md overflow-hidden bg-surface-container flex items-center justify-center shadow-inner"
-                style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAcNX2h9nm7eRAWu19fzFsPSNNdN828oTIwwB61lrZwv1ypZC1YxTvBRB9gNEQlSARYmf7GnVG_dRhPq45Rb6dup0EM3Eh4u5Kx89jfb7He-skGleNivFVqOBs4S1KcF7ZJM7eAfX803DxdRWP6yEbB8zQhpKBIrMPfCms4CsZSOfyWyIzAFYdQ9rU8uwSjatUDOBpyytJfTlqxkXNZicPlI9L6M9cjB-gh5YD0CKMtNZyA6lXXY0G_ow')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+                style={{ backgroundImage: "url('/assets/blog/blog-11.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
               >
                 <div className="absolute inset-0 bg-surface-container-lowest/60 backdrop-blur-[2px]" />
                 <div className="relative z-10 flex flex-col items-center">
@@ -403,7 +403,7 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                 </div>
                 <a
                   className="absolute bottom-2 right-2 z-10 px-3 py-1 rounded-full bg-surface-container-lowest/90 text-on-surface text-label-sm font-semibold hover:bg-surface-container-lowest shadow-sm flex items-center gap-1"
-                  href="https://maps.google.com"
+                  href="https://www.google.com/maps/place/Biolifestyle+Studio+by+Carolina+B.+(Health+%26+Wellness+Coach+%7C+%7C+Biohacker)/@40.463279,-3.803412,17z/data=!3m1!4b1!4m6!3m5!1s0xd41870d8044157f:0x937709a17be439cd!8m2!3d40.463279!4d-3.803412!16s%2Fg%2F11rxnlwt1g"
                   rel="noopener noreferrer"
                   target="_blank"
                 >

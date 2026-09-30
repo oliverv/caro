@@ -38,7 +38,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onContact }) => {
               </button>
               <a
                 id="btn-cta-calendly"
-                href="https://calendly.com/coachcarolinabarcellona/"
+                href="https://calendly.com/carolinabarcellona"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-space-xl py-3.5 bg-white/10 hover:bg-white/15 text-white fine-border-dark backdrop-blur-sm text-[14px] font-semibold rounded-full transition-all flex items-center justify-center gap-2"

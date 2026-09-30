@@ -273,13 +273,12 @@ export const SobreMiPage: React.FC<SobreMiPageProps> = ({
               Reservar Cita
             </button>
           </div>
-          <a
+          <button
             className="font-body-md text-body-md text-secondary-fixed-dim hover:text-on-primary underline underline-offset-4 transition-colors mb-space-sm cursor-pointer"
             onClick={() => onNavigatePlanes()}
-            href="#"
           >
             Ver Planes & Precios
-          </a>
+          </button>
           <p className="font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">
             Sin compromiso al aplicar
           </p>

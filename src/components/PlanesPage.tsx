@@ -528,7 +528,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
         </div>
         <a
           className="inline-flex items-center gap-2 font-title-md text-title-md text-primary font-semibold hover:underline"
-          href="https://google.com"
+          href="https://www.google.com/maps/place/Biolifestyle+Studio+by+Carolina+B.+(Health+%26+Wellness+Coach+%7C+%7C+Biohacker)/@40.463279,-3.803412,17z/data=!3m1!4b1!4m6!3m5!1s0xd41870d8044157f:0x937709a17be439cd!8m2!3d40.463279!4d-3.803412!16s%2Fg%2F11rxnlwt1g"
           rel="noopener noreferrer"
           target="_blank"
         >

@@ -14,7 +14,7 @@ const BLOG_POSTS_DATA = [
     readTime: '5 min de lectura',
     title: 'Menopausia en las orcas: ¿por qué las abuelas orca son tan importantes?',
     excerpt: 'Solo cinco especies en todo el planeta experimentan menopausia: los seres humanos y cuatro tipos de ballenas dentadas, incluidas las orcas. ¿Qué nos enseña la naturaleza sobre liderar en la madurez?',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuByyXLghICTBB0TOA9qf5WH_wccyJjE1HJ9YRZNDYs9XywP0f_vO48dv7k2IYi9DHNDZXcOYQbaK895aiPP3Prjpd_6Pf-IQ8DkPX_tNjVxlVA3KgQqo8h4TaMAtQVxfp7Rf5a9oeWJb3-Sf0l1Pyjmrt0CJqNx1N3Jpe7VV56S_hD_npKwxeCKF1K4IJyuU78SQhNa1HYeW8XmiEcfQI7WzhCmTxG0ONzr1IEN2_3dJzccCt0PzwI_NQ',
+    image: '/assets/blog/blog-01.jpg',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const BLOG_POSTS_DATA = [
     readTime: '7 min de lectura',
     title: 'La menopausia no es el final: lo que la evolución nos dice sobre la segunda etapa de la vida femenina',
     excerpt: 'Hay una pregunta sobre la menopausia que rara vez nos hacemos. No es: ¿cómo elimino los sofocos?, sino: ¿qué mensaje celular me está transmitiendo mi organismo para resetear mis hábitos?',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBftbk5r7gkQj9ihvscg6tn9XIn2w9ZgJW1zfqmxXIEEAe4RO0t8KYKDN0UsrigV_ukDEkSdLRW47WbRQBqP3v5icy5DWR_1ZfGc4Scxd94nh7QCJ9UfTSo5klxzYUcdn5B1kCJcx4FR1iSY76dG5byPbDpyl4XZB9AiVS2FuV_dO6-HHWYLDZWj7MLqcwX0AaNvsIiny53_aH-kDKwAJL_VxgO4AXPRtBwrGqsAjk50D0Pzty1VOZOeg',
+    image: '/assets/blog/blog-02.jpg',
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const BLOG_POSTS_DATA = [
     readTime: '5 min de lectura',
     title: 'El Ciclo Invisible del Agua: cómo los fármacos consumidos afectan la salud',
     excerpt: 'Los microplásticos y residuos farmacológicos que no se filtran en plantas depuradoras convencionales pueden actuar como disruptores endocrinos (xenoestrógenos) en el organismo.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDNPsAZlRa4EW2AOLBvRJ27lV5rmWDYy_yiA-DQ6jnSBYJz_ZYXY-Lm1jyX2b6WqMYF0fDxNIkBVTOeMCe3A-1mNAIWIYf-Zp2wGOf7eNk0DsiK4yBi5u_BKDxX3_nzyU7hVr_oo2mBPWvLwwLycE2MUKUPtKAkKdMHEGCzFjM-02hyDEBeaslMyThvKpKQDynfTahGXmgemG7oTlGMp3ruTDFsmQzRgMxcFLossJcgszKJgSSgBSrqlQ',
+    image: '/assets/blog/blog-03.jpg',
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ const BLOG_POSTS_DATA = [
     readTime: '4 min de lectura',
     title: 'NO AL BULLYING… no podemos seguir normalizando la crueldad',
     excerpt: 'El impacto del estrés psicológico, la crítica social y el rechazo en la infancia y la edad adulta deja marcas biológicas duraderas en el sistema inmune y la respuesta inflamatoria.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiFUmzrqCevdZcwQBCeYATKTHjip0VdoRw8NLZa9wRAqNCU7Nz5_rwGIDQNpocuMJ7aJYHiuzzE8gWk6FqOCP7iMufBvJPU5v5oqPIOTpCI4Gva2jQ5qO-WaIR2ILo60RqVneeFrDOI0gN8ffq-3f81C6ncPlIR0bipI42I59oFl_ltznz2usaCM0r3XcTrPvsA9eZzzHU62nNKDOcqqdnAIh_nODM-AEizzc2Wrqh09ON6l6GLwTkrg',
+    image: '/assets/carolina-vitality.jpg',
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const BLOG_POSTS_DATA = [
     readTime: '5 min de lectura',
     title: '¿Qué plantea la nueva pirámide nutricional de Estados Unidos?',
     excerpt: 'Se reabre el debate global sobre las guías nutricionales: el desplazamiento de cereales refinados en favor de proteínas de alta biodisponibilidad, grasas saludables y vegetales ricos en polifenoles.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA-39pjMyTBw_GqVy2P99dcyBz2PY225G034Dn1aEuXSSZCt481TBnrNl5nz8ZXGBwtuJiw9FF9YwR6K4kJZCpeNYaZqejBzDy5fUKfe85629iMBhOIhl_Zz0w3CEhZWnnwQnDxAGzqRnGeKSKaEi-B-syHamH68XwJl7_xeVzthW3mKE0Is6TXE3NFN68cuqp7DT6qs_ECvO1t_HWRmGaNOJBPwKarlE_tmE_q1-NknzEtTkd4t4EFYA',
+    image: '/assets/blog/blog-05.jpg',
   },
   {
     id: 6,
@@ -64,7 +64,7 @@ const BLOG_POSTS_DATA = [
     readTime: '6 min de lectura',
     title: 'Déficit de Omega-3 (y qué hacer al respecto) - Estudio 2025',
     excerpt: 'Los ácidos grasos Omega-3 (EPA y DHA) son componentes estructurales de todas las membranas celulares del cuerpo humano.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAZTGrPtAI-ZdXHhiPh-K5ztB9B-qavYinF9yGwqYPaHTUmpy3e5KN7sXxof3zAXhCOmIrB0yLZt2yWSU0IKtJ9w48ZJaBaE8Z-LXh0xsdAl6jnWQ4SNRrLnEcOGD29s_bRhs18CrEmqekpeTNqlnGAmHlLZCAZ3NXLPf7nEvQUfDsVhcczf-L4CATNpXHQqPb8hLp6L-8MOozSJt7WavdtmI82FGAt5qQp2YEkW_RKbRxDAOhz8tf89A',
+    image: '/assets/blog/blog-06.jpg',
   },
   {
     id: 7,
@@ -74,7 +74,7 @@ const BLOG_POSTS_DATA = [
     readTime: '8 min de lectura',
     title: 'Masa muscular, grasa visceral y salud cerebral: lo que dice la ciencia',
     excerpt: 'En los últimos años, la neurociencia y la endocrinología han confirmado algo crucial: tu músculo esquelético es un órgano endocrino que segrega mioquinas capaces de proteger tu memoria y reducir la inflamación cerebral.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTWPqNv8moclP_Dgmt_4t4qlnyNKc4xrnWDylxnP3PcaTK3kgvMggj6bKnQL3IL7sUgqX3RymOQ1V6v60rZo6Mi_kxPGslMXhhbI8hMx9wQhJkXhcUp8iv9IuaS3GxOovNQoGwzaPDl4pFE4HcjKK61kLgyMNKxPsf5YphYmM4kZqmcOtCRYYOPyhCL6WbtyFUwzVBeC5Sks-1lIZ1O6HkfiPgXGgXOgmPxfBmCIRdlWzQGn_iohULiA',
+    image: '/assets/blog/blog-07.jpg',
   },
   {
     id: 8,
@@ -84,7 +84,7 @@ const BLOG_POSTS_DATA = [
     readTime: '7 min de lectura',
     title: 'Hábitos que equilibran tus hormonas: una guía basada en evidencia científica',
     excerpt: 'La epigenética demuestra que tus comportamientos diarios activan o silencian genes que regulan la síntesis de estrógenos, progesterona, tiroides y cortisol.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCUq8Lyb8yV2zPTcuR0euSl5J2EBnmhHedLfvHt6gmwvUtzyDgH7iprsv0a4Bu3nBhiV3naGuTA9jZB9lYOW3Z-o4BzpLoaFR-6sIvWEDBTJaHK8JD8KyEyYSiBkU5fDYgkOnGaejFwSaUCgLo0qUN5qgYKRtQW0drEHZgaoeHCzgoNr1Yx6o4Nhnz2yr-C6lb1qB4UsfkNxuUIe4xh_zTmbiymGXHt8CyE_9ohNT0rr-rJtXL0CCQoFg',
+    image: '/assets/blog/blog-08.jpg',
   },
   {
     id: 9,
@@ -94,7 +94,7 @@ const BLOG_POSTS_DATA = [
     readTime: '6 min de lectura',
     title: 'Cómo el ejercicio transforma tu epigenética: guía práctica para activar tu salud desde adentro',
     excerpt: 'Cada contracción muscular envía señales directas a tu ADN. Cambios epigenéticos —como la metilación y la acetilación de histonas— pueden silenciar genes inflamatorios en cuestión de semanas.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA1CKuvaW70GKKDvh209rTiudCMA4UWdQydfZNDbJoCTpNfOu_9HEAFpixXe5rVdp0ck04F2Z_8sbYDBH3RsAuTdxMSpqDb7vBvOxAK7H_uor144E27_Fx7xxKw98ZNLNCTHHnKYv2PIdlmV86R39SkN_TCBomipYRIvHxUSJjO1FTs926DkALyAgCWS8HWe-v2MaOD6_YaOyZBOKU1X9LBwgoJMYBfv6KkHDps6PCIkNHTjMXN5JWQuA',
+    image: '/assets/blog/blog-09.jpg',
   },
 ];
 
@@ -108,7 +108,7 @@ const CATEGORIES = [
 ];
 
 const FEATURED_POST = {
-  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBLDqzyB5czbSh1bSGUyhl_bATgXquYay0zZfyXBq5AeRZEGSrnHrIX0F37no6IW9pqrGLdjEfGiL3k6Bw4ugV3SO3Jqk9oCbD7oBoQdY6-yq0nCpZGBvnYeGgD_WHK_ELpti4TvfZFGFZ7nfTlGsGBuGcrFiGipWELomvBU3h8zO525DOptpai02dIRZKh1BSEYKNgyhR06G4KeG38dUBm-kOqDtMQ43nqnfNqSgx22GgTvZyj4-G0i6h_DFIRgopAkXE',
+  image: '/assets/blog/blog-10.jpg',
   category: 'Menopausia & Evolución',
   date: 'Agosto 2026',
   readTime: '6 min de lectura',
@@ -116,7 +116,7 @@ const FEATURED_POST = {
   excerpt: '¿Por qué las mujeres dejamos de reproducirnos mientras todavía nos quedan muchas décadas de vida por delante? La lógica evolutiva detrás de la longevidad posmenopáusica y el fitness inclusivo.',
 };
 
-export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome }) => {
+export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome, onOpenBookingModal }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [newsletterEmail, setNewsletterEmail] = useState('');
 
@@ -124,7 +124,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome }) => {
     event.preventDefault();
     const subject = encodeURIComponent('Suscripción — Newsletter Celular 40+');
     const body = encodeURIComponent(`Hola Carolina, quiero suscribirme al newsletter con este correo: ${newsletterEmail}`);
-    window.location.href = `mailto:info@carolinabarcellona.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:contacto@carolinabarcellona.com?subject=${subject}&body=${body}`;
   };
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -212,10 +212,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome }) => {
                 </p>
               </div>
               <div className="pt-4 flex items-center justify-between">
-                <a className="group inline-flex items-center gap-2 font-title-md text-title-md text-primary hover:text-primary-container transition-all" href="#">
+                <button onClick={onOpenBookingModal} className="group inline-flex items-center gap-2 font-title-md text-title-md text-primary hover:text-primary-container transition-all cursor-pointer">
                   <span className="font-semibold">Leer artículo completo</span>
                   <span className="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1.5">arrow_forward</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -304,15 +304,15 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome }) => {
                     <span>{post.date} • {post.readTime}</span>
                   </div>
                   <h3 className="font-headline-sm text-headline-sm text-on-surface leading-snug mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                    <a href="#">{post.title}</a>
+                    <button onClick={onOpenBookingModal} className="text-left hover:text-primary transition-colors cursor-pointer">{post.title}</button>
                   </h3>
                   <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-6 line-clamp-2">
                     {post.excerpt}
                   </p>
-                  <a className="mt-auto inline-flex items-center gap-1 font-title-md text-body-md text-primary font-semibold group/btn" href="#">
+                  <button onClick={onOpenBookingModal} className="mt-auto inline-flex items-center gap-1 font-title-md text-body-md text-primary font-semibold group/btn cursor-pointer">
                     <span>Leer artículo completo</span>
                     <span className="material-symbols-outlined text-[18px] transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-                  </a>
+                  </button>
                 </div>
               </article>
             ))}
@@ -371,12 +371,12 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome }) => {
             El Método Código Diosa combina análisis metabólico de precisión con crononutrición adaptada para devolverte la energía que creías haber perdido.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto">
-            <a
-              className="w-full sm:w-auto inline-flex items-center justify-center font-title-md text-title-md text-on-surface bg-surface-container-lowest px-8 py-3.5 rounded-full shadow-lg hover:bg-surface-bright hover:scale-[1.02] active:scale-[0.98] transition-all"
-              href="#"
+            <button
+              onClick={onOpenBookingModal}
+              className="w-full sm:w-auto inline-flex items-center justify-center font-title-md text-title-md text-on-surface bg-surface-container-lowest px-8 py-3.5 rounded-full shadow-lg hover:bg-surface-bright hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               Aplicar al Método
-            </a>
+            </button>
             <a
               className="w-full sm:w-auto inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 px-8 py-3.5 rounded-full transition-all duration-200"
               href="https://api.whatsapp.com/send/?phone=34601317959"
