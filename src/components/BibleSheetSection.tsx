@@ -38,13 +38,13 @@ export const BibleSheetSection: React.FC = () => {
         <div className="max-w-[860px] mx-auto px-4 md:px-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <span className="inline-block px-3 py-1 rounded-full bg-[#EE295C]/10 text-[#EE295C] text-[11px] font-bold tracking-[0.18em] uppercase mb-3">
+            <span className="inline-block px-3 py-1 rounded-full bg-[#EE295C]/10 text-[#B90040] text-[12px] font-bold tracking-[0.18em] uppercase mb-3">
               Paso 1 · Solicitud · {toolLabel}
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#201415] mb-3 leading-tight">
               {title}
             </h2>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#C7A46B]/15 text-[#7E5B20] text-[11px] font-bold tracking-[0.14em] uppercase mb-4">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#C7A46B]/15 text-[#7E5B20] text-[12px] font-bold tracking-[0.14em] uppercase mb-4">
               {planBadge}
             </span>
             <p className="font-serif italic text-[17px] text-[#685354] max-w-xl mx-auto leading-relaxed mb-3">
@@ -55,8 +55,8 @@ export const BibleSheetSection: React.FC = () => {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
               {metaBadges.map((badge) => (
-                <span key={badge} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white text-[11px] font-semibold text-[#685354] shadow-sm">
-                  <span className="material-symbols-outlined text-[14px] text-[#EE295C]">verified</span>
+                <span key={badge} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white text-[12px] font-semibold text-[#685354] shadow-sm">
+                  <span className="material-symbols-outlined text-[14px] text-[#B90040]">verified</span>
                   {badge}
                 </span>
               ))}
@@ -73,7 +73,7 @@ export const BibleSheetSection: React.FC = () => {
               </span>
               <button
                 onClick={() => setFullscreen(true)}
-                className="flex items-center gap-1.5 text-[12px] font-bold text-[#EE295C] hover:underline cursor-pointer"
+                className="flex items-center gap-1.5 text-[12px] font-bold text-[#B90040] hover:underline cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[16px]">open_in_full</span>
                 {expandLabel}
@@ -97,8 +97,8 @@ export const BibleSheetSection: React.FC = () => {
           </div>
 
           {/* Trust note */}
-          <p className="text-center text-[12px] text-[#685354]/70 mt-4 flex items-center justify-center gap-1.5">
-            <span className="material-symbols-outlined text-[14px] text-[#C7A46B]">lock</span>
+          <p className="text-center text-[12px] text-[#685354] mt-4 flex items-center justify-center gap-1.5">
+            <span className="material-symbols-outlined text-[14px] text-[#7E5B20]">lock</span>
             Tus datos están protegidos — tratados según la Política de Privacidad de Carolina Barcellona.
           </p>
         </div>
@@ -121,7 +121,7 @@ export const BibleSheetSection: React.FC = () => {
               </span>
               <button
                 onClick={() => setFullscreen(false)}
-                className="flex items-center gap-1 text-[12px] font-bold text-[#685354] hover:text-[#EE295C] cursor-pointer"
+                className="flex items-center gap-1 text-[12px] font-bold text-[#685354] hover:text-[#B90040] cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[18px]">close</span>
                 {collapseLabel}

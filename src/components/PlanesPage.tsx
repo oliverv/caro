@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ASSETS } from '../data';
 
 interface PlanesPageProps {
   onOpenBookingModal: () => void;
@@ -111,7 +112,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
               <div className="flex flex-wrap items-center gap-space-md mb-space-xl w-full sm:w-auto">
                 <button
                   onClick={onOpenBookingModal}
-                  className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary px-8 py-4 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-[#D6254F] to-primary px-8 py-4 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
                   Aplicar al Método
                 </button>
@@ -146,9 +147,9 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
                 <div className="rounded-t-full rounded-b-[2.5rem] p-3 bg-surface-container-lowest shadow-[0_20px_48px_-12px_rgba(104,83,84,0.18)]">
                   <div className="rounded-t-full rounded-b-[2rem] overflow-hidden aspect-[3/4] relative bg-surface-container">
                     <img
-                      alt="Carolina Barcellona"
-                      className="w-full h-full object-cover object-center"
-                      src="https://lh3.googleusercontent.com/aida/AEtjO1Wor7YcVWQZGpXxF42E3sYgoHW_y37bxIcHP3PbXQ_FN8DG3kv_dlB9ULbC5u70JTu9rQr1w_o_ErEIoq_-F35POpo_K3EZb5ZJ8RMNGeBruHQc6xtJfOhO5XkBKeKwwn7AIPGfaRYKLsIE-hyRKAa1xIQLT-ynFnvfNspnMeXmvrKRVeEFzxRIr3Ys_brRlDiBjA0bKPuUTim68ulv2P-w_Y2FaQdxD-1V7w12HLQiSAoAh_L-stLis9jZ"
+                      alt="Carolina Barcellona estirando al aire libre, como parte de su enfoque de bienestar y movimiento"
+                      className="w-full h-full object-cover object-[50%_34%]"
+                      src={ASSETS.vitalityPhoto}
                     />
                   </div>
                 </div>
@@ -397,14 +398,14 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
                 <span className="font-body-sm text-body-sm text-on-surface">Informe Epixlife — Consultar a Carolina</span>
               </div>
             </div>
-            <div className="flex items-center justify-center gap-6 mb-space-lg opacity-70">
+            <div className="flex items-center justify-center gap-6 mb-space-lg">
               {['STRIPE', 'KLARNA', 'VISA', 'MASTERCARD'].map((m) => (
                 <span key={m} className="font-label-md text-label-md font-bold text-on-surface-variant tracking-wider">{m}</span>
               ))}
             </div>
             <button
               onClick={onOpenBookingModal}
-              className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary w-full py-4 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:scale-[1.01] active:scale-[0.99] transition-all mb-3 cursor-pointer"
+              className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-[#D6254F] to-primary w-full py-4 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:scale-[1.01] active:scale-[0.99] transition-all mb-3 cursor-pointer"
             >
               Aplicar al Método
             </button>
@@ -449,7 +450,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
               </div>
             ))}
           </div>
-          <p className="font-body-sm text-body-sm text-on-surface-variant/70 max-w-lg mx-auto">
+          <p className="font-body-sm text-body-sm text-on-surface-variant max-w-lg mx-auto">
             Enlaces de afiliada: Contratando con el código #CARO recibes 50€ de descuento en tu membresía Axo Longevity.
           </p>
         </div>
@@ -483,7 +484,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
           <div className="text-center mt-space-md">
             <button
               onClick={onOpenBookingModal}
-              className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary px-8 py-3.5 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-[#D6254F] to-primary px-8 py-3.5 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               Aplicar al Método
             </button>
@@ -564,7 +565,7 @@ export const PlanesPage: React.FC<PlanesPageProps> = ({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-space-md w-full max-w-md">
             <button
               onClick={onOpenBookingModal}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-secondary-container to-primary-container text-on-primary font-title-md text-title-md font-bold text-center shadow-[0_8px_24px_-2px_rgba(238,41,92,0.45)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-[#D6254F] to-primary text-on-primary font-title-md text-title-md font-bold text-center shadow-[0_8px_24px_-2px_rgba(238,41,92,0.45)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               Aplicar al Método
             </button>

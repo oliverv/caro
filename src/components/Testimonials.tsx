@@ -10,7 +10,7 @@ export const Testimonials: React.FC = () => {
       <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-space-3xl gap-space-md">
           <div>
-            <span className="text-[12px] font-bold text-[#FF6161] tracking-[0.2em] uppercase block mb-space-2xs">
+            <span className="text-[12px] font-bold text-[#B2292F] tracking-[0.2em] uppercase block mb-space-2xs">
               {tm.badge}
             </span>
             <h2
@@ -29,10 +29,10 @@ export const Testimonials: React.FC = () => {
             href="https://www.google.com/maps/place/Biolifestyle+Studio+by+Carolina+B.+(Health+%26+Wellness+Coach+%7C+%7C+Biohacker)/@40.463279,-3.803412,17z/data=!3m1!4b1!4m6!3m5!1s0xd41870d8044157f:0x937709a17be439cd!8m2!3d40.463279!4d-3.803412!16s%2Fg%2F11rxnlwt1g"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#EE295C] hover:underline"
+            className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#B90040] hover:underline"
           >
             <span>{tm.googleLink}</span>
-            <span className="text-[#F69C05] tracking-widest text-base">★★★★★</span>
+            <span className="text-[#8F5300] tracking-widest text-base">★★★★★</span>
           </a>
         </div>
 
@@ -46,10 +46,10 @@ export const Testimonials: React.FC = () => {
             >
               <div>
                 <div className="flex items-center justify-between mb-space-md">
-                  <div className="flex text-[#F69C05] text-[15px] tracking-wider">
+                  <div className="flex text-[#8F5300] text-[15px] tracking-wider">
                     {'★'.repeat(item.rating)}
                   </div>
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#F8CFD5]/50 text-[10px] text-[#EE295C] uppercase tracking-wider font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#F8CFD5]/50 text-[12px] text-[#B90040] uppercase tracking-wider font-bold">
                     {item.program}
                   </span>
                 </div>
@@ -59,12 +59,12 @@ export const Testimonials: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-space-sm pt-space-md border-t border-[#C7A46B]/20">
-                <div className="w-10 h-10 rounded-full bg-[#F8CFD5] text-[#EE295C] flex items-center justify-center font-bold text-sm">
+                <div className="w-10 h-10 rounded-full bg-[#F8CFD5] text-[#B90040] flex items-center justify-center font-bold text-sm">
                   {item.initials}
                 </div>
                 <div>
                   <p className="font-serif text-[15px] text-[#201415] font-bold">{item.name}</p>
-                  <p className="text-[11px] text-[#685354]">{item.location}</p>
+                  <p className="text-[12px] text-[#685354]">{item.location}</p>
                 </div>
               </div>
             </div>

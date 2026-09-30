@@ -31,7 +31,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onContact }) => {
               <button
                 id="btn-cta-whatsapp"
                 onClick={onContact}
-                className="w-full sm:w-auto px-space-xl py-3.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] hover:scale-[1.02] active:scale-[0.98] text-white text-[14px] font-bold rounded-full shadow-[0_8px_24px_rgba(238,41,92,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-space-xl py-3.5 bg-gradient-to-r from-[#D6254F] to-[#B90040] hover:scale-[1.02] active:scale-[0.98] text-white text-[14px] font-bold rounded-full shadow-[0_8px_24px_rgba(238,41,92,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Contactar con Carolina</span>
                 <span className="material-symbols-outlined text-[18px]">chat</span>
@@ -48,7 +48,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onContact }) => {
               </a>
             </div>
 
-            <p className="text-[11px] text-[#F6F1EA]/60 uppercase tracking-widest mt-space-xl">
+            <p className="text-[12px] text-[#F6F1EA]/60 uppercase tracking-widest mt-space-xl">
               Consultas presenciales en Pozuelo / Madrid y online a todo el mundo
             </p>
           </div>

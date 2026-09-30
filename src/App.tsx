@@ -2,20 +2,7 @@ import { useState, useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import { PageId } from './types';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { AudioWelcome } from './components/AudioWelcome';
-import { MethodPillars } from './components/MethodPillars';
-import { LongevityCalculator } from './components/LongevityCalculator';
-import { PracticalAreas } from './components/PracticalAreas';
-import { ClinicalEvidence } from './components/ClinicalEvidence';
-import { WhoIsItFor } from './components/WhoIsItFor';
-import { DiagnosticSection } from './components/DiagnosticSection';
-import { BibleSheetSection } from './components/BibleSheetSection';
-import { BioStory } from './components/BioStory';
-import { Testimonials } from './components/Testimonials';
-import { FaqSection } from './components/FaqSection';
-import { CtaSection } from './components/CtaSection';
-import { Collaborations } from './components/Collaborations';
+import { HomePage } from './components/HomePage';
 import { Footer } from './components/Footer';
 import { SobreMiPage } from './components/SobreMiPage';
 import { PlanesPage } from './components/PlanesPage';
@@ -110,6 +97,12 @@ function MainAppContent() {
 
   return (
     <div id="app-root" className="min-h-screen flex flex-col bg-[#F6F1EA] text-[#201415]">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-[#201415] focus:px-5 focus:py-3 focus:text-white focus:shadow-xl"
+      >
+        Saltar al contenido
+      </a>
       {/* Fixed Navigation Header with Page Routing */}
       <Navbar
         currentPage={currentPage}
@@ -123,61 +116,15 @@ function MainAppContent() {
       {/* Main Content: Switches between Inicio and Dedicated Pages */}
       <main id="main-content" className="pt-20 flex-1">
         {currentPage === 'inicio' && (
-          <>
-            {/* Hero Section */}
-            <Hero
-              onOpenProgramModal={() => setIsProgramModalOpen(true)}
-              onExploreMethod={() => scrollToSection('metodo-diosa')}
-              onOpenCalculator={() => scrollToSection('calculadora-40')}
-            />
-
-            {/* Audio Note & Welcome from Carolina */}
-            <AudioWelcome />
-
-            {/* 4 Pillars: El Método Código Diosa */}
-            <MethodPillars />
-
-            {/* Interactive Longevity & Protein Calculator */}
-            <LongevityCalculator />
-
-            {/* Practical Application in 3 Areas */}
-            <PracticalAreas
-              onOpenProgramModal={() => setIsProgramModalOpen(true)}
-              onOpenWaitlistModal={handleOpenWaitlist}
-            />
-
-            {/* Real Clinical Evidence & Biomarkers */}
-            <ClinicalEvidence />
-
-            {/* Philosophy & Target: ¿Para quién es? */}
-            <WhoIsItFor />
-
-            {/* Autodiagnóstico 40+ with interactive assessment */}
-            <DiagnosticSection
-              onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
-            />
-
-            {/* Bible Sheet 🌺 — Google Form apply embed (PRD §4.1.8) */}
-            <BibleSheetSection />
-
-            {/* Carolina's Story, Credentials & Metrics */}
-            <BioStory
-              onContactCarolina={openWhatsAppChat}
-              onOpenTrajectoryModal={() => setIsTrajectoryModalOpen(true)}
-            />
-
-            {/* Real Testimonials & Google Reviews */}
-            <Testimonials />
-
-            {/* FAQs Accordion */}
-            <FaqSection />
-
-            {/* Direct Call to Action */}
-            <CtaSection onContact={openWhatsAppChat} />
-
-            {/* Clinical Collaborations and Lab Partners in Madrid */}
-            <Collaborations />
-          </>
+          <HomePage
+            onContactCarolina={openWhatsAppChat}
+            onExploreMethod={() => scrollToSection('metodo-diosa')}
+            onOpenCalculator={() => scrollToSection('calculadora-40')}
+            onOpenDiagnosticModal={() => setIsDiagnosticModalOpen(true)}
+            onOpenProgramModal={() => setIsProgramModalOpen(true)}
+            onOpenTrajectoryModal={() => setIsTrajectoryModalOpen(true)}
+            onOpenWaitlistModal={handleOpenWaitlist}
+          />
         )}
 
         {currentPage === 'sobre-mi' && (

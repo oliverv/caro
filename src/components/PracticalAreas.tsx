@@ -45,9 +45,9 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                 <div>
                   <div className="flex justify-end mb-space-xs">
                     <span
-                      className={`px-3 py-1 rounded-full text-[10px] tracking-wider uppercase font-bold ${
+                      className={`px-3 py-1 rounded-full text-[12px] tracking-wider uppercase font-bold ${
                         isActive
-                          ? 'bg-[#F8CFD5] text-[#EE295C]'
+                          ? 'bg-[#F8CFD5] text-[#B90040]'
                           : 'bg-[#F6F1EA] border border-[#C7A46B]/30 text-[#685354] font-semibold'
                       }`}
                     >
@@ -68,10 +68,10 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                         <span
                           className={`material-symbols-outlined text-[19px] shrink-0 ${
                             isActive
-                              ? 'text-[#FF6161]'
+                              ? 'text-[#B2292F]'
                               : area.id === 'area-sueno'
-                              ? 'text-[#C7A46B]'
-                              : 'text-[#F69C05]'
+                              ? 'text-[#7E5B20]'
+                              : 'text-[#8F5300]'
                           }`}
                         >
                           {area.icon}
@@ -83,7 +83,7 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
 
                   {isActive && (
                     <div className="rounded-xl bg-[#F6F1EA] border border-[#C7A46B]/30 p-3 mb-space-lg">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#685354] mb-2 text-center">
+                      <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-[#685354] mb-2 text-center">
                         Official Partners
                       </p>
                       <div className="flex items-center justify-center gap-2 flex-wrap">
@@ -91,7 +91,7 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                           href={CODIGO_DIOSA.partners.axo.referralUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#EE295C] hover:border-[#EE295C]/40 transition-colors"
+                          className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#B90040] hover:border-[#EE295C]/40 transition-colors"
                         >
                           Axo Longevity ↗
                         </a>
@@ -99,12 +99,12 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                           href={CODIGO_DIOSA.partners.epixlife.reportUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#EE295C] hover:border-[#EE295C]/40 transition-colors"
+                          className="px-3 py-1.5 rounded-full bg-white fine-border text-[12px] font-bold text-[#201415] hover:text-[#B90040] hover:border-[#EE295C]/40 transition-colors"
                         >
                           Epixlife ↗
                         </a>
                       </div>
-                      <p className="text-[11px] text-[#685354] text-center mt-2">
+                      <p className="text-[12px] text-[#685354] text-center mt-2">
                         Tests externos opcionales · se compran en sus webs
                       </p>
                     </div>
@@ -116,7 +116,7 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                     <button
                       id="btn-explorar-diosa-90"
                       onClick={onOpenProgramModal}
-                      className="w-full py-3 bg-white border-2 border-[#201415] hover:border-[#EE295C] hover:text-[#EE295C] text-[#201415] text-[13px] font-bold rounded-full text-center transition-all cursor-pointer"
+                      className="w-full py-3 bg-white border-2 border-[#201415] hover:border-[#EE295C] hover:text-[#B90040] text-[#201415] text-[13px] font-bold rounded-full text-center transition-all cursor-pointer"
                     >
                       {area.ctaText}
                     </button>
@@ -125,7 +125,7 @@ export const PracticalAreas: React.FC<PracticalAreasProps> = ({
                       href={CODIGO_DIOSA.applyFormUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] hover:opacity-95 text-white text-[13px] font-bold rounded-full text-center shadow-[0_6px_18px_rgba(255,97,97,0.35)] transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                      className="w-full py-3 bg-gradient-to-r from-[#D6254F] to-[#B90040] hover:opacity-95 text-white text-[13px] font-bold rounded-full text-center shadow-[0_6px_18px_rgba(255,97,97,0.35)] transition-all cursor-pointer flex items-center justify-center gap-1.5"
                     >
                       <span>Aplicar al Método</span>
                       <span className="material-symbols-outlined text-[16px]">arrow_outward</span>

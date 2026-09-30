@@ -81,10 +81,10 @@ export const DiagnosticModal: React.FC<DiagnosticModalProps> = ({ isOpen, onClos
           <div>
             {/* Progress indicator */}
             <div className="flex items-center justify-between mb-4">
-              <span className="text-[10px] font-bold text-[#EE295C] uppercase tracking-[0.2em]">
+              <span className="text-[12px] font-bold text-[#B90040] uppercase tracking-[0.2em]">
                 {dm.stepOf} {currentStep + 1} / {questions.length} • {currentQ.category}
               </span>
-              <span className="text-[12px] font-semibold text-[#C7A46B]">
+              <span className="text-[12px] font-semibold text-[#7E5B20]">
                 {Math.round(((currentStep + 1) / questions.length) * 100)}%
               </span>
             </div>
@@ -110,7 +110,7 @@ export const DiagnosticModal: React.FC<DiagnosticModalProps> = ({ isOpen, onClos
                   <span className="text-[14px] text-[#201415] font-medium leading-relaxed">
                     {opt.text}
                   </span>
-                  <span className="material-symbols-outlined text-[#C7A46B] group-hover:text-[#EE295C] text-[20px] shrink-0 mt-0.5">
+                  <span className="material-symbols-outlined text-[#7E5B20] group-hover:text-[#B90040] text-[20px] shrink-0 mt-0.5">
                     arrow_forward
                   </span>
                 </button>
@@ -132,7 +132,7 @@ export const DiagnosticModal: React.FC<DiagnosticModalProps> = ({ isOpen, onClos
         ) : (
           <div>
             <div className="text-center pb-4 border-b border-[#C7A46B]/20">
-              <span className="px-3 py-1 rounded-full text-[10px] tracking-wider uppercase font-bold bg-[#F8CFD5] text-[#EE295C] inline-block mb-2">
+              <span className="px-3 py-1 rounded-full text-[12px] tracking-wider uppercase font-bold bg-[#F8CFD5] text-[#B90040] inline-block mb-2">
                 {dm.resultBadge}
               </span>
               <h3 className="font-serif text-[26px] text-[#201415] italic font-semibold">
@@ -159,7 +159,7 @@ export const DiagnosticModal: React.FC<DiagnosticModalProps> = ({ isOpen, onClos
             <div className="space-y-3">
               <button
                 onClick={shareViaWhatsApp}
-                className="w-full py-3.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[14px] font-bold rounded-full shadow-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[14px] font-bold rounded-full shadow-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>{dm.whatsappCta}</span>
                 <span className="material-symbols-outlined text-[18px]">chat</span>

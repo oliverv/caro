@@ -6,7 +6,7 @@ interface ContactoPageProps {
 }
 
 export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNavigatePrivacy }) => {
-  const [submitted, setSubmitted] = useState(false);
+  const [preparedMessageUrl, setPreparedMessageUrl] = useState('');
   const [experienciaPrevia, setExperienciaPrevia] = useState<'no' | 'si'>('no');
   const [motivo, setMotivo] = useState('salud');
   const [chips, setChips] = useState<Record<string, boolean>>({
@@ -24,9 +24,12 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
     setChips((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const formData = new FormData(e.currentTarget);
+    const name = String(formData.get('nombre') || '').trim();
+    const message = `Hola Carolina, soy ${name}. He completado el cuestionario privado en tu web y quiero solicitar una valoración inicial. Prefiero compartir los detalles clínicos directamente contigo.`;
+    setPreparedMessageUrl(`https://wa.me/34601317959?text=${encodeURIComponent(message)}`);
   };
 
   return (
@@ -108,7 +111,7 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
               <a
                 className={`inline-flex items-center justify-center w-full rounded-full px-space-lg py-3 font-title-md text-title-md transition-all ${
                   route.ctaPrimary
-                    ? 'bg-gradient-to-r from-secondary-container to-primary text-on-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.01] active:scale-[0.99]'
+                    ? 'bg-gradient-to-r from-[#D6254F] to-primary text-on-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.01] active:scale-[0.99]'
                     : 'bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container-low active:scale-[0.99]'
                 }`}
                 href={route.ctaHref}
@@ -128,29 +131,29 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
           {/* LEFT: FORM */}
           <div className="lg:col-span-8 bg-surface-container-lowest rounded-lg shadow-sm p-space-lg sm:p-space-2xl">
-            {submitted ? (
+            {preparedMessageUrl ? (
               <div className="flex flex-col items-center text-center py-12">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary to-secondary-container flex items-center justify-center text-on-primary shadow-lg mb-space-lg">
                   <span className="material-symbols-outlined text-[40px]" style={{ fontVariationSettings: "'FILL' 1" }}>check</span>
                 </div>
                 <h2 className="font-headline-md text-headline-md text-on-surface tracking-tight mb-space-sm">
-                  ¡Formulario Enviado con Éxito!
+                  Cuestionario listo para enviar
                 </h2>
                 <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-space-xl max-w-lg">
-                  Gracias por tu confianza. He recibido tus respuestas y me pondré en contacto contigo en menos de 24 horas laborables con una valoración personalizada y confidencial.
+                  Se ha preparado una solicitud breve sin respuestas clínicas. Al abrir WhatsApp, revísala y pulsa «Enviar»; todavía no se ha enviado ningún dato.
                 </p>
                 <a
-                  className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-secondary-container to-primary px-space-lg py-3.5 font-title-md text-title-md text-on-primary shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all"
-                  href="https://wa.me/34601317959?text=Hola%20Carolina,%20acabo%20de%20enviar%20mi%20cuestionario"
+                  className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#D6254F] to-primary px-space-lg py-3.5 font-title-md text-title-md text-on-primary shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all"
+                  href={preparedMessageUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className="material-symbols-outlined text-[22px]">chat</span>
-                  Confirmar también por WhatsApp
+                  Abrir mensaje en WhatsApp
                 </a>
                 <button
                   className="mt-space-md inline-flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => setPreparedMessageUrl('')}
                   type="button"
                 >
                   <span className="material-symbols-outlined text-[18px]">replay</span>
@@ -189,7 +192,7 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                             {field.label}
                           </label>
                           <input
-                            className="w-full h-12 px-4 rounded-md bg-surface-container-low text-on-surface font-body-md placeholder:text-outline/60 focus:bg-surface-container-lowest focus:outline-none focus:shadow-[0_0_0_3px_rgba(226,29,84,0.15)] transition-all"
+                            className="w-full h-12 px-4 rounded-md bg-surface-container-low text-on-surface font-body-md placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:shadow-[0_0_0_3px_rgba(226,29,84,0.15)] transition-all"
                             id={field.id}
                             name={field.id}
                             placeholder={field.placeholder}
@@ -217,8 +220,8 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                   <div className="flex flex-col gap-space-lg pt-space-md">
                     <span className="font-label-md text-label-md text-tertiary tracking-wider uppercase font-bold">B) Tu Objetivo</span>
                     <div className="flex flex-col gap-2">
-                      <label className="font-label-sm text-label-sm text-on-surface font-semibold">¿Cuál es tu motivo principal de consulta?</label>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+                      <span id="motivo-label" className="font-label-sm text-label-sm text-on-surface font-semibold">¿Cuál es tu motivo principal de consulta?</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-sm" role="radiogroup" aria-labelledby="motivo-label">
                         {[
                           { val: 'salud', label: 'Quiero mejorar mi salud' },
                           { val: 'peso', label: 'Bajar de peso y grasa' },
@@ -247,7 +250,7 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                     </div>
                     <div className="flex flex-col gap-2.5">
                       <div className="flex items-center justify-between">
-                        <label className="font-label-sm text-label-sm text-on-surface font-semibold">Aspectos prioritarios que deseas mejorar:</label>
+                        <span id="prioridades-label" className="font-label-sm text-label-sm text-on-surface font-semibold">Aspectos prioritarios que deseas mejorar:</span>
                         <span className="font-label-sm text-label-sm text-tertiary">Selecciona los que apliquen</span>
                       </div>
                       <div className="flex flex-wrap gap-2.5">
@@ -255,6 +258,8 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                           <button
                             key={key}
                             type="button"
+                            aria-pressed={active}
+                            name="prioridades"
                             onClick={() => toggleChip(key)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-full font-body-sm text-body-sm transition-all ${
                               active
@@ -274,8 +279,8 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                   <div className="flex flex-col gap-space-lg pt-space-md">
                     <span className="font-label-md text-label-md text-tertiary tracking-wider uppercase font-bold">C) Tu Historia</span>
                     <div className="flex flex-col gap-2.5">
-                      <label className="font-label-sm text-label-sm text-on-surface font-semibold">¿Has probado antes otros métodos, dietas o terapias?</label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                      <span id="experiencia-label" className="font-label-sm text-label-sm text-on-surface font-semibold">¿Has probado antes otros métodos, dietas o terapias?</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md" role="radiogroup" aria-labelledby="experiencia-label">
                         {[
                           { val: 'si' as const, label: 'Sí, he probado antes' },
                           { val: 'no' as const, label: 'No, es mi primera vez' },
@@ -302,7 +307,10 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                       </div>
                       {experienciaPrevia === 'si' && (
                         <textarea
-                          className="w-full p-4 rounded-md bg-surface-container-low text-on-surface font-body-md placeholder:text-outline/60 focus:bg-surface-container-lowest focus:outline-none focus:shadow-[0_0_0_3px_rgba(226,29,84,0.15)] transition-all resize-y mt-2"
+                          id="experiencia-detalle"
+                          name="experiencia_detalle"
+                          aria-label="¿Qué funcionó y qué no funcionó en esas experiencias?"
+                          className="w-full p-4 rounded-md bg-surface-container-low text-on-surface font-body-md placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:shadow-[0_0_0_3px_rgba(226,29,84,0.15)] transition-all resize-y mt-2"
                           placeholder="¿Qué funcionó y qué no funcionó en esas experiencias?"
                           rows={2}
                         />
@@ -313,8 +321,9 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                         Mensaje Adicional o Síntomas Particulares (opcional)
                       </label>
                       <textarea
-                        className="w-full p-4 rounded-md bg-surface-container-low text-on-surface font-body-md placeholder:text-outline/60 focus:bg-surface-container-lowest focus:outline-none focus:shadow-[0_0_0_3px_rgba(226,29,84,0.15)] transition-all resize-y"
+                        className="w-full p-4 rounded-md bg-surface-container-low text-on-surface font-body-md placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:shadow-[0_0_0_3px_rgba(226,29,84,0.15)] transition-all resize-y"
                         id="mensaje"
+                        name="mensaje"
                         placeholder="Cuéntame cualquier detalle de tu día a día, horarios o sensaciones..."
                         rows={4}
                       />
@@ -324,19 +333,19 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                   {/* D: CHECKBOXES LEGALES */}
                   <div className="flex flex-col gap-3 pt-space-xs">
                     <label className="flex items-start gap-3 cursor-pointer">
-                      <input className="mt-1 w-4 h-4 text-primary rounded focus:ring-0" required type="checkbox" defaultChecked />
+                      <input className="mt-1 w-4 h-4 text-primary rounded focus:ring-0" name="consentimiento_privacidad" value="aceptado" required type="checkbox" />
                       <span className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
                         Acepto el tratamiento de mis datos de acuerdo con la{' '}
                         <button type="button" onClick={onNavigatePrivacy} className="text-primary underline font-medium cursor-pointer">
                           Política de Privacidad
                         </button>
-                        . Tus datos están seguros y nunca serán cedidos a terceros.
+                        . El formulario se procesa solo en tu navegador y no almacena ni transmite tus respuestas clínicas.
                       </span>
                     </label>
                     <label className="flex items-start gap-3 cursor-pointer">
-                      <input className="mt-1 w-4 h-4 text-primary rounded focus:ring-0" required type="checkbox" defaultChecked />
+                      <input className="mt-1 w-4 h-4 text-primary rounded focus:ring-0" name="consentimiento_datos_salud" value="aceptado" required type="checkbox" />
                       <span className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                        Acepto que Carolina trate los datos de salud que comparto en este formulario para responder a mi consulta.
+                        Entiendo que WhatsApp abrirá únicamente una solicitud breve y que compartiré cualquier dato de salud directamente con Carolina.
                       </span>
                     </label>
                   </div>
@@ -344,10 +353,10 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
                   {/* E: SUBMIT */}
                   <div className="pt-space-xs">
                     <button
-                      className="w-full flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-secondary-container to-primary px-space-xl py-4 font-title-md text-title-md text-on-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.005] active:scale-[0.99] transition-all cursor-pointer"
+                      className="w-full flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#D6254F] to-primary px-space-xl py-4 font-title-md text-title-md text-on-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.005] active:scale-[0.99] transition-all cursor-pointer"
                       type="submit"
                     >
-                      <span>Enviar Consulta Inicial a Carolina</span>
+                      <span>Preparar solicitud por WhatsApp</span>
                       <span className="material-symbols-outlined text-[22px]">send</span>
                     </button>
                   </div>
@@ -497,7 +506,7 @@ export const ContactoPage: React.FC<ContactoPageProps> = ({ onNavigateHome, onNa
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-space-md w-full max-w-md">
             <a
-              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-container to-primary px-space-xl py-3.5 font-title-md text-title-md text-on-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.45)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D6254F] to-primary px-space-xl py-3.5 font-title-md text-title-md text-on-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.45)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all"
               href="#cuestionario"
             >
               <span>Aplicar al Método</span>

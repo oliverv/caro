@@ -18,8 +18,19 @@
   --color-brand-coral: #FF6161;
   --color-brand-berry: #EE295C;
   --color-brand-pink: #F8CFD5;
-  --color-brand-gold: #F69C05;
-  --color-brand-sand: #C7A46B;
+  /* "gold" = muted gold #C7A46B per DESIGN.md; amber is the circadian accent.
+     Bright brand hues are decorative (fills, glows, hairlines) or for dark
+     backgrounds only. On light surfaces use the *-ink tokens for text:
+     each clears WCAG AA 4.5:1 on white, cream and blush. */
+  --color-brand-amber: #F69C05;
+  --color-brand-gold: #C7A46B;
+  --color-brand-sand: #C7A46B; /* legacy alias of brand-gold */
+  --color-brand-berry-ink: #B90040;
+  --color-brand-gold-ink: #7E5B20;
+  --color-brand-amber-ink: #8F5300;
+  --color-brand-coral-ink: #B2292F;
+  --color-brand-field-border: #906F71;
+  --color-brand-gold-border: #A8844A;
   --color-brand-espresso: #201415;
   --color-brand-charcoal: #2B1D1E;
   --color-brand-text-muted: #685354;
@@ -54,7 +65,7 @@
   --color-inverse-surface: #3b2d2e;
   --color-inverse-on-surface: #ffeced;
   --color-inverse-primary: #ffb2ba;
-  --color-outline: #906f71;
+  --color-outline: #806265; /* darkened from #906f71 for AA text contrast */
   --color-outline-variant: #e4bdc0;
   --color-primary-fixed: #ffd9dc;
   --color-primary-fixed-dim: #ffb2ba;
@@ -146,8 +157,8 @@
   .text-label-md   { font-size: 0.8125rem; line-height: 1.125rem; }
   .font-label-sm   { font-family: var(--font-body); font-size: 0.75rem;   font-weight: 500; line-height: 1rem; }
   .text-label-sm   { font-size: 0.75rem; line-height: 1rem; }
-  .font-label-caps { font-family: var(--font-body); font-size: 0.6875rem; font-weight: 600; line-height: 1rem; letter-spacing: 0.12em; text-transform: uppercase; }
-  .text-label-caps { font-size: 0.6875rem; line-height: 1rem; }
+  .font-label-caps { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; line-height: 1rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .text-label-caps { font-size: 0.75rem; line-height: 1rem; }
 
   /* Quote / editorial italic */
   .font-quote-editorial { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; line-height: 2rem; letter-spacing: 0.01em; font-style: italic; }
@@ -167,6 +178,7 @@
 
 @layer base {
   html {
+    scroll-padding-top: 6rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -178,6 +190,17 @@
     background-color: #F6F1EA;
     color: #201415;
     font-family: var(--font-body);
+    min-width: 320px;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    outline-offset: 3px;
+  }
+  :focus-visible {
+    outline: 2px solid #EE295C;
   }
   img {
     image-rendering: -webkit-optimize-contrast;
@@ -200,4 +223,25 @@
 
 .crisp-shadow-elevated {
   box-shadow: 0 4px 6px -1px rgba(32, 20, 21, 0.04), 0 20px 32px -6px rgba(32, 20, 21, 0.08);
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

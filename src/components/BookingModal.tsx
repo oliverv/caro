@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useDialogFocus } from '../hooks/useDialogFocus';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -7,11 +8,11 @@ interface BookingModalProps {
 }
 
 export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const b = t.bookingModal;
 
   const [modality, setModality] = useState<'online' | 'inPerson' | 'express'>('online');
-  const [selectedDate, setSelectedDate] = useState<string>('Mañana');
+  const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('10:30');
   const [priority, setPriority] = useState<string>(b.priorityOptions[0]);
   const [hasLabs, setHasLabs] = useState<string>('yes');
@@ -19,16 +20,20 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
   const [phone, setPhone] = useState<string>('');
   const [confirmed, setConfirmed] = useState(false);
 
-  if (!isOpen) return null;
-
-  // Available dates for booking
-  const dates = [
-    { label: 'Jueves 12', val: 'Jueves 12' },
-    { label: 'Viernes 13', val: 'Viernes 13' },
-    { label: 'Lunes 16', val: 'Lunes 16' },
-    { label: 'Martes 17', val: 'Martes 17' },
-    { label: 'Miércoles 18', val: 'Miércoles 18' }
-  ];
+  const dates = useMemo(() => {
+    const locale = language === 'en' ? 'en-GB' : language === 'fr' ? 'fr-FR' : 'es-ES';
+    const options: { label: string; val: string }[] = [];
+    const cursor = new Date();
+    while (options.length < 5) {
+      cursor.setDate(cursor.getDate() + 1);
+      if (cursor.getDay() === 0 || cursor.getDay() === 6) continue;
+      const val = cursor.toISOString().slice(0, 10);
+      const label = new Intl.DateTimeFormat(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(cursor);
+      options.push({ label, val });
+    }
+    return options;
+  }, [language]);
+  const effectiveSelectedDate = selectedDate || dates[0].val;
 
   const timeSlots = ['09:30', '10:30', '12:00', '16:00', '17:30', '19:00'];
 
@@ -46,9 +51,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
     onClose();
   };
 
+  const dialogRef = useDialogFocus<HTMLDivElement>(isOpen, handleClose);
+
+  if (!isOpen) return null;
+
   const shareConfirmedViaWhatsApp = () => {
     const text = encodeURIComponent(
-      `Hola Carolina, he solicitado una consulta de valoración previa:\n• Nombre: ${name}\n• Modalidad: ${b.modalities[modality].title}\n• Fecha tentativa: ${selectedDate} a las ${selectedTime}\n• Prioridad: ${priority}\n• Analíticas recientes: ${b.recentLabsOptions[hasLabs as 'yes' | 'no' | 'inProgress']}`
+      `Hola Carolina, soy ${name}. Quiero solicitar una consulta de valoración ${b.modalities[modality].title.toLowerCase()} el ${effectiveSelectedDate} a las ${selectedTime}. Prefiero compartir los detalles clínicos directamente contigo.`
     );
     window.open(`https://api.whatsapp.com/send/?phone=34601317959&text=${text}`, '_blank');
   };
@@ -60,12 +69,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
       className="fixed inset-0 bg-[#201415]/75 backdrop-blur-md z-[115] flex items-center justify-center p-4 overflow-y-auto"
     >
       <div
+        ref={dialogRef}
         id="booking-modal-container"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="booking-modal-title"
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 fine-border shadow-2xl relative max-h-[90vh] overflow-y-auto"
       >
         <button
           id="btn-close-booking"
+          type="button"
+          aria-label="Cerrar reserva"
           onClick={handleClose}
           className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#F6F1EA] fine-border flex items-center justify-center text-[#685354] hover:text-[#201415] hover:bg-[#F8CFD5]/50 transition-colors"
         >
@@ -75,10 +90,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
         {!confirmed ? (
           <div>
             <div className="text-center pb-5 border-b border-[#C7A46B]/20 pr-6">
-              <span className="px-3 py-1 rounded-full text-[10px] tracking-wider uppercase font-bold bg-[#F8CFD5] text-[#EE295C] inline-block mb-2">
+              <span className="px-3 py-1 rounded-full text-[12px] tracking-wider uppercase font-bold bg-[#F8CFD5] text-[#B90040] inline-block mb-2">
                 {b.badge}
               </span>
-              <h3 className="font-serif text-[24px] sm:text-[28px] text-[#201415] font-bold">
+              <h3 id="booking-modal-title" className="font-serif text-[24px] sm:text-[28px] text-[#201415] font-bold">
                 {b.title}
               </h3>
               <p className="text-[13px] text-[#685354] mt-1 max-w-md mx-auto">
@@ -105,7 +120,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                       }`}
                     >
                       <p className="text-[12px] font-bold leading-tight mb-1">{b.modalities[m].title}</p>
-                      <p className="text-[10px] text-[#685354] leading-tight">{b.modalities[m].desc}</p>
+                      <p className="text-[12px] text-[#685354] leading-tight">{b.modalities[m].desc}</p>
                     </button>
                   ))}
                 </div>
@@ -114,11 +129,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
               {/* Date & Time Selection */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[12px] font-bold text-[#201415] mb-1.5 uppercase tracking-wider">
+                  <label htmlFor="booking-date" className="block text-[12px] font-bold text-[#201415] mb-1.5 uppercase tracking-wider">
                     {b.dateLabel}
                   </label>
                   <select
-                    value={selectedDate}
+                    id="booking-date"
+                    name="preferredDate"
+                    value={effectiveSelectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#F6F1EA] fine-border text-[13px] text-[#201415] focus:outline-none focus:ring-1 focus:ring-[#EE295C]"
                   >
@@ -131,10 +148,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 </div>
 
                 <div>
-                  <label className="block text-[12px] font-bold text-[#201415] mb-1.5 uppercase tracking-wider">
+                  <label htmlFor="booking-time" className="block text-[12px] font-bold text-[#201415] mb-1.5 uppercase tracking-wider">
                     {b.timeLabel}
                   </label>
                   <select
+                    id="booking-time"
+                    name="preferredTime"
                     value={selectedTime}
                     onChange={(e) => setSelectedTime(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#F6F1EA] fine-border text-[13px] text-[#201415] focus:outline-none focus:ring-1 focus:ring-[#EE295C]"
@@ -150,10 +169,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
               {/* Primary Challenge */}
               <div>
-                <label className="block text-[12px] font-bold text-[#201415] mb-1.5 uppercase tracking-wider">
+                <label htmlFor="booking-priority" className="block text-[12px] font-bold text-[#201415] mb-1.5 uppercase tracking-wider">
                   {b.priorityLabel}
                 </label>
                 <select
+                  id="booking-priority"
+                  name="priority"
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl bg-[#F6F1EA] fine-border text-[12.5px] text-[#201415] focus:outline-none focus:ring-1 focus:ring-[#EE295C]"
@@ -196,10 +217,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
               {/* Contact Information */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div>
-                  <label className="block text-[12px] font-bold text-[#201415] mb-1">
+                  <label htmlFor="booking-name" className="block text-[12px] font-bold text-[#201415] mb-1">
                     {b.nameLabel}
                   </label>
                   <input
+                    id="booking-name"
+                    name="name"
                     type="text"
                     required
                     placeholder={b.namePlaceholder}
@@ -209,10 +232,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                   />
                 </div>
                 <div>
-                  <label className="block text-[12px] font-bold text-[#201415] mb-1">
+                  <label htmlFor="booking-phone" className="block text-[12px] font-bold text-[#201415] mb-1">
                     {b.phoneLabel}
                   </label>
                   <input
+                    id="booking-phone"
+                    name="phone"
                     type="tel"
                     required
                     placeholder={b.phonePlaceholder}
@@ -227,7 +252,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
               <div className="pt-3">
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[14px] font-bold rounded-full shadow-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[14px] font-bold rounded-full shadow-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>{b.confirmBtn}</span>
                   <span className="material-symbols-outlined text-[18px]">calendar_today</span>
@@ -236,12 +261,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
             </form>
           </div>
         ) : (
-          /* Confirmation View */
+          /* Request handoff view */
           <div className="text-center py-6">
-            <div className="w-16 h-16 rounded-full bg-[#F8CFD5] text-[#EE295C] mx-auto flex items-center justify-center mb-4">
+            <div className="w-16 h-16 rounded-full bg-[#F8CFD5] text-[#B90040] mx-auto flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-[32px]">event_available</span>
             </div>
-            <h3 className="font-serif text-[26px] text-[#201415] font-bold mb-2">
+            <h3 id="booking-modal-title" className="font-serif text-[26px] text-[#201415] font-bold mb-2">
               {b.successTitle}
             </h3>
             <p className="text-[14px] text-[#685354] max-w-md mx-auto mb-6 leading-relaxed">
@@ -256,7 +281,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 <strong>Modalidad:</strong> {b.modalities[modality].title}
               </p>
               <p>
-                <strong>Fecha & Hora:</strong> {selectedDate} • {selectedTime} CET
+                <strong>Fecha & Hora:</strong> {dates.find((date) => date.val === effectiveSelectedDate)?.label} • {selectedTime} CET
               </p>
             </div>
 
@@ -266,7 +291,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 href="https://calendly.com/carolinabarcellona"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-full shadow-md hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[13px] font-bold rounded-full shadow-md hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[18px]">videocam</span>
                 <span>Agendar videollamada 20 min (Calendly)</span>

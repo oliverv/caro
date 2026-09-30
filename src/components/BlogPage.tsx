@@ -118,6 +118,14 @@ const FEATURED_POST = {
 
 export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome }) => {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+
+  const handleNewsletter = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subject = encodeURIComponent('Suscripción — Newsletter Celular 40+');
+    const body = encodeURIComponent(`Hola Carolina, quiero suscribirme al newsletter con este correo: ${newsletterEmail}`);
+    window.location.href = `mailto:info@carolinabarcellona.com?subject=${subject}&body=${body}`;
+  };
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredPosts = BLOG_POSTS_DATA.filter((post) => {
@@ -324,22 +332,27 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigateHome }) => {
           <p className="font-body-md text-body-md text-on-surface-variant mb-6">
             Únete a una comunidad de mujeres comprometidas con su longevidad inteligente.
           </p>
-          <form className="w-full max-w-md flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
+          <form className="w-full max-w-md flex flex-col sm:flex-row gap-3" onSubmit={handleNewsletter}>
+            <label className="sr-only" htmlFor="blog-newsletter-email">Tu correo electrónico</label>
             <input
+              id="blog-newsletter-email"
+              name="email"
               className="flex-1 w-full font-body-md text-body-md px-5 py-3 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline shadow-[0_2px_8px_rgba(104,83,84,0.06)] focus:outline-none focus:shadow-[0_0_0_2px_rgba(185,0,64,0.3)] transition-all"
               placeholder="Tu correo electrónico"
               required
               type="email"
+              value={newsletterEmail}
+              onChange={(event) => setNewsletterEmail(event.target.value)}
             />
             <button
-              className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary px-7 py-3 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all whitespace-nowrap"
+              className="inline-flex items-center justify-center font-title-md text-title-md text-on-primary bg-gradient-to-r from-[#D6254F] to-primary px-7 py-3 rounded-full shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all whitespace-nowrap"
               type="submit"
             >
-              Suscribirme
+              Preparar suscripción
             </button>
           </form>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-4">
-            Tus datos están seguros y nunca serán cedidos a terceros.
+            Se abrirá tu aplicación de correo para que revises y envíes la solicitud.
           </p>
         </div>
       </section>

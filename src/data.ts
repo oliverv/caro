@@ -6,7 +6,7 @@ export const PILLARS: PillarItem[] = [
     letter: 'B',
     title: 'Biología & Epigenética',
     gradient: 'from-[#FF6161] to-[#EE295C]',
-    accentHoverColor: 'group-hover:text-[#FF6161]',
+    accentHoverColor: 'group-hover:text-[#B2292F]',
     description: 'Comprende quién eres y cómo está cambiando tu cuerpo por dentro. Sin el ruido de dietas pasajeras. Datos analíticos avanzados, equilibrio hormonal y evaluación celular.'
   },
   {
@@ -14,7 +14,7 @@ export const PILLARS: PillarItem[] = [
     letter: 'N',
     title: 'Nutrición Ortomolecular',
     gradient: 'from-[#EE295C] to-[#FF6161]',
-    accentHoverColor: 'group-hover:text-[#EE295C]',
+    accentHoverColor: 'group-hover:text-[#B90040]',
     description: 'Audita lo que comes y sustituye la restricción por precisión celular. Estrategia nutricional que desinflama, apoya tu tiroides y reactiva la sensibilidad a la insulina.'
   },
   {
@@ -22,7 +22,7 @@ export const PILLARS: PillarItem[] = [
     letter: 'M',
     title: 'Movimiento & Fuerza',
     gradient: 'from-[#F69C05] to-[#FF6161]',
-    accentHoverColor: 'group-hover:text-[#F69C05]',
+    accentHoverColor: 'group-hover:text-[#8F5300]',
     description: 'Construye tejido muscular metabólicamente activo adaptado a los 40+. Preserva tu masa ósea, estimula mitocondrias y mejora tu composición corporal sin agotamiento.'
   },
   {
@@ -30,7 +30,7 @@ export const PILLARS: PillarItem[] = [
     letter: 'H',
     title: 'Hábitos & Longevidad',
     gradient: 'from-[#C7A46B] to-[#EE295C]',
-    accentHoverColor: 'group-hover:text-[#C7A46B]',
+    accentHoverColor: 'group-hover:text-[#7E5B20]',
     description: 'Optimiza tu descanso circadiano, disuelve la niebla mental y regula el cortisol. Sistemas simples y consistentes que garantizan vitalidad para las próximas décadas.'
   }
 ];
@@ -87,7 +87,7 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
     title: 'Sofocos y cambios en el cuerpo',
     description: 'Sientes que tu cuerpo está cambiando —sofocos, cambios en la composición corporal, inflamación, digestión o recuperación— y quieres comprender qué está pasando para responder a esta nueva etapa con una estrategia personalizada.',
     badgeBg: 'bg-[#F8CFD5]/40',
-    iconColor: 'text-[#FF6161]',
+    iconColor: 'text-[#B2292F]',
     borderColor: 'border-[#F8CFD5]'
   },
   {
@@ -96,7 +96,7 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
     title: 'Pérdida de energía y vitalidad',
     description: 'Sientes que has perdido vitalidad y quieres volver a sentirte fuerte, activa y conectada con tu cuerpo, despertando cada mañana con entusiasmo real.',
     badgeBg: 'bg-amber-50',
-    iconColor: 'text-[#F69C05]',
+    iconColor: 'text-[#8F5300]',
     borderColor: 'border-[#F69C05]/30'
   },
   {
@@ -105,7 +105,7 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
     title: 'Niebla mental y falta de enfoque',
     description: 'Notas más niebla mental, dificultad para concentrarte o cambios en tu claridad mental que antes no tenías y que interfieren en tu ritmo profesional y personal.',
     badgeBg: 'bg-[#F8CFD5]/40',
-    iconColor: 'text-[#EE295C]',
+    iconColor: 'text-[#B90040]',
     borderColor: 'border-[#F8CFD5]'
   },
   {
@@ -114,7 +114,7 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
     title: 'Insomnio, estrés y cambios en el estado de ánimo',
     description: 'Tu sueño (insomnio, despertares), tu estrés o tu estado de ánimo han cambiado y quieres aprender a regularlos desde una estrategia integral y compasiva con tu fisiología en esta etapa.',
     badgeBg: 'bg-[#F8CFD5]/40',
-    iconColor: 'text-[#FF6161]',
+    iconColor: 'text-[#B2292F]',
     borderColor: 'border-[#F8CFD5]'
   },
   {
@@ -123,7 +123,7 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
     title: 'Sostenibilidad a largo plazo',
     description: 'No quieres otra dieta restrictiva. Quieres un estilo de vida personalizado que puedas disfrutar, integrar y sostener con placer durante décadas.',
     badgeBg: 'bg-amber-50',
-    iconColor: 'text-[#F69C05]',
+    iconColor: 'text-[#8F5300]',
     borderColor: 'border-[#F69C05]/30'
   },
   {
@@ -132,7 +132,7 @@ export const DIAGNOSTIC_CARDS: DiagnosticCard[] = [
     title: 'Acompañamiento clínico 1 a 1',
     description: 'Quieres dejar de hacerlo sola y contar con la experiencia de una profesional que integre tus datos, tu historia y tus objetivos para diseñar una ruta a tu medida.',
     badgeBg: 'bg-[#F8CFD5]/40',
-    iconColor: 'text-[#EE295C]',
+    iconColor: 'text-[#B90040]',
     borderColor: 'border-[#F8CFD5]'
   }
 ];
@@ -209,12 +209,11 @@ export const FAQS: FaqItem[] = [
 ];
 
 export const ASSETS = {
-  // Remote fallback (white script, shown with invert treatment on cream).
-  logo: 'https://carolinabarcellona.com/wp-content/uploads/2025/03/cropped-image00098.png',
-  // Local-first logo (transparent PNG derived from client bicolor artwork).
-  logoLocal: '/assets/Logo-C_barcellona_bicolor_2.png',
+  // Local, transparent bicolor artwork supplied with the site.
+  logo: '/assets/Logo-C_barcellona_bicolor_2.png',
   heroBg: '/assets/carolina-hero.jpg',
   movementPhoto: '/assets/carolina-movement.jpg',
   vitalityPhoto: '/assets/carolina-vitality.jpg',
-  portraitRedDress: '/assets/carolina-portrait.jpg'
+  portraitRedDress: '/assets/carolina-portrait.jpg',
+  aboutPortrait: '/assets/carolina-portrait.jpg'
 };

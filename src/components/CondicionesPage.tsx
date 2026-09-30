@@ -28,7 +28,7 @@ export const CondicionesPage: React.FC<CondicionesPageProps> = ({ onNavigateHome
           <nav className="flex items-center gap-2 text-[#685354]">
             <button
               onClick={onNavigateHome}
-              className="hover:text-[#EE295C] transition-colors cursor-pointer flex items-center gap-1"
+              className="hover:text-[#B90040] transition-colors cursor-pointer flex items-center gap-1"
             >
               <span className="material-symbols-outlined text-[16px]">home</span>
               <span>{language === 'es' ? 'Inicio' : 'Home'}</span>
@@ -42,7 +42,7 @@ export const CondicionesPage: React.FC<CondicionesPageProps> = ({ onNavigateHome
           <a
             href="/assets/CondicionesContratacion.docx"
             download
-            className="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold text-[#8A6A32] hover:text-[#EE295C] transition-colors"
+            className="hidden sm:flex items-center gap-1.5 text-[12px] font-semibold text-brand-gold-ink hover:text-[#B90040] transition-colors"
           >
             <span className="material-symbols-outlined text-[15px]">download</span>
             Descargar DOC
@@ -55,7 +55,7 @@ export const CondicionesPage: React.FC<CondicionesPageProps> = ({ onNavigateHome
         <div className="bg-white rounded-3xl fine-border shadow-md p-8 sm:p-12 space-y-6 text-[15px] leading-relaxed text-[#685354]">
           <div>
             <h1 className="font-serif text-3xl font-bold text-[#201415]">Aviso Legal</h1>
-            <p className="text-xs text-[#C7A46B] font-bold uppercase tracking-widest mt-1">
+            <p className="text-xs text-[#7E5B20] font-bold uppercase tracking-widest mt-1">
               Carolina Barcellona · carolinabarcellona.com
             </p>
           </div>
@@ -73,7 +73,7 @@ export const CondicionesPage: React.FC<CondicionesPageProps> = ({ onNavigateHome
           <Section title="Alojamiento y registro de la base de datos">
             <P>
               https://carolinabarcellona.com/ está alojada bajo medidas básicas de seguridad. El detalle completo del tratamiento de datos personales se encuentra en la{' '}
-              <button type="button" onClick={onNavigatePrivacy} className="text-[#EE295C] underline font-medium cursor-pointer">
+              <button type="button" onClick={onNavigatePrivacy} className="text-[#B90040] underline font-medium cursor-pointer">
                 Política de Privacidad
               </button>.
             </P>
@@ -135,7 +135,7 @@ export const CondicionesPage: React.FC<CondicionesPageProps> = ({ onNavigateHome
         <div className="bg-white rounded-3xl fine-border shadow-md p-8 sm:p-12 space-y-6 text-[15px] leading-relaxed text-[#685354]">
           <div>
             <h1 className="font-serif text-3xl font-bold text-[#201415]">Condiciones de Contratación</h1>
-            <p className="text-xs text-[#C7A46B] font-bold uppercase tracking-widest mt-1">
+            <p className="text-xs text-[#7E5B20] font-bold uppercase tracking-widest mt-1">
               Carolina Barcellona · Madrid, España
             </p>
           </div>
@@ -226,14 +226,14 @@ export const CondicionesPage: React.FC<CondicionesPageProps> = ({ onNavigateHome
           <div className="pt-6 border-t border-[#C7A46B]/20 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
             <button
               onClick={onNavigateHome}
-              className="px-6 py-2.5 rounded-full bg-[#201415] text-white text-xs font-bold hover:bg-[#EE295C] transition-all cursor-pointer"
+              className="px-6 py-2.5 rounded-full bg-[#201415] text-white text-xs font-bold hover:bg-[#B90040] transition-all cursor-pointer"
             >
               Volver al Inicio
             </button>
             <a
               href="/assets/CondicionesContratacion.docx"
               download
-              className="flex items-center gap-1.5 text-[12px] font-semibold text-[#8A6A32] hover:text-[#EE295C] transition-colors"
+              className="flex items-center gap-1.5 text-[12px] font-semibold text-brand-gold-ink hover:text-[#B90040] transition-colors"
             >
               <span className="material-symbols-outlined text-[16px]">download</span>
               Descargar documento completo

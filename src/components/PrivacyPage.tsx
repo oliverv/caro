@@ -15,7 +15,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigateHome }) => {
           <nav className="flex items-center gap-2 text-[#685354]">
             <button
               onClick={onNavigateHome}
-              className="hover:text-[#EE295C] transition-colors cursor-pointer flex items-center gap-1"
+              className="hover:text-[#B90040] transition-colors cursor-pointer flex items-center gap-1"
             >
               <span className="material-symbols-outlined text-[16px]">home</span>
               <span>{language === 'es' ? 'Inicio' : 'Home'}</span>
@@ -33,7 +33,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigateHome }) => {
           <h1 className="font-serif text-3xl font-bold text-[#201415]">
             Política de Privacidad y Protección de Datos (RGPD)
           </h1>
-          <p className="text-xs text-[#C7A46B] font-bold uppercase tracking-widest">
+          <p className="text-xs text-[#7E5B20] font-bold uppercase tracking-widest">
             Última actualización: 2026 • Carolina Barcellona – Nutrissia Wellness
           </p>
 
@@ -133,7 +133,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigateHome }) => {
             <p>
               Tienes derecho a acceder, rectificar, limitar, suprimir, oponerte y solicitar la portabilidad de tus datos personales en cualquier momento, así como a revocar tu consentimiento enviando un correo electrónico a <strong className="text-[#201415]">contacto@carolinabarcellona.com</strong> adjuntando copia de documento acreditativo de identidad.
             </p>
-            <p className="text-xs text-[#C7A46B] font-semibold">
+            <p className="text-xs text-[#7E5B20] font-semibold">
               Última revisión de esta política: 24/07/2026
             </p>
           </div>
@@ -141,7 +141,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigateHome }) => {
           <div className="pt-6 border-t border-[#C7A46B]/20">
             <button
               onClick={onNavigateHome}
-              className="px-6 py-2.5 rounded-full bg-[#201415] text-white text-xs font-bold hover:bg-[#EE295C] transition-all cursor-pointer"
+              className="px-6 py-2.5 rounded-full bg-[#201415] text-white text-xs font-bold hover:bg-[#B90040] transition-all cursor-pointer"
             >
               Volver al Inicio
             </button>

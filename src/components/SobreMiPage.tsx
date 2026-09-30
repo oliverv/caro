@@ -1,4 +1,5 @@
 import React from 'react';
+import { ASSETS } from '../data';
 
 interface SobreMiPageProps {
   onOpenBookingModal: () => void;
@@ -48,9 +49,9 @@ export const SobreMiPage: React.FC<SobreMiPageProps> = ({
               <div className="absolute -inset-4 bg-surface-container rounded-[48px] -rotate-2 transform-gpu filter blur-xl opacity-75 pointer-events-none" />
               <div className="relative w-full aspect-[2/3] rounded-t-[180px] rounded-b-[32px] overflow-hidden bg-surface-container-high shadow-[0_16px_40px_-8px_rgba(104,83,84,0.12)]">
                 <img
-                  alt="Carolina Barcellona practicando yoga y consciencia corporal"
-                  className="w-full h-full object-cover object-center"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-xSbN3a7SCLc3CtdRqJe6urPdVBaUG9NBoghbFs6FuQHPEi9NQoSgqK4youeUKdRkWhjpwAJcn_9rE5c26x4-DJynHpTkdlUW4c3WGDx2kIUr4_-FyGLsO7PQUF4SFU2isRgTXZdi9xSczSjErPSMEnLLHmw9yJbo1zhFqyYOMtilby9_p28Zthjh7qoUjWnu0dAPAlncJgmercT2SqZf2hvDZh-BW7n7r7Qv5a-DHD_i8YgY3puLhgI3bCtquFupP2A"
+                  alt="Carolina Barcellona sentada sobre una esterilla durante una práctica de movimiento consciente"
+                  className="w-full h-full object-cover object-[50%_38%]"
+                  src={ASSETS.aboutPortrait}
                 />
                 <div className="absolute bottom-4 left-4 right-4 p-space-md rounded-[20px] bg-surface-container-lowest/90 backdrop-blur-md shadow-md text-center">
                   <h3 className="font-headline-sm text-headline-sm text-on-surface leading-tight">Carolina Barcellona</h3>
@@ -98,7 +99,7 @@ export const SobreMiPage: React.FC<SobreMiPageProps> = ({
             <div className="mt-space-xl flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md">
               <button
                 onClick={onOpenBookingModal}
-                className="inline-flex items-center justify-center gap-space-sm px-space-xl py-space-md rounded-full font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-space-sm px-space-xl py-space-md rounded-full font-title-md text-title-md text-on-primary bg-gradient-to-r from-[#D6254F] to-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.35)] hover:shadow-[0_12px_28px_rgba(238,41,92,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[20px]">calendar_month</span>
                 <span>Reserva tu sesión informativa gratuita</span>
@@ -238,7 +239,7 @@ export const SobreMiPage: React.FC<SobreMiPageProps> = ({
           ].map((card) => (
             <div key={card.num} className="bg-surface-container-lowest p-space-xl rounded-[28px] shadow-[0_8px_30px_-4px_rgba(104,83,84,0.07)] relative overflow-hidden flex flex-col justify-between group">
               <div className="mb-space-lg">
-                <span className="font-headline-lg text-display-lg text-outline-variant/50 block select-none leading-none mb-space-sm group-hover:text-primary transition-colors">
+                <span className="font-headline-lg text-display-lg text-brand-gold-border block select-none leading-none mb-space-sm group-hover:text-primary transition-colors">
                   {card.num}
                 </span>
                 <p className="font-label-md text-label-md uppercase tracking-wider text-tertiary font-bold mb-1">{card.badge}</p>
@@ -261,7 +262,7 @@ export const SobreMiPage: React.FC<SobreMiPageProps> = ({
           <div className="flex flex-col sm:flex-row items-center gap-space-md mb-space-md w-full sm:w-auto">
             <button
               onClick={onOpenBookingModal}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-space-xl py-space-md rounded-full font-title-md text-title-md text-on-primary bg-gradient-to-r from-secondary-container to-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.4)] hover:shadow-[0_12px_32px_rgba(238,41,92,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-space-xl py-space-md rounded-full font-title-md text-title-md text-on-primary bg-gradient-to-r from-[#D6254F] to-primary shadow-[0_8px_24px_-2px_rgba(238,41,92,0.4)] hover:shadow-[0_12px_32px_rgba(238,41,92,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               Aplicar al Método
             </button>

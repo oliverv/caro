@@ -55,7 +55,7 @@ export const LongevityCalculator: React.FC = () => {
       <div className="max-w-[1100px] mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-space-3xl">
-          <span className="text-[12px] font-bold text-[#EE295C] tracking-[0.2em] uppercase block mb-space-2xs">
+          <span className="text-[12px] font-bold text-[#B90040] tracking-[0.2em] uppercase block mb-space-2xs">
             {c.badge}
           </span>
           <h2
@@ -74,7 +74,7 @@ export const LongevityCalculator: React.FC = () => {
           {/* Inputs Column */}
           <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl fine-border crisp-shadow">
             <h3 className="font-serif text-[20px] font-bold text-[#201415] mb-5 pb-3 border-b border-[#C7A46B]/20 flex items-center gap-2">
-              <span className="material-symbols-outlined text-[#FF6161]">tune</span>
+              <span className="material-symbols-outlined text-[#B2292F]">tune</span>
               <span>Personaliza tus parámetros</span>
             </h3>
 
@@ -83,7 +83,7 @@ export const LongevityCalculator: React.FC = () => {
               <div>
                 <div className="flex justify-between items-center mb-1.5">
                   <label className="text-[13px] font-bold text-[#201415]">{c.ageLabel}</label>
-                  <span className="font-serif text-[17px] font-bold text-[#EE295C]">{age} años</span>
+                  <span className="font-serif text-[17px] font-bold text-[#B90040]">{age} años</span>
                 </div>
                 <input
                   type="range"
@@ -93,7 +93,7 @@ export const LongevityCalculator: React.FC = () => {
                   onChange={(e) => setAge(Number(e.target.value))}
                   className="w-full accent-[#EE295C] cursor-pointer"
                 />
-                <div className="flex justify-between text-[11px] text-[#685354] mt-1">
+                <div className="flex justify-between text-[12px] text-[#685354] mt-1">
                   <span>38</span>
                   <span>50</span>
                   <span>68+</span>
@@ -104,7 +104,7 @@ export const LongevityCalculator: React.FC = () => {
               <div>
                 <div className="flex justify-between items-center mb-1.5">
                   <label className="text-[13px] font-bold text-[#201415]">{c.weightLabel}</label>
-                  <span className="font-serif text-[17px] font-bold text-[#EE295C]">{weight} kg</span>
+                  <span className="font-serif text-[17px] font-bold text-[#B90040]">{weight} kg</span>
                 </div>
                 <input
                   type="range"
@@ -114,7 +114,7 @@ export const LongevityCalculator: React.FC = () => {
                   onChange={(e) => setWeight(Number(e.target.value))}
                   className="w-full accent-[#EE295C] cursor-pointer"
                 />
-                <div className="flex justify-between text-[11px] text-[#685354] mt-1">
+                <div className="flex justify-between text-[12px] text-[#685354] mt-1">
                   <span>45 kg</span>
                   <span>75 kg</span>
                   <span>115 kg</span>
@@ -138,7 +138,7 @@ export const LongevityCalculator: React.FC = () => {
                     >
                       <span>{c.activityOptions[key]}</span>
                       {activity === key && (
-                        <span className="material-symbols-outlined text-[#EE295C] text-[18px]">check_circle</span>
+                        <span className="material-symbols-outlined text-[#B90040] text-[18px]">check_circle</span>
                       )}
                     </button>
                   ))}
@@ -162,7 +162,7 @@ export const LongevityCalculator: React.FC = () => {
                     >
                       <span>{c.goalOptions[key]}</span>
                       {goal === key && (
-                        <span className="material-symbols-outlined text-[#EE295C] text-[18px]">check_circle</span>
+                        <span className="material-symbols-outlined text-[#B90040] text-[18px]">check_circle</span>
                       )}
                     </button>
                   ))}
@@ -178,7 +178,7 @@ export const LongevityCalculator: React.FC = () => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6161]/20 rounded-full blur-3xl pointer-events-none" />
 
               <div className="relative z-10">
-                <span className="px-3 py-1 rounded-full text-[10px] tracking-wider uppercase font-bold bg-[#FF6161]/20 text-[#F8CFD5] border border-[#FF6161]/30 inline-block mb-3">
+                <span className="px-3 py-1 rounded-full text-[12px] tracking-wider uppercase font-bold bg-[#FF6161]/20 text-[#F8CFD5] border border-[#FF6161]/30 inline-block mb-3">
                   Protocolo Calculado
                 </span>
                 <h3 className="font-serif text-[24px] font-bold text-white mb-6">
@@ -188,25 +188,25 @@ export const LongevityCalculator: React.FC = () => {
                 {/* Primary Metric Block: Protein Target */}
                 <div className="grid grid-cols-2 gap-3 mb-5">
                   <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm fine-border-dark">
-                    <p className="text-[11px] text-[#F8CFD5] uppercase tracking-wider font-semibold mb-1">
+                    <p className="text-[12px] text-[#F8CFD5] uppercase tracking-wider font-semibold mb-1">
                       {c.proteinTarget}
                     </p>
                     <p className="font-serif text-[34px] sm:text-[40px] font-bold text-white leading-none mb-1">
                       {totalDailyProtein} <span className="text-lg font-normal text-[#F6F1EA]/70">g/día</span>
                     </p>
-                    <p className="text-[11px] text-[#F6F1EA]/60 leading-tight">
+                    <p className="text-[12px] text-[#F6F1EA]/60 leading-tight">
                       ~{(totalDailyProtein / weight).toFixed(1)} g por kg de peso
                     </p>
                   </div>
 
                   <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm fine-border-dark">
-                    <p className="text-[11px] text-[#F8CFD5] uppercase tracking-wider font-semibold mb-1">
+                    <p className="text-[12px] text-[#F8CFD5] uppercase tracking-wider font-semibold mb-1">
                       {c.proteinPerMeal}
                     </p>
                     <p className="font-serif text-[34px] sm:text-[40px] font-bold text-[#F69C05] leading-none mb-1">
                       {proteinPerMealMin} <span className="text-lg font-normal text-[#F6F1EA]/70">g/comida</span>
                     </p>
-                    <p className="text-[11px] text-[#F6F1EA]/60 leading-tight">
+                    <p className="text-[12px] text-[#F6F1EA]/60 leading-tight">
                       Activa vía mTOR celular ({leucineTarget} leucina)
                     </p>
                   </div>
@@ -241,7 +241,7 @@ export const LongevityCalculator: React.FC = () => {
 
                 {/* Recommended Biomarkers */}
                 <div className="mb-6">
-                  <p className="text-[11px] text-[#F8CFD5] uppercase tracking-widest font-bold mb-2">
+                  <p className="text-[12px] text-[#F8CFD5] uppercase tracking-widest font-bold mb-2">
                     {c.biomarkersTitle}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[12px]">
@@ -252,7 +252,7 @@ export const LongevityCalculator: React.FC = () => {
                         </span>
                         <div>
                           <p className="font-semibold text-white leading-tight">{bio.name}</p>
-                          <p className="text-[10px] text-[#F6F1EA]/60 leading-tight">{bio.note}</p>
+                          <p className="text-[12px] text-[#F6F1EA]/60 leading-tight">{bio.note}</p>
                         </div>
                       </div>
                     ))}
@@ -264,7 +264,7 @@ export const LongevityCalculator: React.FC = () => {
                   <button
                     id="btn-consultar-calculadora"
                     onClick={handleConsultWhatsApp}
-                    className="flex-1 py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] hover:opacity-95 text-white text-[13px] font-bold rounded-full shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="flex-1 py-3 bg-gradient-to-r from-[#D6254F] to-[#B90040] hover:opacity-95 text-white text-[13px] font-bold rounded-full shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span className="material-symbols-outlined text-[18px]">chat</span>
                     <span>{c.consultCarolinaBtn}</span>
@@ -282,7 +282,7 @@ export const LongevityCalculator: React.FC = () => {
                   </button>
                 </div>
 
-                <p className="text-[10px] text-[#F6F1EA]/50 mt-4 text-center italic">
+                <p className="text-[12px] text-[#F6F1EA]/50 mt-4 text-center italic">
                   {c.disclaimer}
                 </p>
               </div>

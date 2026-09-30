@@ -38,7 +38,7 @@ export const TrajectoryModal: React.FC<TrajectoryModalProps> = ({ isOpen, onClos
             <h3 className="font-serif text-[22px] font-bold text-[#201415]">
               Carolina Barcellona
             </h3>
-            <p className="text-[12px] text-[#EE295C] font-semibold uppercase tracking-wider">
+            <p className="text-[12px] text-[#B90040] font-semibold uppercase tracking-wider">
               Nutricionista Clínica, Epigenética & Longevidad 40+
             </p>
           </div>
@@ -56,19 +56,19 @@ export const TrajectoryModal: React.FC<TrajectoryModalProps> = ({ isOpen, onClos
 
           <ul className="space-y-2 text-[13px] bg-[#F6F1EA] p-4 rounded-2xl fine-border">
             <li className="flex items-start gap-2">
-              <span className="material-symbols-outlined text-[#FF6161] text-[18px] shrink-0 mt-0.5">school</span>
+              <span className="material-symbols-outlined text-[#B2292F] text-[18px] shrink-0 mt-0.5">school</span>
               <span><strong>Nutrición Clínica e Integrativa:</strong> Especialización en dietoterapia avanzada y modulación de patologías metabólicas.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="material-symbols-outlined text-[#EE295C] text-[18px] shrink-0 mt-0.5">biotech</span>
+              <span className="material-symbols-outlined text-[#B90040] text-[18px] shrink-0 mt-0.5">biotech</span>
               <span><strong>Nutrigenética & Epigenética:</strong> Estudio de cómo la alimentación y el estilo de vida activan o silencian genes protectores de longevidad.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="material-symbols-outlined text-[#F69C05] text-[18px] shrink-0 mt-0.5">medication</span>
+              <span className="material-symbols-outlined text-[#8F5300] text-[18px] shrink-0 mt-0.5">medication</span>
               <span><strong>Nutrición Ortomolecular:</strong> Uso terapéutico de micronutrientes y adaptógenos de grado clínico para regeneración celular.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="material-symbols-outlined text-[#C7A46B] text-[18px] shrink-0 mt-0.5">fitness_center</span>
+              <span className="material-symbols-outlined text-[#7E5B20] text-[18px] shrink-0 mt-0.5">fitness_center</span>
               <span><strong>Medicina del Movimiento y Estilo de Vida:</strong> Entrenamiento de hipertrofia funcional y preservación ósea adaptado a la mujer madura.</span>
             </li>
           </ul>

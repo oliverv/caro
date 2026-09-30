@@ -13,7 +13,7 @@ export const MethodPillars: React.FC = () => {
     >
       <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="text-center max-w-2xl mx-auto mb-space-3xl">
-          <span className="text-[12px] font-bold text-[#EE295C] tracking-[0.2em] uppercase block mb-space-2xs">
+          <span className="text-[12px] font-bold text-[#B90040] tracking-[0.2em] uppercase block mb-space-2xs">
             {p.badge}
           </span>
           <h2 className="font-serif text-[32px] md:text-[46px] text-[#201415] italic font-semibold tracking-tight mb-space-sm">

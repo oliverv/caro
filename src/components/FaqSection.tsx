@@ -21,7 +21,7 @@ export const FaqSection: React.FC = () => {
     <section id="faq" className="w-full bg-white py-space-4xl border-t border-[#C7A46B]/25">
       <div className="max-w-[780px] mx-auto px-margin-mobile">
         <div className="text-center mb-space-3xl">
-          <span className="text-[12px] font-bold text-[#EE295C] tracking-[0.2em] uppercase block mb-space-2xs">
+          <span className="text-[12px] font-bold text-[#B90040] tracking-[0.2em] uppercase block mb-space-2xs">
             {f.badge}
           </span>
           <h2
@@ -53,7 +53,7 @@ export const FaqSection: React.FC = () => {
                 >
                   <span className="pr-space-md">{faq.question}</span>
                   <span
-                    className={`material-symbols-outlined text-[#FF6161] transition-transform duration-300 shrink-0 ${
+                    className={`material-symbols-outlined text-[#B2292F] transition-transform duration-300 shrink-0 ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                   >

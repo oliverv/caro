@@ -14,18 +14,20 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenProgramModal,
   onOpenDiagnosticModal
 }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const ft = t.footer;
 
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [mailHandoff, setMailHandoff] = useState('');
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim() && email.includes('@')) {
-      setSubscribed(true);
-      setEmail('');
-    }
+    if (!email.trim() || !email.includes('@')) return;
+    const subject = encodeURIComponent(ft.newsletterTitle);
+    const body = encodeURIComponent(`Please add ${email.trim()} to the newsletter mailing list.`);
+    setMailHandoff(`mailto:contacto@carolinabarcellona.com?subject=${subject}&body=${body}`);
+    setSubscribed(true);
   };
 
   const handlePageClick = (page: PageId) => {
@@ -47,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="font-serif text-[17px] tracking-tight font-bold text-white">
                   CAROLINA BARCELLONA
                 </span>
-                <span className="text-[9px] text-[#C7A46B] tracking-[0.2em] font-semibold uppercase">
+                <span className="text-[12px] text-[#C7A46B] tracking-[0.2em] font-semibold uppercase">
                   HEALTH & LONGEVITY 40+
                 </span>
               </div>
@@ -135,17 +137,22 @@ export const Footer: React.FC<FooterProps> = ({
             {subscribed ? (
               <div
                 id="newsletter-success"
-                className="p-3 bg-[#EE295C]/20 border border-[#EE295C]/50 rounded-xl text-[13px] text-[#F8CFD5] flex items-center gap-2"
+                className="p-3 bg-[#EE295C]/20 border border-[#EE295C]/50 rounded-xl text-[13px] text-[#F8CFD5] flex flex-col items-start gap-2"
+                role="status"
               >
-                <span className="material-symbols-outlined text-[18px]">check_circle</span>
-                <span>{ft.newsletterSuccess}</span>
+                <span>{language === 'en' ? 'Your email is ready. Open your email app and send the message to request a subscription.' : language === 'fr' ? 'Votre demande est prête. Ouvrez votre messagerie et envoyez le message pour demander votre inscription.' : 'Tu solicitud está preparada. Abre tu correo y envía el mensaje para pedir el alta.'}</span>
+                <a className="underline font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" href={mailHandoff}>
+                  {language === 'en' ? 'Open email' : language === 'fr' ? 'Ouvrir le courriel' : 'Abrir correo'}
+                </a>
               </div>
             ) : (
               <form id="newsletter-form" onSubmit={handleSubscribe} className="flex gap-2">
+                <label className="sr-only" htmlFor="newsletter-email-input">{ft.newsletterPlaceholder}</label>
                 <input
                   id="newsletter-email-input"
                   type="email"
                   required
+                  name="email"
                   placeholder={ft.newsletterPlaceholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -154,7 +161,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   id="newsletter-submit-btn"
                   type="submit"
-                  className="px-5 py-2.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-full hover:opacity-90 transition-opacity cursor-pointer shrink-0"
+                  className="px-5 py-2.5 bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[13px] font-bold rounded-full hover:opacity-90 transition-opacity cursor-pointer shrink-0"
                 >
                   {ft.newsletterBtn}
                 </button>
@@ -162,7 +169,7 @@ export const Footer: React.FC<FooterProps> = ({
             )}
 
             {/* Payment & Security Badges — confirmed: Stripe + Klarna */}
-            <div className="mt-4 flex items-center gap-2 text-[10px] text-[#F6F1EA]/50 font-semibold tracking-wider">
+            <div className="mt-4 flex items-center gap-2 text-[12px] text-[#F6F1EA]/50 font-semibold tracking-wider">
               <span>{ft.paymentMethods}</span>
               <span className="px-2 py-0.5 rounded bg-white/10 text-white">STRIPE</span>
               <span className="px-2 py-0.5 rounded bg-white/10 text-white">KLARNA</span>
@@ -171,7 +178,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#F6F1EA]/50 gap-4">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[12px] text-[#F6F1EA]/50 gap-4">
           <p>© {new Date().getFullYear()} Carolina Barcellona. {ft.allRights}</p>
           <div className="flex items-center gap-4">
             <button

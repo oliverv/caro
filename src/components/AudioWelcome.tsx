@@ -538,7 +538,7 @@ export const AudioWelcome: React.FC = () => {
             {isPlaying && (
               <span className="absolute -top-1 -right-1 flex h-4 w-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EE295C] opacity-80" />
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-[#EE295C] items-center justify-center text-[8px] text-white font-bold">
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-[#B90040] items-center justify-center text-[8px] text-white font-bold">
                   ♪
                 </span>
               </span>
@@ -568,7 +568,7 @@ export const AudioWelcome: React.FC = () => {
                 <button
                   onClick={closeVideo}
                   aria-label="Cerrar vídeo"
-                  className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white text-[#201415] flex items-center justify-center shadow-md hover:bg-[#EE295C] hover:text-white transition-colors cursor-pointer"
+                  className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white text-[#201415] flex items-center justify-center shadow-md hover:bg-[#B90040] hover:text-white transition-colors cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-[18px]">close</span>
                 </button>
@@ -581,17 +581,17 @@ export const AudioWelcome: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold text-[#EE295C] uppercase tracking-[0.2em]">
+                  <span className="text-[12px] font-bold text-[#B90040] uppercase tracking-[0.2em]">
                     {a.badge} • Carolina Barcellona
                   </span>
                   {hasRealAudio && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#C7A46B]/15 text-[#8A6A32] text-[10px] font-bold">
-                      <span className="material-symbols-outlined text-[11px]">verified</span>
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#C7A46B]/15 text-brand-gold-ink text-[12px] font-bold">
+                      <span className="material-symbols-outlined text-[12px]">verified</span>
                       Voz Original
                     </span>
                   )}
                   {isPlaying && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold animate-pulse">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[12px] font-bold animate-pulse">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                       Sonando
                     </span>
@@ -601,7 +601,7 @@ export const AudioWelcome: React.FC = () => {
                   {a.title}
                 </h4>
               </div>
-              <span className="text-[11px] font-semibold text-[#685354] shrink-0 font-mono">
+              <span className="text-[12px] font-semibold text-[#685354] shrink-0 font-mono">
                 {isPlaying
                   ? `${formatSecs(currentTime)} / ${formatSecs(duration || 25)}`
                   : hasRealAudio && duration
@@ -620,7 +620,7 @@ export const AudioWelcome: React.FC = () => {
                 id="btn-toggle-audio-welcome"
                 onClick={togglePlay}
                 aria-label={isPlaying ? a.pause : a.play}
-                className="w-12 h-12 rounded-full bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all shrink-0 cursor-pointer"
+                className="w-12 h-12 rounded-full bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all shrink-0 cursor-pointer"
                 title={isPlaying ? 'Pausar audio' : 'Escuchar mensaje de Carolina'}
               >
                 <span className="material-symbols-outlined text-[26px]">
@@ -676,7 +676,7 @@ export const AudioWelcome: React.FC = () => {
               <button
                 id="btn-toggle-transcript"
                 onClick={() => setShowTranscript(!showTranscript)}
-                className="text-[12px] font-semibold text-[#EE295C] hover:underline shrink-0 hidden sm:inline-block cursor-pointer px-2"
+                className="text-[12px] font-semibold text-[#B90040] hover:underline shrink-0 hidden sm:inline-block cursor-pointer px-2"
               >
                 {showTranscript ? a.hideTranscript : a.transcriptBtn}
               </button>
@@ -685,13 +685,13 @@ export const AudioWelcome: React.FC = () => {
             {/* Mobile transcript button */}
             <div className="sm:hidden mt-2.5 flex items-center justify-between">
               {hasRealAudio && (
-                <span className="text-[10px] text-[#8A6A32] font-semibold">
+                <span className="text-[12px] text-brand-gold-ink font-semibold">
                   Audio grabado por Carolina
                 </span>
               )}
               <button
                 onClick={() => setShowTranscript(!showTranscript)}
-                className="text-[12px] font-semibold text-[#EE295C] hover:underline ml-auto"
+                className="text-[12px] font-semibold text-[#B90040] hover:underline ml-auto"
               >
                 {showTranscript ? a.hideTranscript : a.transcriptBtn}
               </button>

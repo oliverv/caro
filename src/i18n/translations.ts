@@ -407,7 +407,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'B',
           title: 'Biología & Epigenética',
           gradient: 'from-[#FF6161] to-[#EE295C]',
-          accentHoverColor: 'group-hover:text-[#FF6161]',
+          accentHoverColor: 'group-hover:text-[#B2292F]',
           description: 'Comprende quién eres y cómo está cambiando tu cuerpo por dentro. Sin el ruido de dietas pasajeras. Datos analíticos avanzados, equilibrio hormonal y evaluación celular.'
         },
         {
@@ -415,7 +415,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'N',
           title: 'Nutrición Ortomolecular',
           gradient: 'from-[#EE295C] to-[#FF6161]',
-          accentHoverColor: 'group-hover:text-[#EE295C]',
+          accentHoverColor: 'group-hover:text-[#B90040]',
           description: 'Audita lo que comes y sustituye la restricción por precisión celular. Estrategia nutricional que desinflama, apoya tu tiroides y reactiva la sensibilidad a la insulina.'
         },
         {
@@ -423,7 +423,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'M',
           title: 'Movimiento & Fuerza',
           gradient: 'from-[#F69C05] to-[#FF6161]',
-          accentHoverColor: 'group-hover:text-[#F69C05]',
+          accentHoverColor: 'group-hover:text-[#8F5300]',
           description: 'Construye tejido muscular metabólicamente activo adaptado a los 40+. Preserva tu masa ósea, estimula mitocondrias y mejora tu composición corporal sin agotamiento.'
         },
         {
@@ -431,7 +431,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'H',
           title: 'Hábitos & Longevidad',
           gradient: 'from-[#C7A46B] to-[#EE295C]',
-          accentHoverColor: 'group-hover:text-[#C7A46B]',
+          accentHoverColor: 'group-hover:text-[#7E5B20]',
           description: 'Optimiza tu descanso circadiano, disuelve la niebla mental y regula el cortisol. Sistemas simples y consistentes que garantizan vitalidad para las próximas décadas.'
         }
       ]
@@ -533,7 +533,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Sofocos y cambios en el cuerpo',
           description: 'Sientes que tu cuerpo está cambiando —sofocos, cambios en la composición corporal, inflamación, digestión o recuperación— y quieres comprender qué está pasando para responder a esta nueva etapa con una estrategia personalizada.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#FF6161]',
+          iconColor: 'text-[#B2292F]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -542,7 +542,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Pérdida de energía y vitalidad',
           description: 'Sientes que has perdido vitalidad y quieres volver a sentirte fuerte, activa y conectada con tu cuerpo, despertando cada mañana con entusiasmo real.',
           badgeBg: 'bg-amber-50',
-          iconColor: 'text-[#F69C05]',
+          iconColor: 'text-[#8F5300]',
           borderColor: 'border-[#F69C05]/30'
         },
         {
@@ -551,7 +551,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Niebla mental y falta de enfoque',
           description: 'Notas más niebla mental, dificultad para concentrarte o cambios en tu claridad mental que antes no tenías y que interfieren en tu ritmo profesional y personal.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#EE295C]',
+          iconColor: 'text-[#B90040]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -560,7 +560,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Insomnio, estrés y cambios en el estado de ánimo',
           description: 'Tu sueño (insomnio, despertares), tu estrés o tu estado de ánimo han cambiado y quieres aprender a regularlos desde una estrategia integral y compasiva con tu fisiología en esta etapa.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#FF6161]',
+          iconColor: 'text-[#B2292F]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -569,7 +569,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Sostenibilidad a largo plazo',
           description: 'No quieres otra dieta restrictiva. Quieres un estilo de vida personalizado que puedas disfrutar, integrar y sostener con placer durante décadas.',
           badgeBg: 'bg-amber-50',
-          iconColor: 'text-[#F69C05]',
+          iconColor: 'text-[#8F5300]',
           borderColor: 'border-[#F69C05]/30'
         },
         {
@@ -578,7 +578,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Acompañamiento clínico 1 a 1',
           description: 'Quieres dejar de hacerlo sola y contar con la experiencia de una profesional que integre tus datos, tu historia y tus objetivos para diseñar una ruta a tu medida.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#EE295C]',
+          iconColor: 'text-[#B90040]',
           borderColor: 'border-[#F8CFD5]'
         }
       ]
@@ -609,7 +609,7 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         high: {
           level: 'Desajuste Bio-Hormonal & Epigenético Significativo',
-          color: 'text-[#EE295C] bg-[#F8CFD5]/30 border-[#EE295C]/30',
+          color: 'text-[#B90040] bg-[#F8CFD5]/30 border-[#EE295C]/30',
           summary: 'Tus marcadores de fatiga, sueño interrumpido e inflamación sugieren un estrés oxidativo y mitocondrial importante. Necesitas un protocolo clínico 1 a 1 para desinflamar, reactivar tu tiroides y recuperar tu bienestar sin pasar hambre.',
           pillar: 'Recomendación inmediata: Programa Código Diosa 180 Días con supervisión clínica directa.'
         }
@@ -888,25 +888,25 @@ export const translations: Record<Language, TranslationSchema> = {
       items: [
         {
           icon: 'school',
-          color: 'text-[#FF6161]',
+          color: 'text-[#B2292F]',
           bold: 'Nutrición Clínica e Integrativa:',
           desc: 'Especialización en dietoterapia avanzada y modulación de patologías metabólicas.'
         },
         {
           icon: 'biotech',
-          color: 'text-[#EE295C]',
+          color: 'text-[#B90040]',
           bold: 'Nutrigenética & Epigenética:',
           desc: 'Estudio de cómo la alimentación y el estilo de vida activan o silencian genes protectores de longevidad.'
         },
         {
           icon: 'medication',
-          color: 'text-[#F69C05]',
+          color: 'text-[#8F5300]',
           bold: 'Nutrición Ortomolecular:',
           desc: 'Uso terapéutico de micronutrientes y adaptógenos de grado clínico para regeneración celular.'
         },
         {
           icon: 'fitness_center',
-          color: 'text-[#C7A46B]',
+          color: 'text-[#7E5B20]',
           bold: 'Medicina del Movimiento y Estilo de Vida:',
           desc: 'Entrenamiento de hipertrofia funcional y preservación ósea adaptado a la mujer madura.'
         }
@@ -952,9 +952,9 @@ export const translations: Record<Language, TranslationSchema> = {
       namePlaceholder: 'Ej: Carmen Sánchez',
       phoneLabel: 'Número de WhatsApp',
       phonePlaceholder: '+34 600 000 000',
-      confirmBtn: 'Confirmar Solicitud de Cita',
-      successTitle: '¡Cita pre-agendada con éxito!',
-      successDesc: 'Nos pondremos en contacto contigo por WhatsApp en menos de 24 horas laborables para confirmar la hora exacta y enviarte tu cuestionario clínico previo.',
+      confirmBtn: 'Preparar solicitud de cita',
+      successTitle: 'Tu solicitud está lista',
+      successDesc: 'Envíala por WhatsApp o abre Calendly para completar la reserva. No se ha enviado ningún dato todavía.',
       addToCalendarBtn: 'Añadir recordatorio a mi calendario',
       whatsappConfirmBtn: 'Confirmar ahora por WhatsApp',
       closeBtn: 'Cerrar'
@@ -1027,7 +1027,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'B',
           title: 'Biology & Epigenetics',
           gradient: 'from-[#FF6161] to-[#EE295C]',
-          accentHoverColor: 'group-hover:text-[#FF6161]',
+          accentHoverColor: 'group-hover:text-[#B2292F]',
           description: 'Understand who you are and how your cellular biochemistry is evolving. Advanced blood biomarkers, hormonal rebalancing, and deep cellular assessment without diet noise.'
         },
         {
@@ -1035,7 +1035,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'N',
           title: 'Orthomolecular Nutrition',
           gradient: 'from-[#EE295C] to-[#FF6161]',
-          accentHoverColor: 'group-hover:text-[#EE295C]',
+          accentHoverColor: 'group-hover:text-[#B90040]',
           description: 'Audit dietary triggers and replace restriction with cellular precision. Nutritional strategies that eliminate chronic inflammation, support thyroid health, and reactivate insulin sensitivity.'
         },
         {
@@ -1043,7 +1043,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'M',
           title: 'Movement & Strength',
           gradient: 'from-[#F69C05] to-[#FF6161]',
-          accentHoverColor: 'group-hover:text-[#F69C05]',
+          accentHoverColor: 'group-hover:text-[#8F5300]',
           description: 'Build metabolically active muscle mass adapted for 40+. Safeguard bone mineral density, boost mitochondrial density, and refine body composition without burnout.'
         },
         {
@@ -1051,7 +1051,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'H',
           title: 'Habits & Longevity',
           gradient: 'from-[#C7A46B] to-[#EE295C]',
-          accentHoverColor: 'group-hover:text-[#C7A46B]',
+          accentHoverColor: 'group-hover:text-[#7E5B20]',
           description: 'Synchronize your circadian rest, lift executive brain fog, and tame cortisol spikes. Seamless daily systems that guarantee peak vitality for decades to come.'
         }
       ]
@@ -1153,7 +1153,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Hot Flashes & Body Shifts',
           description: 'You sense your body evolving—hot flashes, stubborn abdominal adiposity, altered digestion, or slower recovery—and you want a personalized strategy.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#FF6161]',
+          iconColor: 'text-[#B2292F]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -1162,7 +1162,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Loss of Vitality & Stamina',
           description: 'You feel low on energy and want to wake up feeling strong, active, and fully connected with your physiology every morning.',
           badgeBg: 'bg-amber-50',
-          iconColor: 'text-[#F69C05]',
+          iconColor: 'text-[#8F5300]',
           borderColor: 'border-[#F69C05]/30'
         },
         {
@@ -1171,7 +1171,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Brain Fog & Focus Lapses',
           description: 'You notice mental fogginess, word-finding friction, or fluctuating focus that interferes with your executive and personal rhythm.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#EE295C]',
+          iconColor: 'text-[#B90040]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -1180,7 +1180,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Insomnia, Stress & Mood Changes',
           description: 'Your sleep (insomnia, night awakenings), stress tolerance, or mood have shifted and you want a compassionate, science-backed approach for this life stage.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#FF6161]',
+          iconColor: 'text-[#B2292F]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -1189,7 +1189,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Long-Term Sustainability',
           description: 'You refuse another punitive diet. You want an elevated lifestyle plan you can integrate and enjoy for the next 30+ years.',
           badgeBg: 'bg-amber-50',
-          iconColor: 'text-[#F69C05]',
+          iconColor: 'text-[#8F5300]',
           borderColor: 'border-[#F69C05]/30'
         },
         {
@@ -1198,7 +1198,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: '1-on-1 Clinical Guidance',
           description: 'You want to stop guessing alone and partner with a specialized clinician who analyzes your labs and builds a custom roadmap.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#EE295C]',
+          iconColor: 'text-[#B90040]',
           borderColor: 'border-[#F8CFD5]'
         }
       ]
@@ -1229,7 +1229,7 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         high: {
           level: 'Significant Bio-Hormonal & Epigenetic Imbalance',
-          color: 'text-[#EE295C] bg-[#F8CFD5]/30 border-[#EE295C]/30',
+          color: 'text-[#B90040] bg-[#F8CFD5]/30 border-[#EE295C]/30',
           summary: 'Chronic fatigue, broken sleep, and inflammation indicate significant oxidative and mitochondrial stress. A tailored 1-on-1 clinical protocol is needed to rebalance thyroid and restore vitality.',
           pillar: 'Immediate Recommendation: Diosa Code 180 Days Program with direct clinical supervision.'
         }
@@ -1508,25 +1508,25 @@ export const translations: Record<Language, TranslationSchema> = {
       items: [
         {
           icon: 'school',
-          color: 'text-[#FF6161]',
+          color: 'text-[#B2292F]',
           bold: 'Clinical & Integrative Nutrition:',
           desc: 'Advanced medical dietotherapy and therapeutic modulation of metabolic conditions.'
         },
         {
           icon: 'biotech',
-          color: 'text-[#EE295C]',
+          color: 'text-[#B90040]',
           bold: 'Nutrigenetics & Epigenetics:',
           desc: 'How specific nutrients and lifestyle factors upregulate or silence longevity-protective gene expression.'
         },
         {
           icon: 'medication',
-          color: 'text-[#F69C05]',
+          color: 'text-[#8F5300]',
           bold: 'Orthomolecular Nutrition:',
           desc: 'Targeted therapeutic micro-nutrition and clinical-grade adaptogens for cellular renewal.'
         },
         {
           icon: 'fitness_center',
-          color: 'text-[#C7A46B]',
+          color: 'text-[#7E5B20]',
           bold: 'Movement Medicine & Functional Lifestyle:',
           desc: 'Functional hypertrophy and bone preservation training calibrated for the mature female body.'
         }
@@ -1572,9 +1572,9 @@ export const translations: Record<Language, TranslationSchema> = {
       namePlaceholder: 'E.g., Sarah Jenkins',
       phoneLabel: 'WhatsApp Phone Number',
       phonePlaceholder: '+1 (555) 000-0000',
-      confirmBtn: 'Confirm Appointment Request',
-      successTitle: 'Appointment Pre-Booked Successfully!',
-      successDesc: 'We will reach out to you via WhatsApp within 24 business hours to confirm your exact time slot and send your preparatory clinical intake form.',
+      confirmBtn: 'Prepare Appointment Request',
+      successTitle: 'Your request is ready',
+      successDesc: 'Send it via WhatsApp or open Calendly to complete your booking. No information has been sent yet.',
       addToCalendarBtn: 'Add reminder to my calendar',
       whatsappConfirmBtn: 'Confirm right now via WhatsApp',
       closeBtn: 'Close'
@@ -1647,7 +1647,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'B',
           title: 'Biologie & Épigénétique',
           gradient: 'from-[#FF6161] to-[#EE295C]',
-          accentHoverColor: 'group-hover:text-[#FF6161]',
+          accentHoverColor: 'group-hover:text-[#B2292F]',
           description: 'Comprenez comment évolue votre biochimie interne. Analyse biologique avancée, harmonisation hormonale et évaluation cellulaire loin des bruits de régimes éphémères.'
         },
         {
@@ -1655,7 +1655,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'N',
           title: 'Nutrition Orthomoléculaire',
           gradient: 'from-[#EE295C] to-[#FF6161]',
-          accentHoverColor: 'group-hover:text-[#EE295C]',
+          accentHoverColor: 'group-hover:text-[#B90040]',
           description: 'Auditez vos aliments et remplacez la restriction par la précision cellulaire. Une stratégie qui apaise l\'inflammation, soutient la thyroïde et réactive la sensibilité à l\'insuline.'
         },
         {
@@ -1663,7 +1663,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'M',
           title: 'Mouvement & Force',
           gradient: 'from-[#F69C05] to-[#FF6161]',
-          accentHoverColor: 'group-hover:text-[#F69C05]',
+          accentHoverColor: 'group-hover:text-[#8F5300]',
           description: 'Développez une masse musculaire métaboliquement active adaptée aux 40+. Préservez votre capital osseux, stimulez vos mitochondries et sculptez votre corps sans épuisement.'
         },
         {
@@ -1671,7 +1671,7 @@ export const translations: Record<Language, TranslationSchema> = {
           letter: 'H',
           title: 'Habitudes & Longévité',
           gradient: 'from-[#C7A46B] to-[#EE295C]',
-          accentHoverColor: 'group-hover:text-[#C7A46B]',
+          accentHoverColor: 'group-hover:text-[#7E5B20]',
           description: 'Synchronisez votre repos circadien, dissipez le brouillard mental et régulez le cortisol. Des rituels simples et constants pour garantir votre vitalité sur les décennies à venir.'
         }
       ]
@@ -1773,7 +1773,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Bouffées de Chaleur & Silhouette',
           description: 'Vous sentez votre silhouette changer — bouffées de chaleur, stockage abdominal inhabituel, digestion ralentie — et souhaitez une méthode personnalisée.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#FF6161]',
+          iconColor: 'text-[#B2292F]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -1782,7 +1782,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Baisse d\'Énergie & Vitalité',
           description: 'Vous manquez d\'énergie au réveil et souhaitez vous sentir forte, vive et en harmonie avec votre corps chaque matin.',
           badgeBg: 'bg-amber-50',
-          iconColor: 'text-[#F69C05]',
+          iconColor: 'text-[#8F5300]',
           borderColor: 'border-[#F69C05]/30'
         },
         {
@@ -1791,7 +1791,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Brouillard Mental & Attention',
           description: 'Vous ressentez des pertes de concentration, une mémoire ralentie ou une clarté mentale fluctuante qui pénalise vos activités professionnelles.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#EE295C]',
+          iconColor: 'text-[#B90040]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -1800,7 +1800,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Insomnie, Stress & Humeur',
           description: 'Votre sommeil (insomnie, réveils nocturnes), votre stress ou votre humeur ont changé et vous souhaitez les apaiser avec une stratégie bienveillante et scientifique adaptée à cette étape.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#FF6161]',
+          iconColor: 'text-[#B2292F]',
           borderColor: 'border-[#F8CFD5]'
         },
         {
@@ -1809,7 +1809,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Durabilité sur le Long Terme',
           description: 'Vous refusez un autre régime punitif. Vous désirez un art de vivre élégant que vous prendrez plaisir à maintenir pendant des décennies.',
           badgeBg: 'bg-amber-50',
-          iconColor: 'text-[#F69C05]',
+          iconColor: 'text-[#8F5300]',
           borderColor: 'border-[#F69C05]/30'
         },
         {
@@ -1818,7 +1818,7 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Accompagnement Clinique Individuel',
           description: 'Vous souhaitez cesser d\'improviser seule et vous faire guider par une spécialiste qui intègre vos analyses et votre parcours.',
           badgeBg: 'bg-[#F8CFD5]/40',
-          iconColor: 'text-[#EE295C]',
+          iconColor: 'text-[#B90040]',
           borderColor: 'border-[#F8CFD5]'
         }
       ]
@@ -1849,7 +1849,7 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         high: {
           level: 'Déséquilibre Bio-Hormonal & Épigénétique Marqué',
-          color: 'text-[#EE295C] bg-[#F8CFD5]/30 border-[#EE295C]/30',
+          color: 'text-[#B90040] bg-[#F8CFD5]/30 border-[#EE295C]/30',
           summary: 'La fatigue chronique, le sommeil haché et l\'inflammation témoignent d\'un stress oxydatif important. Un accompagnement clinique individuel est indispensable.',
           pillar: 'Recommandation immédiate : Programme Code Déesse 180 Jours avec supervision clinique directe.'
         }
@@ -2128,25 +2128,25 @@ export const translations: Record<Language, TranslationSchema> = {
       items: [
         {
           icon: 'school',
-          color: 'text-[#FF6161]',
+          color: 'text-[#B2292F]',
           bold: 'Nutrition Clinique & Intégrative :',
           desc: 'Spécialisation en diétothérapie médicale et rééquilibrage métabolique.'
         },
         {
           icon: 'biotech',
-          color: 'text-[#EE295C]',
+          color: 'text-[#B90040]',
           bold: 'Nutrigénétique & Épigénétique :',
           desc: 'Étude de la modulation de l\'expression des gènes protecteurs de longévité par l\'alimentation.'
         },
         {
           icon: 'medication',
-          color: 'text-[#F69C05]',
+          color: 'text-[#8F5300]',
           bold: 'Nutrition Orthomoléculaire :',
           desc: 'Utilisation thérapeutique de micronutriments et adaptogènes purs pour la régénération cellulaire.'
         },
         {
           icon: 'fitness_center',
-          color: 'text-[#C7A46B]',
+          color: 'text-[#7E5B20]',
           bold: 'Médecine du Mouvement & Mode de Vie :',
           desc: 'Renforcement musculaire fonctionnel et préservation de la masse osseuse adaptés au corps féminin mature.'
         }
@@ -2192,9 +2192,9 @@ export const translations: Record<Language, TranslationSchema> = {
       namePlaceholder: 'Ex : Claire Dubois',
       phoneLabel: 'Numéro WhatsApp',
       phonePlaceholder: '+33 6 00 00 00 00',
-      confirmBtn: 'Valider ma Demande de Rendez-vous',
-      successTitle: 'Séance pré-réservée avec succès !',
-      successDesc: 'Nous vous contacterons par WhatsApp sous 24 heures ouvrées pour confirmer l\'horaire définitif et vous transmettre votre questionnaire clinique préalable.',
+      confirmBtn: 'Préparer ma demande de rendez-vous',
+      successTitle: 'Votre demande est prête',
+      successDesc: 'Envoyez-la via WhatsApp ou ouvrez Calendly pour finaliser la réservation. Aucune donnée n\'a encore été envoyée.',
       addToCalendarBtn: 'Ajouter le rappel à mon calendrier',
       whatsappConfirmBtn: 'Confirmer immédiatement sur WhatsApp',
       closeBtn: 'Fermer'

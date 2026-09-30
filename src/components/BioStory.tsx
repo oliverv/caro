@@ -12,90 +12,73 @@ export const BioStory: React.FC<BioStoryProps> = ({ onContactCarolina, onOpenTra
   const b = t.bioStory;
 
   return (
-    <section id="sobre-mi" className="w-full bg-white py-space-4xl relative overflow-hidden border-b border-[#C7A46B]/25">
-      <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
-        <div className="mb-space-2xl">
-          <h2
-            id="biostory-heading"
-            className="font-serif text-[32px] md:text-[46px] text-[#201415] italic font-semibold tracking-tight"
-          >
+    <section id="sobre-mi" className="relative w-full overflow-hidden border-b border-brand-sand/30 bg-white py-14 md:py-20">
+      <div className="mx-auto max-w-content px-margin-mobile md:px-margin-desktop">
+        <div className="mb-8 flex items-end gap-4 md:mb-10">
+          <span aria-hidden="true" className="hidden h-px w-12 bg-brand-sand md:block" />
+          <h2 id="biostory-heading" className="font-serif text-3xl font-semibold italic tracking-tight text-brand-espresso md:text-5xl">
             {b.heading}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
-          {/* Photo Side (Editorial Portrait with Carolina in Red Dress) */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] bg-[#F6F1EA] border-2 border-[#F8CFD5]/60 group">
+        <div className="grid items-center gap-9 lg:grid-cols-12 lg:gap-14">
+          <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:max-w-none">
+            <figure className="relative">
+              <div aria-hidden="true" className="absolute -bottom-3 -left-3 h-full w-full rounded-[1.75rem] border border-brand-sand/50 bg-brand-cream/50" />
               <img
-                alt="Carolina Barcellona - Health & Longevity Specialist 40+"
-                className="w-full h-full object-cover object-top group-hover:scale-102 transition-transform duration-700"
                 src={ASSETS.portraitRedDress}
+                alt="Carolina Barcellona, especialista en salud y longevidad, en una pausa de movimiento"
+                className="relative aspect-[4/5] w-full rounded-[1.5rem] object-cover object-center shadow-[0_16px_36px_-16px_rgba(37,24,25,0.3)]"
+                loading="lazy"
               />
-              {/* Overlay Label Badge */}
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-space-md rounded-xl flex items-center justify-between fine-border shadow-lg">
+              <figcaption className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-xl border border-brand-sand/35 bg-surface/95 p-3 shadow-md backdrop-blur-sm sm:inset-x-5 sm:bottom-5 sm:p-4">
                 <div>
-                  <p className="font-serif text-[17px] text-[#201415] font-bold">Carolina Barcellona</p>
-                  <p className="text-[10px] text-[#EE295C] tracking-widest uppercase font-bold">
-                    {b.specialistTitle}
-                  </p>
+                  <p className="font-serif text-lg font-semibold text-brand-espresso">Carolina Barcellona</p>
+                  <p className="mt-1 font-label-caps text-primary">{b.specialistTitle}</p>
                 </div>
-                <div className="w-9 h-9 rounded-full bg-gradient-to-r from-[#FF6161] to-[#EE295C] flex items-center justify-center text-white shadow-sm">
-                  <span className="material-symbols-outlined text-[18px]">verified</span>
-                </div>
-              </div>
-            </div>
+                <span aria-hidden="true" className="material-symbols-outlined flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-sand/50 bg-white text-primary">verified</span>
+              </figcaption>
+            </figure>
           </div>
 
-          {/* Narrative Side */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 mb-space-xs text-[#EE295C] text-[12px] tracking-[0.2em] uppercase font-bold">
-              <span>{b.badge}</span>
-            </div>
-            <h3 className="font-serif text-[24px] md:text-[32px] md:leading-snug text-[#201415] mb-space-md font-semibold">
+          <div className="lg:col-span-7">
+            <p className="mb-3 font-label-caps text-primary">{b.badge}</p>
+            <h3 className="mb-4 max-w-2xl font-serif text-2xl font-semibold leading-tight text-brand-espresso md:text-4xl">
               {b.title}
             </h3>
-            <p className="text-[15px] text-[#685354] mb-space-md leading-relaxed">
-              {b.para1}
-            </p>
-            <p className="text-[15px] text-[#685354] mb-space-lg leading-relaxed">
-              {b.para2}
-            </p>
+            <p className="mb-4 text-[15px] leading-7 text-on-surface-variant md:text-base">{b.para1}</p>
+            <p className="text-[15px] leading-7 text-on-surface-variant md:text-base">{b.para2}</p>
 
-            {/* Metric Highlights Bento */}
-            <div
-              id="bio-metrics-bento"
-              className="grid grid-cols-3 gap-space-sm p-space-md bg-[#F6F1EA] rounded-2xl mb-space-xl text-center fine-border"
-            >
-              <div className="p-2">
-                <p className="font-serif text-[30px] text-[#FF6161] font-bold leading-tight">{b.statYears}</p>
-                <p className="text-[10px] text-[#685354] tracking-wider uppercase font-semibold">{b.statYearsLabel}</p>
+            <div id="bio-metrics-bento" className="mt-7 grid grid-cols-3 divide-x divide-brand-sand/40 rounded-2xl border border-brand-sand/35 bg-brand-cream/65 px-2 py-4 text-center sm:px-4">
+              <div className="px-1 sm:px-3">
+                <p className="font-serif text-2xl font-semibold leading-tight text-primary sm:text-3xl">{b.statYears}</p>
+                <p className="mt-1 text-[12px] font-semibold uppercase tracking-wide text-on-surface-variant sm:text-[12px]">{b.statYearsLabel}</p>
               </div>
-              <div className="p-2 border-x border-[#C7A46B]/30">
-                <p className="font-serif text-[30px] text-[#EE295C] font-bold leading-tight">{b.statPersonal}</p>
-                <p className="text-[10px] text-[#685354] tracking-wider uppercase font-semibold">{b.statPersonalLabel}</p>
+              <div className="px-1 sm:px-3">
+                <p className="font-serif text-2xl font-semibold leading-tight text-primary sm:text-3xl">{b.statPersonal}</p>
+                <p className="mt-1 text-[12px] font-semibold uppercase tracking-wide text-on-surface-variant sm:text-[12px]">{b.statPersonalLabel}</p>
               </div>
-              <div className="p-2">
-                <p className="font-serif text-[30px] text-[#F69C05] font-bold leading-tight">{b.statRating}</p>
-                <p className="text-[10px] text-[#685354] tracking-wider uppercase font-semibold">{b.statRatingLabel}</p>
+              <div className="px-1 sm:px-3">
+                <p className="font-serif text-2xl font-semibold leading-tight text-tertiary sm:text-3xl">{b.statRating}</p>
+                <p className="mt-1 text-[12px] font-semibold uppercase tracking-wide text-on-surface-variant sm:text-[12px]">{b.statRatingLabel}</p>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-space-md">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
               <button
                 id="btn-contact-carolina"
                 onClick={onContactCarolina}
-                className="px-space-xl py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] hover:opacity-95 text-white text-[13px] font-bold rounded-full shadow-[0_6px_20px_rgba(238,41,92,0.3)] transition-all cursor-pointer"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary shadow-[0_8px_24px_-2px_rgba(185,0,64,0.2)] transition hover:bg-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 {b.contactBtn}
               </button>
               <button
                 id="btn-trajectory"
                 onClick={onOpenTrajectoryModal}
-                className="text-[14px] font-semibold text-[#201415] hover:text-[#EE295C] transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-brand-espresso transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 <span>{b.trajectoryBtn}</span>
-                <span className="material-symbols-outlined text-[17px]">arrow_outward</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-lg">arrow_outward</span>
               </button>
             </div>
           </div>

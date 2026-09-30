@@ -7,60 +7,49 @@ export const WhoIsItFor: React.FC = () => {
   const w = t.whoIsItFor;
 
   return (
-    <section id="para-quien" className="w-full bg-white py-space-4xl border-y border-[#C7A46B]/25">
-      <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
-          {/* Text Content */}
-          <div className="lg:col-span-7 flex flex-col justify-center text-center lg:text-left">
-            <span className="text-[12px] font-bold text-[#EE295C] tracking-[0.2em] uppercase block mb-space-2xs">
-              {w.badge}
-            </span>
-            <h2
-              id="who-is-it-for-title"
-              className="font-serif text-[32px] md:text-[44px] text-[#201415] italic font-semibold mb-space-md"
-            >
-              {w.title}
-            </h2>
-            <p className="font-serif italic text-[18px] md:text-[20px] text-[#685354] leading-relaxed mb-space-lg">
-              {w.description}
-            </p>
+    <section id="para-quien" className="w-full border-y border-brand-sand/25 bg-rose-blush py-14 md:py-20">
+      <div className="mx-auto grid max-w-content items-center gap-10 px-margin-mobile md:px-margin-desktop lg:grid-cols-12 lg:gap-14">
+        <div className="text-center lg:col-span-7 lg:text-left">
+          <p className="mb-3 font-label-caps text-primary">{w.badge}</p>
+          <h2 id="who-is-it-for-title" className="mx-auto max-w-2xl font-serif text-3xl font-semibold italic leading-tight tracking-tight text-brand-espresso md:text-5xl lg:mx-0">
+            {w.title}
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl font-serif text-lg italic leading-relaxed text-on-surface-variant md:text-xl lg:mx-0">
+            {w.description}
+          </p>
 
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-space-md text-[12px] font-semibold text-[#201415] uppercase tracking-wider">
-              {w.tags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F8CFD5]/30 border border-[#F8CFD5]"
-                >
-                  <span
-                    className={`material-symbols-outlined text-[18px] ${
-                      idx === 0 ? 'text-[#EE295C]' : idx === 1 ? 'text-[#FF6161]' : 'text-[#F69C05]'
-                    }`}
-                  >
-                    check_circle
-                  </span>
-                  <span>{tag}</span>
+          <ul className="mt-7 flex list-none flex-wrap justify-center gap-2.5 p-0 lg:justify-start">
+            {w.tags.map((tag, idx) => (
+              <li
+                key={`${tag}-${idx}`}
+                className="inline-flex items-center gap-2 rounded-full border border-brand-sand/45 bg-white/75 px-3.5 py-2 text-[12px] font-semibold uppercase tracking-[0.07em] text-brand-espresso sm:text-xs"
+              >
+                <span aria-hidden="true" className={`material-symbols-outlined text-base ${idx === 2 ? 'text-tertiary' : 'text-primary'}`}>
+                  check_circle
                 </span>
-              ))}
-            </div>
-          </div>
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Photo Pair */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-space-md">
-            <div className="rounded-2xl overflow-hidden shadow-xl fine-border aspect-[4/5] bg-[#F6F1EA] group">
-              <img
-                alt="Carolina Barcellona - Movimiento y Equilibrio 40+"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                src={ASSETS.movementPhoto}
-              />
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-xl fine-border aspect-[4/5] mt-space-lg bg-[#F6F1EA] group">
-              <img
-                alt="Carolina Barcellona - Vitalidad y Longevidad"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                src={ASSETS.vitalityPhoto}
-              />
-            </div>
-          </div>
+        <div className="mx-auto grid w-full max-w-[520px] grid-cols-2 items-start gap-3 lg:col-span-5 lg:max-w-none lg:gap-4">
+          <figure className="overflow-hidden rounded-[1.5rem] border border-brand-sand/40 bg-white p-1.5 shadow-[0_12px_28px_-16px_rgba(37,24,25,0.35)]">
+            <img
+              src={ASSETS.movementPhoto}
+              alt="Carolina practicando un movimiento consciente en una esterilla"
+              className="aspect-[4/5] w-full rounded-[1.1rem] object-cover object-center"
+              loading="lazy"
+            />
+          </figure>
+          <figure className="mt-8 overflow-hidden rounded-[1.5rem] border border-brand-sand/40 bg-white p-1.5 shadow-[0_12px_28px_-16px_rgba(37,24,25,0.35)] sm:mt-12">
+            <img
+              src={ASSETS.heroBg}
+              alt="Carolina disfrutando de una comida saludable y un momento de bienestar"
+              className="aspect-[4/5] w-full rounded-[1.1rem] object-cover object-center"
+              loading="lazy"
+            />
+          </figure>
         </div>
       </div>
     </section>

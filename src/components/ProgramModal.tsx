@@ -10,8 +10,8 @@ const PAIN_POINTS = CODIGO_DIOSA.painPointsEs;
 
 const PHASE_STYLES = [
   { dot: 'bg-[#C7A46B]', ring: 'border-[#C7A46B]/40', chip: 'bg-[#C7A46B]/15 text-[#6b5320]' },
-  { dot: 'bg-[#FF6161]', ring: 'border-[#FF6161]/30', chip: 'bg-[#FF6161]/10 text-[#EE295C]' },
-  { dot: 'bg-[#EE295C]', ring: 'border-[#EE295C]/30', chip: 'bg-[#EE295C]/10 text-[#EE295C]' },
+  { dot: 'bg-[#FF6161]', ring: 'border-[#FF6161]/30', chip: 'bg-[#FF6161]/10 text-[#B90040]' },
+  { dot: 'bg-[#EE295C]', ring: 'border-[#EE295C]/30', chip: 'bg-[#EE295C]/10 text-[#B90040]' },
   { dot: 'bg-[#F69C05]', ring: 'border-[#F69C05]/40', chip: 'bg-[#F69C05]/15 text-[#8a5a00]' },
 ];
 
@@ -42,13 +42,13 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
 
         {/* Hero / pain points */}
         <div className="bg-white rounded-t-3xl px-6 sm:px-8 pt-8 pb-6 border-b border-[#C7A46B]/20 pr-16">
-          <span className="px-3 py-1 rounded-full text-[10px] tracking-wider uppercase font-bold bg-[#F8CFD5] text-[#EE295C] inline-block mb-3">
+          <span className="px-3 py-1 rounded-full text-[12px] tracking-wider uppercase font-bold bg-[#F8CFD5] text-[#B90040] inline-block mb-3">
             Programa Activo • Inscripciones Abiertas
           </span>
           <h3 className="font-display text-[26px] sm:text-[32px] text-[#201415] font-bold leading-tight">
             El Método Código Diosa
           </h3>
-          <p className="font-script text-[20px] text-[#EE295C] mt-1">
+          <p className="font-script text-[20px] text-[#B90040] mt-1">
             180 días para volver a ti
           </p>
           <p className="text-[14px] text-[#685354] mt-2 leading-relaxed">
@@ -72,7 +72,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
         <div className="px-6 sm:px-8 py-6">
           {/* This is not another fitness program */}
           <div className="p-4 rounded-2xl bg-white fine-border mb-6">
-            <p className="text-[12px] font-bold text-[#EE295C] uppercase tracking-wider mb-1">
+            <p className="text-[12px] font-bold text-[#B90040] uppercase tracking-wider mb-1">
               Esto no es otro programa de fitness
             </p>
             <p className="text-[13px] text-[#685354] leading-relaxed">
@@ -83,7 +83,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
           </div>
 
           {/* Method flow: Diagnóstico blended into 3 phases */}
-          <h4 className="text-[11px] font-bold text-[#C7A46B] uppercase tracking-[0.2em] mb-3">
+          <h4 className="text-[12px] font-bold text-[#7E5B20] uppercase tracking-[0.2em] mb-3">
             El método en un flujo continuo · 180 días
           </h4>
           <div className="relative pl-1">
@@ -124,7 +124,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
 
           {/* What is included */}
           <div className="p-4 rounded-2xl bg-[#F8CFD5]/20 border border-[#F8CFD5] mt-6">
-            <p className="text-[12px] font-bold text-[#EE295C] uppercase tracking-wider mb-2">
+            <p className="text-[12px] font-bold text-[#B90040] uppercase tracking-wider mb-2">
               ¿Qué incluye el acompañamiento?
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[13px] text-[#201415]">
@@ -137,7 +137,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
                 'Ajustes bioindividuales en cada fase',
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[#EE295C] text-[18px]">check</span>
+                  <span className="material-symbols-outlined text-[#B90040] text-[18px]">check</span>
                   {item}
                 </li>
               ))}
@@ -165,7 +165,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
                   Analítica avanzada de longevidad. Precio y compra en la web de Axo
                   con el enlace de Carolina.
                 </p>
-                <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#EE295C] mt-2">
+                <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#B90040] mt-2">
                   Ver test con enlace de Carolina
                   <span className="material-symbols-outlined text-[15px]">arrow_outward</span>
                 </span>
@@ -180,7 +180,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
                 <p className="text-[12px] text-[#685354] mt-0.5 leading-snug">
                   Informe de optimización. Detalles y compra en epixlife.com.
                 </p>
-                <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#EE295C] mt-2">
+                <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#B90040] mt-2">
                   Ver informe de optimización
                   <span className="material-symbols-outlined text-[15px]">arrow_outward</span>
                 </span>
@@ -193,7 +193,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-[#FF6161]/30 to-[#F69C05]/20 blur-2xl rounded-full pointer-events-none" />
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#C7A46B] font-bold">
+                <p className="text-[12px] uppercase tracking-[0.2em] text-[#7E5B20] font-bold">
                   Plan 180 días · 6 meses
                 </p>
                 <p className="font-display text-[22px] font-bold mt-1">
@@ -204,7 +204,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
                   aplicar — sin compromiso.
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-white/80">
+              <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-wider text-white/80">
                 <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/15">Stripe</span>
                 <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/15">Klarna</span>
               </div>
@@ -214,7 +214,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
               href={CODIGO_DIOSA.applyFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 w-full py-3.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[14px] font-bold rounded-full text-center shadow-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2"
+              className="mt-4 w-full py-3.5 bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[14px] font-bold rounded-full text-center shadow-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2"
             >
               <span>Aplicar al Método Código Diosa</span>
               <span className="material-symbols-outlined text-[18px]">arrow_outward</span>
@@ -232,7 +232,7 @@ export const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose }) =
           </div>
 
           {/* Testimonials pending note */}
-          <p className="text-[11px] text-[#685354] mt-4 leading-relaxed">
+          <p className="text-[12px] text-[#685354] mt-4 leading-relaxed">
             Testimonios reales de clientas disponibles — pendientes de confirmación
             final sobre cuáles están autorizados para publicación.
           </p>

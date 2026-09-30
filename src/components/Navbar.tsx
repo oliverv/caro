@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="font-serif text-[17px] tracking-tight text-[#201415] font-semibold leading-tight">
                 CAROLINA BARCELLONA
               </span>
-              <span className="text-[9px] text-[#C7A46B] tracking-[0.22em] font-semibold uppercase">
+              <span className="text-[12px] text-[#7E5B20] tracking-[0.22em] font-semibold uppercase">
                 HEALTH & LONGEVITY 40+
               </span>
             </div>
@@ -112,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => handlePageClick(link.page)}
                   className={`text-[14px] font-semibold tracking-wide transition-all relative py-1 cursor-pointer ${
                     isActive
-                      ? 'text-[#EE295C] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
+                      ? 'text-[#B90040] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#EE295C]'
                       : 'text-[#685354] hover:text-[#201415]'
                   }`}
                 >
@@ -129,12 +129,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="language-switcher-btn"
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-white fine-border text-[12px] font-semibold text-[#201415] hover:text-[#EE295C] transition-all cursor-pointer shadow-xs"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-white fine-border text-[12px] font-semibold text-[#201415] hover:text-[#B90040] transition-all cursor-pointer shadow-xs"
                 aria-label="Cambiar idioma / Change language"
               >
                 <span>{currentLangObj.flag}</span>
                 <span className="uppercase font-bold">{currentLangObj.code}</span>
-                <span className="material-symbols-outlined text-[14px] text-[#C7A46B]">
+                <span className="material-symbols-outlined text-[14px] text-[#7E5B20]">
                   expand_more
                 </span>
               </button>
@@ -150,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       }}
                       className={`w-full text-left px-3 py-2 rounded-xl text-[12.5px] flex items-center justify-between transition-colors cursor-pointer ${
                         language === item.code
-                          ? 'bg-[#F8CFD5]/40 text-[#EE295C] font-bold'
+                          ? 'bg-[#F8CFD5]/40 text-[#B90040] font-bold'
                           : 'text-[#685354] hover:bg-[#F6F1EA] hover:text-[#201415]'
                       }`}
                     >
@@ -159,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <span>{item.label}</span>
                       </span>
                       {language === item.code && (
-                        <span className="material-symbols-outlined text-[16px] text-[#EE295C]">check</span>
+                        <span className="material-symbols-outlined text-[16px] text-[#B90040]">check</span>
                       )}
                     </button>
                   ))}
@@ -183,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-btn-booking"
               onClick={onOpenBookingModal}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[13px] font-bold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer"
             >
               Aplicar al Método
             </button>
@@ -198,7 +198,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="menu-toggle-btn"
               aria-label="Abrir menú de navegación"
               onClick={() => setDrawerOpen(true)}
-              className="w-10 h-10 rounded-full bg-white fine-border flex items-center justify-center text-[#201415] hover:text-[#EE295C] hover:bg-[#F8CFD5]/30 transition-all focus:outline-none shadow-xs cursor-pointer lg:hidden"
+              className="w-10 h-10 rounded-full bg-white fine-border flex items-center justify-center text-[#201415] hover:text-[#B90040] hover:bg-[#F8CFD5]/30 transition-all focus:outline-none shadow-xs cursor-pointer lg:hidden"
             >
               <span className="material-symbols-outlined text-[22px]">menu</span>
             </button>
@@ -231,7 +231,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="font-serif text-[15px] tracking-tight text-[#201415] font-bold">
                 CAROLINA BARCELLONA
               </span>
-              <span className="text-[8px] text-[#C7A46B] tracking-[0.2em] font-semibold uppercase">
+              <span className="text-[12px] text-[#7E5B20] tracking-[0.2em] font-semibold uppercase">
                 LONGEVITY STUDIO
               </span>
             </div>
@@ -250,7 +250,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="px-5 py-4 flex-1 overflow-y-auto space-y-5">
           {/* Language Selector inside Drawer */}
           <div>
-            <span className="text-[10px] font-bold text-[#C7A46B] uppercase tracking-[0.2em] block mb-2">
+            <span className="text-[12px] font-bold text-[#7E5B20] uppercase tracking-[0.2em] block mb-2">
               {n.idioma} / Language
             </span>
             <div className="grid grid-cols-3 gap-2">
@@ -260,7 +260,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => setLanguage(item.code)}
                   className={`py-1.5 px-2 rounded-xl text-[12px] font-bold flex items-center justify-center gap-1 transition-all cursor-pointer ${
                     language === item.code
-                      ? 'bg-[#EE295C] text-white shadow-xs'
+                      ? 'bg-[#B90040] text-white shadow-xs'
                       : 'bg-white fine-border text-[#685354]'
                   }`}
                 >
@@ -273,7 +273,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Main Pages List */}
           <div>
-            <p className="text-[10px] font-bold text-[#C7A46B] uppercase tracking-[0.2em] mb-2">
+            <p className="text-[12px] font-bold text-[#7E5B20] uppercase tracking-[0.2em] mb-2">
               {n.navegacionPrincipal}
             </p>
             <ul className="space-y-1">
@@ -289,12 +289,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => handlePageClick(link.page)}
                       className={`w-full flex items-center justify-between py-2 px-3 rounded-xl font-serif text-[16px] font-bold transition-all text-left cursor-pointer ${
                         isActive
-                          ? 'bg-white text-[#EE295C] shadow-xs'
+                          ? 'bg-white text-[#B90040] shadow-xs'
                           : 'text-[#201415] hover:bg-white/60'
                       }`}
                     >
                       <span>{link.label}</span>
-                      <span className="material-symbols-outlined text-[16px] text-[#C7A46B]">
+                      <span className="material-symbols-outlined text-[16px] text-[#7E5B20]">
                         chevron_right
                       </span>
                     </button>
@@ -311,7 +311,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setDrawerOpen(false);
                 onOpenBookingModal();
               }}
-              className="w-full py-3 bg-gradient-to-r from-[#FF6161] to-[#EE295C] text-white text-[13px] font-bold rounded-xl text-center shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 bg-gradient-to-r from-[#D6254F] to-[#B90040] text-white text-[13px] font-bold rounded-xl text-center shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span className="material-symbols-outlined text-[18px]">calendar_month</span>
               <span>Aplicar al Método</span>
@@ -328,7 +328,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           </div>
 
-          <p className="text-[10px] text-center text-[#685354] pt-2">
+          <p className="text-[12px] text-center text-[#685354] pt-2">
             {n.studioLocation}
           </p>
         </div>
