@@ -1,0 +1,13 @@
+{
+  "lastAgent": "agent-local-f4a69096-a1b0-4855-aa34-34c74c3c339f",
+  "sessionsByServer": {
+    "local:/Users/oliververmeulen/.letta/lc-local-backend": {
+      "agentId": "agent-local-f4a69096-a1b0-4855-aa34-34c74c3c339f",
+      "conversationId": "default"
+    }
+  },
+  "lastSession": {
+    "agentId": "agent-local-f4a69096-a1b0-4855-aa34-34c74c3c339f",
+    "conversationId": "default"
+  }
+}
