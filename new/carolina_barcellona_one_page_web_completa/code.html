@@ -72,6 +72,40 @@
 </div>
 </section>
 <!-- ==========================================
+       AUDIO + VIDEO DE BIENVENIDA (#audio-bienvenida)
+       ========================================== -->
+<section class="py-space-xl px-margin bg-surface scroll-mt-20" id="audio-bienvenida">
+<div class="max-w-[920px] mx-auto">
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-lg shadow-md p-space-lg flex flex-col md:flex-row items-center gap-space-lg">
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-primary-fixed-dim/35 rounded-full blur-3xl pointer-events-none"></div>
+<button aria-label="Ver vídeo de Carolina" class="relative shrink-0 w-24 h-24 rounded-DEFAULT overflow-hidden shadow-md group cursor-pointer block" onclick="var d=document.getElementById('welcome-video-dialog');d.showModal();var v=d.querySelector('video');v.currentTime=0;v.play();" title="Ver vídeo de Carolina" type="button">
+<video aria-hidden="true" autoplay class="w-full h-full object-cover object-top" loop muted playsinline poster="/assets/carolina-portrait.jpg" src="/assets/video.mp4"></video>
+<span class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<span class="material-symbols-outlined text-white drop-shadow" style="font-size:28px">play_circle</span>
+</span>
+</button>
+<div class="relative flex-1 w-full">
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Mensaje de Voz • Carolina Barcellona</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs">Unas palabras de Carolina para ti</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Escucha por qué el enfoque genérico no funciona después de los 40 y cómo la nutrición celular marca la diferencia.</p>
+<audio class="w-full mt-space-md" controls preload="metadata" src="/audio/carolina-welcome.mp3">Tu navegador no soporta el elemento de audio.</audio>
+<details class="mt-space-sm">
+<summary class="font-label-md text-label-md text-primary cursor-pointer">Ver transcripción</summary>
+<p class="mt-space-sm pl-space-md border-l-4 border-primary-container font-headline-sm text-[15px] italic text-on-surface-variant leading-relaxed">«Hola, soy Carolina Barcellona. Si estás aquí es probable que sientas que las cosas que antes te funcionaban para mantenerte enérgica o en tu peso ya no dan resultado. No es tu culpa: tu biología, tus mitocondrias y tus receptores hormonales han cambiado. En mi consulta no imponemos sacrificios ni dietas fotocopiadas; analizamos tu epigenética y tu estilo de vida para diseñar un sistema sostenible que te devuelva la fuerza y la serenidad. Bienvenida a tu nueva etapa.»</p>
+</details>
+</div>
+</div>
+</div>
+<dialog class="p-0 bg-transparent backdrop:bg-black/80 max-w-sm w-full overflow-visible" id="welcome-video-dialog" onclick="if(event.target===this){this.close()}" onclose="this.querySelector('video').pause()">
+<div class="relative">
+<video class="w-full rounded-DEFAULT shadow-2xl" controls playsinline preload="none" src="/assets/video.mp4"></video>
+<button aria-label="Cerrar vídeo" class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center shadow-md hover:bg-primary hover:text-on-primary transition-colors cursor-pointer" onclick="this.closest('dialog').close()" type="button">
+<span class="material-symbols-outlined" style="font-size:18px">close</span>
+</button>
+</div>
+</dialog>
+</section>
+<!-- ==========================================
        SECTION 2: SOBRE MÍ (#sobre-mi)
        ========================================== -->
 <section class="relative py-space-2xl px-margin bg-surface-container-low scroll-mt-20" id="sobre-mi">
